@@ -1,16 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@400;500;600;700&display=swap");
-
 :root {
-  --font-heading: "Outfit", system-ui, sans-serif;
-  --font-body: "DM Sans", system-ui, sans-serif;
-  --color-bg: #faf8f5;
+  --font-heading: "Bebas Neue", sans-serif;
+  --font-underRubrik: "Bricolage Grotesque", sans-serif;
+  --font-body: "Actor", system-ui, sans-serif;
+  --color-bg: #BFB6A7;
   --color-bg-alt: #f0ebe3;
   --color-surface: #ffffff;
-  --color-primary: #2d5a3d;
-  --color-primary-hover: #3d7451;
-  --color-accent: #c9a227;
+  --color-primary: #62978D;
+  --color-primary-hover: #78A89F;
+  --color-accent: #9C6B48;
   --color-accent-hover: #d4b03a;
-  --color-text: #2c2c2c;
+  --color-text: #646464;
   --color-text-muted: #6b6b6b;
   --color-border: #e5e0d8;
   --radius-sm: 8px;
@@ -21,71 +20,6 @@
   --shadow-hover: 0 8px 24px rgba(45, 90, 61, 0.12);
 }
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  font-family: var(--font-body);
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  line-height: 1.5;
-}
-
-/* Header */
-.site-header {
-  background: var(--color-surface);
-  padding: 1rem 2rem;
-  box-shadow: var(--shadow-sm);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.site-header nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.logo {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--color-primary);
-  text-decoration: none;
-  letter-spacing: -0.02em;
-  transition: color 0.2s ease;
-}
-
-.logo:hover {
-  color: var(--color-primary-hover);
-}
-
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--color-text);
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: color 0.2s ease;
-}
-
-.nav-links a:hover {
-  color: var(--color-primary);
-}
 
 /* Main Content */
 .main-content {
@@ -94,13 +28,14 @@ body {
   margin: 0 auto;
 }
 
-.main-content h1 {
+.main-content h2 {
   font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 2.3rem;
+  padding-top: 30px;
+  padding-left: 10px;
   color: var(--color-text);
   margin: 0 0 1.5rem 0;
-  letter-spacing: -0.02em;
+  letter-spacing: 4px;
 }
 
 /* Hero section (homepage) - full width, non-contained */
@@ -111,30 +46,44 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 30px;
   text-align: center;
   padding: 5rem 2rem;
   background-image: linear-gradient(
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.4)
     ),
-    url("public/hakim.png");
+    url("images/hero.png");
   background-size: cover;
   background-position: center;
   color: #fff;
 }
+.action-btn{
+  padding: 20px 50px;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-size: 25px;
+  letter-spacing: 2px;
+  border: 0px solid;
+  border-radius: 10px;
+  margin-top: 35px;
+  font-family: 'Bebas Neue', 'sans-serif' ;
+}
 
 .hero h1 {
   font-family: var(--font-heading);
-  font-size: 3rem;
-  font-weight: 600;
+  font-size: 5rem;
+  letter-spacing: 10px;
   margin: 0 0 0.5rem 0;
-  letter-spacing: -0.02em;
+  letter-spacing: 8px;
   color: #fff;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .hero p {
   margin: 0;
+  font-family: var(--font-underRubrik);
   font-size: 1.35rem;
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
@@ -143,8 +92,12 @@ body {
 /* Products grid */
 #products {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+  gap: 2.5rem;
+}
+
+.main-content h1{
+  color: #ffffff;
 }
 
 .product-card {
@@ -152,7 +105,6 @@ body {
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
-  border: 1px solid var(--color-border);
   transition: box-shadow 0.25s ease, transform 0.2s ease;
   display: flex;
   flex-direction: column;
@@ -168,10 +120,12 @@ body {
   aspect-ratio: 1;
   object-fit: cover;
   background: var(--color-bg-alt);
+  max-width: 400px;
 }
 
 .product-card__image-placeholder {
   width: 100%;
+  height: 300px;
   aspect-ratio: 1;
   background: linear-gradient(135deg, var(--color-bg-alt) 0%, #e5e0d8 100%);
   display: flex;
@@ -183,15 +137,17 @@ body {
 
 .product-card__body {
   padding: 1.25rem;
+  height: 200px;
   flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .product-card h3 {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
   margin: 0 0 0.5rem 0;
   color: var(--color-text);
   line-height: 1.3;
@@ -199,8 +155,8 @@ body {
 
 .product-card__price {
   font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--color-primary);
+  font-family: var(--font-underRubrik);
+  color: var(--color-text);
   margin: 0 0 1rem 0;
 }
 
@@ -212,8 +168,7 @@ body {
   padding: 0.65rem 1.25rem;
   border-radius: var(--radius-sm);
   font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: background 0.2s ease;
 }
@@ -295,39 +250,3 @@ body {
   background: var(--color-primary-hover);
 }
 
-/* Footer */
-.site-footer {
-  background: var(--color-surface);
-  padding: 1.5rem 2rem;
-  margin-top: 3rem;
-  border-top: 1px solid var(--color-border);
-}
-
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.footer-content p {
-  margin: 0 0 0.75rem 0;
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-}
-
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-}
-
-.footer-links a {
-  text-decoration: none;
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-  transition: color 0.2s ease;
-}
-
-.footer-links a:hover {
-  color: var(--color-primary);
-}

@@ -1,0 +1,220 @@
+:root {
+    --font-heading: "Bebas Neue", sans-serif;
+    --font-underRubrik: "Bricolage Grotesque", sans-serif;
+    --font-body: "Actor", system-ui, sans-serif;
+    --color-bg: #BFB6A7;
+    --color-bg-alt: #f0ebe3;
+    --color-surface: #ffffff;
+    --color-primary: #62978D;
+    --color-primary-hover: #78A89F;
+    --color-accent: #9C6B48;
+    --color-accent-hover: #d4b03a;
+    --color-text: #646464;
+    --color-text-muted: #6b6b6b;
+    --color-border: #e5e0d8;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --shadow-sm: 0 2px 8px rgba(45, 90, 61, 0.06);
+    --shadow-md: 0 4px 16px rgba(45, 90, 61, 0.08);
+    --shadow-hover: 0 8px 24px rgba(45, 90, 61, 0.12);
+}
+
+nav.mobil{
+    display: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    font-family: var(--font-body);
+    color: var(--color-surface);
+    background-color: var(--color-bg);
+    line-height: 1.5;
+}
+
+/* Header */
+.site-header {
+    background: var(--color-surface);
+    padding: 1rem 0;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.site-header nav.desktop {
+    display: flex;
+    padding: 0px 50px;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--color-text);
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: color 0.2s ease;
+}
+
+.logo:hover{
+    color: var(--color-primary-hover);
+}
+.nav-links li a img {
+    transition: 0.3;
+}
+.nav-links li a img:hover{
+    filter: brightness(1.2);
+}
+
+
+.nav-links {
+    display: flex;
+    gap: 3.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--color-primary);
+}
+
+
+/* Footer */
+.site-footer {
+    background: var(--color-bg-alt);
+    padding: 1.5rem 3rem;
+    margin-top: 3rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: space-around;
+    h2{
+        color: var(--color-text);
+        font-family: var(--font-heading);
+        font-size: 2rem;
+        letter-spacing: 2px;
+        padding-left: 80px;
+    }
+    p{
+        padding-left: 80px;
+    }
+}
+
+.footer-content p {
+    margin: 0 0 0.75rem 0;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 5.1rem;
+    justify-content: center;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--color-primary);
+}
+.footer-content .sociala{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    right: 90px;
+    bottom: 10px;
+    gap: 20px;
+    img{
+        width: 30px;
+    }
+}
+@media (max-width:1000px) and (min-width:10px) {
+    nav.mobil{
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+    }
+    a.logo{
+        margin-left: 50px;
+        font-size: 2rem;
+    }
+    nav div img{
+        width: 22px;
+        align-self: center;
+        justify-self: center;
+        margin-top: 14px;
+        margin-right: 50px;
+    }
+    .site-header nav.desktop{
+        display: none;
+    }
+    .dropdown-list{
+        display:none;
+        position: absolute;
+        right: 0;
+        top: 18px;
+        background-color: #ffffff;
+        padding: 20px 30px;
+        a{
+            text-decoration: none;
+            color: #62978D;
+            font-size: 20px;
+            padding: 30px 80px;
+            margin-top: 20px;
+        }
+    }
+    .dropdown{
+        
+    }
+    .dropdown:hover{
+        .dropdown-list{
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        cursor: pointer;
+    }
+}
+@media (max-width:950px) {
+    div.footer-content div.sociala{
+        right: 0;
+        top: 10px;
+        a img{
+            width: 25px;
+        }
+    }
+    div.footer-content h2, .footer-content p{
+        padding-left: 0px;
+        margin-bottom: 40px;
+    }
+    
+}
