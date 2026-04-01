@@ -6,6 +6,7 @@
     <title>Register - Eventra</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="register.css" />
     <!--link to javascript files here-->
   </head>
   <body>
@@ -29,7 +30,7 @@
         <form id="registerForm" class="register-form">
           <div class="form-group">
             <label for="fname">First Name</label>
-            <input type="text" id="fname" required />
+            <input type="text" class="login-input" id="fname" required />
           </div>
           <div class="form-group">
             <label for="lname">Last Name</label>
@@ -37,11 +38,11 @@
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" required />
+            <input type="email" class="login-input"id="email" required />
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" required />
+            <input type="password" class="login-input" id="password" required />
           </div>
           <div class="button-group">
             <button type="submit">Register</button>
