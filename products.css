@@ -1,0 +1,111 @@
+:root {
+    --font-heading: "Bebas Neue", sans-serif;
+    --font-underRubrik: "Bricolage Grotesque", sans-serif;
+    --color-bg: #BFB6A7;
+    --color-bg-alt: #f0ebe3;
+    --color-primary: #62978D;
+    --color-primary-hover: #78A89F;
+    --color-accent: #9C6B48;
+    --color-text: #646464;
+
+}
+
+ul li a.utgrått{
+    color: #a6c2bc;
+}
+.hero p{
+    font-family: var(--font-underRubrik);
+    font-size: 30px;
+}
+
+div.filtrera{
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    div.hidden{
+        display: none;
+    }
+    .search-bar{
+        width: 500px;
+        text-align: center;
+        text-justify: center;
+        padding: 5px 0px;
+        border-radius: 10px;
+        border: 1px solid var(--color-primary-hover);
+        height: 40px;
+    }
+    img.absolute{
+        position: absolute;
+        right: 20px;
+        top: 12px;
+    }
+}
+
+.main-content h2{
+    font-family:'Bebas Neue', 'sans-serif'
+}
+
+.main-content div div img{
+    width: 50px;
+    cursor: pointer;
+    position: relative;
+}
+div.filter-form{
+    position: absolute;
+    border-radius: 20px;
+    background-color: var(--color-bg-alt);
+    color: var(--color-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: var(--font-underRubrik);
+    padding: 30px 50px;
+    .submit{
+        padding: 10px 10px ;
+        border-radius: 8px;
+        border: 1px solid;
+        background-color: #62978D;
+        font-family: var(--font-underRubrik);
+        color: #f0ebe3;
+    }
+    #category, #date{
+        border: 1px solid #78A89F;
+        padding: 5px 5px;
+        margin-left: 10px;
+        width: 200px;
+        border-radius: 5px;
+        color: #646464;
+    }
+    #date{
+        margin-left: 42px;
+    }
+}
+.main-content div.flex div.filter-form{
+    top: 80px;
+    right: 0;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    position: relative;
+}
+div.desktop{
+    display: none;
+}
+
+div.desktop.active{
+    display: flex;
+}
+
+@media (max-width:800px) {
+    div.filtrera .search-bar{
+        width: 300px;
+    }
+    div.desktop{
+        padding: 25px 75px;
+        margin-top: 15px;
+    }
+}
