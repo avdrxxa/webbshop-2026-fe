@@ -14,7 +14,7 @@
   --color-border: #e5e0d8;
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius-lg: 31px;
   --shadow-sm: 0 2px 8px rgba(45, 90, 61, 0.06);
   --shadow-md: 0 4px 16px rgba(45, 90, 61, 0.08);
   --shadow-hover: 0 8px 24px rgba(45, 90, 61, 0.12);
@@ -187,6 +187,19 @@
 }
 
 /* Register / Login forms */
+
+.main-content h1 {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 400;
+  padding-top: 30px;
+  padding-left: 10px;
+  color: white;
+}
+
+
+
 .register-wrapper,
 .login-wrapper {
   max-width: 420px;
@@ -196,21 +209,19 @@
 .register-form {
   background: var(--color-bg);
   padding: 2rem;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
-  border: 1px solid var(--color-border);
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  margin-bottom: 1.25rem;
-}
+  margin-bottom: 1.5rem;
+} 
 
 .form-group label {
-  font-weight: 500;
-  font-size: 0.9rem;
+  font: var(--font-underRubrik);
+  font-weight: 400;
 }
 
 .form-group input {
@@ -222,6 +233,25 @@
   border-bottom: 1px solid var(--color-border);
   padding: 6px 30px;
 }
+
+.login-icon {
+  background: url("images/loginicon.svg");
+  background-repeat: no-repeat;
+  background-position: 6px center;
+}
+
+.lock-icon {
+  background: url("images/lockicon.svg");
+  background-repeat: no-repeat;
+  background-position: 6px center;
+}
+
+.email-icon {
+  background: url("images/emailicon.svg");
+  background-repeat: no-repeat;
+  background-position: 6px center;
+}
+
 
 
 .register-form button[type="submit"],
