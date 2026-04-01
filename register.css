@@ -1,19 +1,9 @@
 body {
-    width: 100%;
-    min-height: 70vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    text-align: center;
-    padding: 5rem 2rem;
     background-image: linear-gradient(
-    rgba(0, 0, 0, 0.5),
-    rgba(0, 0, 0, 0.4)
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.4)
     ),
-    url("images/hero.png");
-background-size: cover;
-background-position: center;
-color: #fff;
+    url("images/sunset.png");
+    background-size: cover;
+    background-position: center;color: #fff;
 }
