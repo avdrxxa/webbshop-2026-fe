@@ -193,9 +193,8 @@
   margin: 0 auto;
 }
 
-.register-form,
-.login-form {
-  background: var(--color-surface);
+.register-form {
+  background: var(--color-bg);
   padding: 2rem;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
