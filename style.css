@@ -49,11 +49,7 @@
   gap: 30px;
   text-align: center;
   padding: 5rem 2rem;
-  background-image: linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.4)
-    ),
-    url("images/hero.png");
+  background-image:url("images/hero.png");
   background-size: cover;
   background-position: center;
   color: #fff;
