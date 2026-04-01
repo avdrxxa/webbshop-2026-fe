@@ -1,6 +1,9 @@
 body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
     background-image: linear-gradient(
-    rgba(255, 255, 255, 0.1),
+    rgba(34, 30, 30, 0.2),
     rgba(255, 255, 255, 0.4)
     ),
     url("images/sunset.png");
@@ -8,3 +11,14 @@ body {
     background-position: center;color: #fff;
 }
 
+main {
+    flex: 1;
+}
+
+header {
+    display: none;
+}
+
+footer {
+    width: 100%;
+}
