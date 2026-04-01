@@ -3,15 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register - Hakim Livs</title>
+    <title>Register - Eventra</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="main.css" />
+    <!--link to javascript files here-->
   </head>
   <body>
-
     <!-- HEADER -->
     <header class="site-header">
       <nav>
-        <a href="index.html" class="logo">Hakim Livs</a>
+        <a href="index.html" class="logo">Eventra</a>
         <ul class="nav-links">
           <li><a href="products.html">Products</a></li>
           <li><a href="cart.html">Cart (0)</a></li>
@@ -23,12 +24,16 @@
 
     <!-- MAIN CONTENT -->
     <main class="main-content">
-      <h1>Register</h1>
+      <h1>Register / Login</h1>
       <div id="register-container" class="register-wrapper">
         <form id="registerForm" class="register-form">
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" required />
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" required />
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" required />
           </div>
           <div class="form-group">
             <label for="email">Email</label>
@@ -39,6 +44,7 @@
             <input type="password" id="password" required />
           </div>
           <button type="submit">Register</button>
+          <button type="button" id="loginBtn">Login</button>
         </form>
       </div>
     </main>
@@ -46,7 +52,7 @@
     <!-- FOOTER -->
     <footer class="site-footer">
       <div class="footer-content">
-        <p>&copy; 2024 Hakim Livs. All rights reserved.</p>
+        <p>&copy; 2024 Eventra. All rights reserved.</p>
         <div class="footer-links">
           <a href="/about">About</a>
           <a href="/contact">Contact</a>
