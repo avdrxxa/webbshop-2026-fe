@@ -192,9 +192,8 @@ body {
             margin-top: 20px;
         }
     }
-    .dropdown{
-        
-    }
+    
+
     .dropdown:hover{
         .dropdown-list{
             display: flex;

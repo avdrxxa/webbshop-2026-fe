@@ -237,26 +237,6 @@
   padding: 6px 30px;
 }
 
-.login-icon {
-  background: url("images/loginicon.svg");
-  background-repeat: no-repeat;
-  background-position: 6px center;
-}
-
-.lock-icon {
-  background: url("images/lockicon.svg");
-  background-repeat: no-repeat;
-  background-position: 6px center;
-}
-
-.email-icon {
-  background: url("images/emailicon.svg");
-  background-repeat: no-repeat;
-  background-position: 6px center;
-}
-
-
-
 .register-form button[type="submit"],
 .login-form button[type="submit"] {
   width: 100%;
@@ -285,4 +265,11 @@
 
 .button-group button {
   flex: 1; 
+}
+
+.form-icon {
+  position: relative;
+  right: 5px;
+  top: 5px;
+  width: 24px;
 }

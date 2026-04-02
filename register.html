@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register - Eventra</title>
+    <title>Eventera</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href='main.css'/>
     <link rel="stylesheet" href="register.css" />
-    <!--link to javascript files here-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Actor&family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
   </head>
-  <body>
+<body>
+
     <!-- HEADER -->
     <header class="site-header">
-      <nav>
+      <nav class="desktop">
         <a href="index.html" class="logo">Eventra</a>
-        <ul class="nav-links">
-          <li><a href="products.html">Products</a></li>
-          <li><a href="cart.html">Cart (0)</a></li>
-          <li><a href="register.html">Register</a></li>
-          <li><a href="admin.html">Admin</a></li>
-        </ul>
+      </nav>
+      <nav class="mobil">
+        <a href="index.html" class="logo">Eventra</a>
       </nav>
     </header>
 
@@ -29,20 +29,29 @@
       <div id="register-container" class="register-wrapper">
         <form id="registerForm" class="register-form">
           <div class="form-group">
-            <label for="fname">First Name</label>
-            <input type="text" class="login-input" class="login-icon" id="fname" required />
+            <div class="icon-wrapper">
+              <img src="images/user.svg" alt="user Icon" class="form-icon"/>
+              <label for="fname">First Name</label> 
+            </div> 
+            <input type="text" class="login-input" id="fname" required />
           </div>
-          <div class="form-group">
+          <div class="form-group">  
             <label for="lname">Last Name</label>
             <input type="text" id="lname" required />
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="login-input" class="email-icon"id="email" required />
+            <div class="icon-wrapper">
+              <img src="images/email.svg" alt="email Icon" class="form-icon"/>
+              <label for="email">Email</label>
+            </div>
+            <input type="email" class="login-input" id="email" required />
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="login-input" class="lock-icon" id="password" required />
+            <div class="icon-wrapper">
+              <img src="images/lock.svg" alt="lock Icon" class="form-icon"/>
+              <label for="password">Password</label>
+            </div>
+            <input type="password" class="login-input" id="password" required />
           </div>
           <div class="button-group">
             <button type="submit">Register</button>
@@ -55,15 +64,20 @@
     <!-- FOOTER -->
     <footer class="site-footer">
       <div class="footer-content">
+        <h2>Eventra</h2>
         <p>&copy; 2024 Eventra. All rights reserved.</p>
         <div class="footer-links">
           <a href="/about">About</a>
           <a href="/contact">Contact</a>
           <a href="/terms">Terms</a>
         </div>
+        <div class="sociala">
+          <a href="https://www.instagram.com/" target="_blank"><img src="images/insta.svg" alt="instagram icon"></a>
+          <a href="https://www.facebook.com/" target="_blank"><img src="images/facebook.svg" alt="facebook icon"></a>
+          <a href="https://www.youtube.com" target="_blank" ><img src="images/youtube.svg" alt="youtube icon"></a>
+        </div>
       </div>
     </footer>
-
     <script type="module" src="./src/scripts/register.js"></script>
   </body>
 </html>
