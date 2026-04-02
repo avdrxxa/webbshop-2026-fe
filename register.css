@@ -11,13 +11,19 @@ body {
     background-position: center;color: #fff;
 }
 
+.logo {
+    color: var(--color-text);
+}
+
+nav, .site-header {
+    background-color: transparent;
+}
+
 main {
     flex: 1;
 }
 
-header {
-    display: none;
-}
+
 
 footer {
     width: 100%;
