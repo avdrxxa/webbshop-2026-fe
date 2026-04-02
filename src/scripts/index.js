@@ -1,8 +1,73 @@
 import { getEvents } from "../utils/eventsApi.js";
 
-// TEMP: Default products for rendering when backend is unavailable
-
 document.addEventListener("DOMContentLoaded", loadEvents);
+let seeEvents= document.querySelector('.action-btn')
+if(!seeEvents==null||!seeEvents==0||!seeEvents==undefined){
+  seeEvents.addEventListener("click", () => {
+      window.location.href=`products.html`
+  })
+}
+
+let imagesLista={
+  gym:[
+    'images/gym/gym1.jpg',
+    'images/gym/gym3.svg',
+    'images/gym/gym4.webp',
+  ],
+  meditation:[
+    'images/meditation/meditation1.jpg',
+    'images/meditation/meditation2.jpg',
+  ],
+  outdoor:[
+    'images/outdoor/outdoor1.jpg',
+    'images/outdoor/outdoor2.jpg',
+    'images/outdoor/outdoor3.jpg',
+  ],
+  pilates:[
+    'images/pilates/pilates1.jpg',
+    'images/pilates/pilates2.webp',
+  ],
+  spa:[
+    'images/spa/spa1.webp',
+    'images/spa/spa2.jpeg',
+    'images/spa/spa4.jpg',
+  ],
+  yoga:[
+    'images/yoga/yoga1.webp',
+    'images/yoga/yoga2.jpg',
+    'images/yoga/yoga3.webp',
+  ]
+}
+let användaIndex={}
+function getEventsBilder(event){
+  let titel=event.title.toLowerCase()
+  let kategory='default'
+  if(titel.includes('gym')||titel.includes('training')||titel.includes('power')){
+    kategory='gym'
+  }else if(titel.includes('meditation')){
+    kategory='meditation'
+  }else if(titel.includes('outdoor')){
+    kategory='outdoor'
+  }else if(titel.includes('pilates')){
+    kategory='pilates'
+  }else if(titel.includes('spa')){
+    kategory='spa'
+  }else if(titel.includes('yoga')){
+    kategory='yoga'
+  }else{
+    console.log('fel vid get eventsbilder func')
+    return 'images/default.jpg'
+  }
+  let images=imagesLista[kategory]
+  if(!användaIndex[kategory]){
+    användaIndex[kategory]=0
+    imagesLista[kategory]=images.sort(()=> Math.random()-0.5)
+  }
+  let indexx=användaIndex[kategory]
+  let image=images[indexx]
+  användaIndex[kategory]=(indexx+1)%images.length
+  return image
+}
 
 async function loadEvents() {
   const eventsContainer = document.getElementById("events");
@@ -11,7 +76,7 @@ async function loadEvents() {
   try {
     const events = await getEvents();
     eventsContainer.innerHTML = "";
-    const toRender = events.length > 0 ? events : TEMP_EVENTS;
+    const toRender = events.length > 0 ? events : console.log('error');
     if (events.length === 0) {
       eventsContainer.dataset.temp = "true";
       const notice = document.createElement("p");
@@ -40,11 +105,10 @@ function createEventCard(event) {
   element.className = "product-card";
   const date = new Date(event.time.date).toLocaleDateString("sv-SE");
   const time = event.time.startTime;
-
-
-  const imageSection = event.image
-    ? `<img class="product-card__image" src="${event.image}" alt="${event.title}" loading="lazy" />`
-    : `<div class="product-card__image-placeholder">🥬</div>`;
+  const image = getEventsBilder(event)|| 'images/default.jpg'
+  let imageSection= image
+    ? `<img class="product-card__image" src="${image}" alt="${event.title}" loading="lazy" />`
+    : `<div class="product-card__image-placeholder">:)</div>`;
 
   element.innerHTML = `
     ${imageSection}
@@ -60,11 +124,9 @@ function createEventCard(event) {
   `;
 
   element.querySelector(".add-to-cart-btn").addEventListener("click", () => {
-        window.location.href=`product.html?id=${event._id}`
+    sessionStorage.setItem('image',image)
+    window.location.href=`product.html?id=${event._id}`
   });
 
   return element;
 }
-
-console.log("DOM ready state:", document.readyState);
-console.log("events div:", document.getElementById("events"));

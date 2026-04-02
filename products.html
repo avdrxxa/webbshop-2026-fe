@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eventra | events</title>
-    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href='main.css'/>
     <link rel="stylesheet" href="products.css">
-    <script src="products.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="products.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Actor&family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
@@ -47,9 +47,9 @@
     </section>
 
     <main class="main-content">
-      <div class="flex">
-        <h2>Upcoming events</h2>
-        <div><img src="images/filtrera.svg" alt="filter icon"></div>
+      <div class="flex1">
+        <h2>Featured events</h2>
+        <div><img class="iconFilter" src="images/filtrera.svg" alt="filter icon"></div>
         <div class="filter-form desktop">
           <label for="date">Date
             <input type="date" name="date" id="date">
@@ -60,7 +60,7 @@
           <button class="submit">Submit</button>
         </div>
       </div>
-      <div id="products"></div>
+      <div id="events"></div>
     </main>
 
     <!-- FOOTER -->

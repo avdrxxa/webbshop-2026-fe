@@ -30,8 +30,11 @@ div.filtrera{
         text-align: center;
         text-justify: center;
         padding: 5px 0px;
+        font-family: var(--font-underRubrik);
+        color: #646464;
         border-radius: 10px;
-        border: 1px solid var(--color-primary-hover);
+        border: 0px;
+        outline: 1px solid var(--color-primary);
         height: 40px;
     }
     img.absolute{
@@ -44,9 +47,17 @@ div.filtrera{
 .main-content h2{
     font-family:'Bebas Neue', 'sans-serif'
 }
+.flex1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-.main-content div div img{
+.main-content div div img.iconFilter{
     width: 50px;
+    margin-top: 10px;
+    margin-right: 20px;
     cursor: pointer;
     position: relative;
 }
@@ -80,15 +91,17 @@ div.filter-form{
         margin-left: 42px;
     }
 }
-.main-content div.flex div.filter-form{
-    top: 80px;
-    right: 0;
+.main-content div.flex1 div.filter-form{
+    top: 800px;
+    right: 100px;
+    z-index: 1;
 }
 
 .flex{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: 0 10px;
     position: relative;
 }
@@ -99,13 +112,33 @@ div.desktop{
 div.desktop.active{
     display: flex;
 }
+button.add-to-cart-btn{
+    font-size: 19px;
+    padding-left: 20px;
+}
 
 @media (max-width:800px) {
     div.filtrera .search-bar{
-        width: 300px;
+        width: 350px;
     }
     div.desktop{
-        padding: 25px 75px;
-        margin-top: 15px;
+        padding: 25px 40px;
+        width: 73%;
+    }
+    button.add-to-cart-btn{
+        font-size: 14px;
+    }
+}
+@media (min-width:1200px) {
+    div.desktop{
+        right: 100px;
+        top: 300px;
+        padding: 25px 40px;
+    }
+    section.hero p{
+        font-size: 35px;
+    }
+    div.filtrera .search-bar{
+        width: 550px;
     }
 }

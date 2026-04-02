@@ -1,0 +1,150 @@
+:root {
+    --font-heading: "Bebas Neue", sans-serif;
+    --font-underRubrik: "Bricolage Grotesque", sans-serif;
+    --color-bg: #BFB6A7;
+    --color-bg-alt: #f0ebe3;
+    --color-primary: #62978D;
+    --color-primary-hover: #78A89F;
+    --color-accent: #9C6B48;
+    --color-text: #646464;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cover{
+    width: 100%;
+    object-fit: cover;
+    min-height: 77vh;
+    max-height:79vh ;
+    margin-bottom: 0;
+}
+#event-detail{
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    justify-self: center;
+    width: 80%;
+    background-color:var(--color-bg-alt) ;
+    color: var(--color-text);
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+.heroInfo{
+    display: flex;
+    padding: 0 30px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 180px;
+    font-family: var(--font-heading);
+    color: #f0ebe3;
+    h1{
+        font-size: 60px;
+        letter-spacing: 8px;
+        text-align: center;
+    }
+    button{
+        font-family: var(--font-heading);
+        font-size: 25px;
+        letter-spacing: 2px;
+    }
+}
+.rowInfo{
+    display: flex;
+    gap: 40px;
+    font-size: 50px;
+}
+
+.eventInfo{
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 50px 50px 50px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+.trainer{
+    display: flex;
+    font-family: var(--font-heading);
+    gap: 20px;
+    letter-spacing: 2px;
+    img{
+        width: 20px;
+        border-radius: 50%;
+    }
+}
+.sistaRad{
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-heading);
+    font-size: 19px;
+}
+.platser{
+    display: flex;
+    gap: 10px;
+    img{
+        width: 20px;
+    }
+}
+.btnDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bookNow{
+    padding: 20px 50px;
+    cursor: pointer;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    font-size: 25px;
+    letter-spacing: 2px;
+    border: 0px solid;
+    border-radius: 10px;
+    margin-top: 35px;
+    font-family: 'Bebas Neue', 'sans-serif' ;
+}
+.bookNow:hover{
+    background-color: #78A89F;
+}
+
+@media (min-width:1200px) {
+    .heroInfo{
+        .rowInfo{
+            font-size: 70px;
+        }
+        h1{
+            font-size: 80px;
+        }
+        button{
+            padding: 20px 30px;
+            font-size: 23px;
+        }
+    }
+    .eventInfo{
+        padding: 70px;
+        p{
+            font-size:24px ;
+        }
+        .trainer{
+            font-size: 24px;
+            img{
+                width: 30px;
+            }
+        }
+        .sistaRad{
+            font-size: 30px;
+        }
+    }
+    .bookNow{
+        padding: 25px 70px;
+        font-size: 30px;
+    }
+}
