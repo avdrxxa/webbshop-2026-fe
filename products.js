@@ -9,6 +9,7 @@ filterBtn.addEventListener('click', () => {
     filterForm.classList.toggle('active');
 });
 
+
 document.addEventListener("DOMContentLoaded", loadEvents);
 
 let imagesLista={
@@ -75,21 +76,17 @@ function getEventsBilder(event){
 async function loadEvents() {
     const eventsContainer = document.getElementById("events");
     eventsContainer.innerHTML = "<p>Loading events...</p>";
-
     try {
         const events = await getEvents();
-        eventsContainer.innerHTML = "";
-        const toRender = events.length > 0 ? events : console.log('error');
-        if (events.length === 0) {
-        eventsContainer.dataset.temp = "true";
-        const notice = document.createElement("p");
-        notice.className = "temp-notice";
-        notice.textContent = "Showing demos events (backend unavailable)";
-        eventsContainer.appendChild(notice);
-        }
+        let searchBarValue=searchBar.value.toLowerCase()
+        let filtreradeEvents=events.filter(event=>
+            event.title.toLowerCase().includes(searchBarValue)
+        )
+        let toRender =filtreradeEvents.length>0?filtreradeEvents:events
+        eventsContainer.innerHTML=''
         toRender.forEach((event) => {
-        const eventCard = createEventCard(event);
-        eventsContainer.appendChild(eventCard);
+            const eventCard = createEventCard(event);
+            eventsContainer.appendChild(eventCard);
         });
     } catch (error) {
     console.error("Error fetching events:", error);
@@ -132,3 +129,7 @@ function createEventCard(event) {
 
     return element;
 }
+
+searchBar.addEventListener('input', ()=>{
+    loadEvents()
+})
