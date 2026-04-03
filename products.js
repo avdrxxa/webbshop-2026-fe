@@ -44,6 +44,12 @@ let imagesLista={
 }
 let användaIndex={}
 function getEventsBilder(event){
+    let sparadeKey=`event-image-${event._id}`
+    let sparadeImage=localStorage.getItem(sparadeKey)
+    if(sparadeImage){
+        return sparadeImage
+    }
+    
     let titel=event.title.toLowerCase()
     let kategory='default'
     if(titel.includes('gym')||titel.includes('training')||titel.includes('power')){
@@ -63,14 +69,9 @@ function getEventsBilder(event){
         return 'images/default.jpg'
     }
     let images=imagesLista[kategory]
-    if(!användaIndex[kategory]){
-        användaIndex[kategory]=0
-        imagesLista[kategory]=images.sort(()=> Math.random()-0.5)
-    }
-    let indexx=användaIndex[kategory]
-    let image=images[indexx]
-    användaIndex[kategory]=(indexx+1)%images.length
-    return image
+    let randImage=images[Math.floor(Math.random()*images.length)]
+    localStorage.setItem(sparadeKey,randImage)
+    return randImage
 }
 
 async function loadEvents() {
