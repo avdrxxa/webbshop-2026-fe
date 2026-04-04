@@ -8,10 +8,36 @@ async function getEventById(id){
     if(!res.ok)throw new Error('Event not found')
         return res.json()
 }
+let trainers=[
+    {
+        name:'Michaela Mahal',
+        image:'images/trainers/trainer1.jpg'
+    },
+    {
+        name:'Elisa Kim',
+        image:'images/trainers/trainer2.jpg'
+    },
+    {
+        name:'Kimberly Andersson',
+        image:'images/trainers/trainer3.jpg'
+    }
+]
+function randomTränare(id){
+    let key=`event-trainer-${id}`
+    let sparadeTrainer=sessionStorage.getItem(key)
+    if(sparadeTrainer){
+        return JSON.parse(sparadeTrainer)
+    }
+    let trainer= trainers[Math.floor(Math.random()*trainers.length)]
+    sessionStorage.setItem(key,JSON.stringify(trainer))
+    return trainer
+}
+
+
 let imgCover= document.querySelector('.cover')
 document.addEventListener("DOMContentLoaded", async()=>{
     const event = await getEventById(id)
-
+    let trainer= randomTränare(id)
     const container = document.getElementById("event-detail")
     try{
         imgCover.src= sessionStorage.getItem('image')
@@ -29,8 +55,8 @@ document.addEventListener("DOMContentLoaded", async()=>{
         <div class='eventInfo'>
         <p>${event.description || "No description available"}</p>
         <div class='trainer'>
-            <h2>TRAINER: ${event.trainer}</h2>
-            <img class='trainerImg' src=''>
+            <h2>TRAINER: ${trainer.name}</h2>
+            <img class='trainerImg' src='${trainer.image}'>
         </div>
         <div class='sistaRad'>
             <div class='platser'>

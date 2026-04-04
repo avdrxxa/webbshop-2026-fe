@@ -63,6 +63,7 @@ div.filtrera{
 }
 div.filter-form{
     position: absolute;
+    width: 50%;
     border-radius: 20px;
     background-color: var(--color-bg-alt);
     color: var(--color-primary);
@@ -73,22 +74,22 @@ div.filter-form{
     padding: 30px 50px;
     .submit{
         padding: 10px 10px ;
+        cursor: pointer;
         border-radius: 8px;
         border: 1px solid;
         background-color: #62978D;
         font-family: var(--font-underRubrik);
         color: #f0ebe3;
     }
+    .submit:hover{
+        background-color: #78A89F;
+    }
     #category, #date{
         border: 1px solid #78A89F;
+        width: 90%;
         padding: 5px 5px;
-        margin-left: 10px;
-        width: 200px;
         border-radius: 5px;
         color: #646464;
-    }
-    #date{
-        margin-left: 42px;
     }
 }
 .main-content div.flex1 div.filter-form{
@@ -128,6 +129,7 @@ button.add-to-cart-btn{
     button.add-to-cart-btn{
         font-size: 14px;
     }
+    
 }
 @media (min-width:1200px) {
     div.desktop{
@@ -140,5 +142,8 @@ button.add-to-cart-btn{
     }
     div.filtrera .search-bar{
         width: 550px;
+    }
+    div.filter-form{
+        width: 350px;
     }
 }

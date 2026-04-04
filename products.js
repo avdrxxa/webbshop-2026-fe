@@ -4,6 +4,8 @@ let searchBar= document.querySelector('.search-bar')
 let filterBtn= document.querySelector('.flex1 div img.iconFilter')
 let filterForm= document.querySelector('.filter-form')
 let submitForm= document.querySelector('.filter-form .submit')
+let dateValue=document.querySelector('#date')
+let kategoryValue=document.querySelector('#category')
 
 filterBtn.addEventListener('click', () => {
     filterForm.classList.toggle('active');
@@ -42,7 +44,6 @@ let imagesLista={
         'images/yoga/yoga3.webp',
     ]
 }
-let användaIndex={}
 function getEventsBilder(event){
     let sparadeKey=`event-image-${event._id}`
     let sparadeImage=localStorage.getItem(sparadeKey)
@@ -73,29 +74,53 @@ function getEventsBilder(event){
     localStorage.setItem(sparadeKey,randImage)
     return randImage
 }
+submitForm.addEventListener('click',async()=>{
+    const eventsContainer = document.getElementById("events");
+    eventsContainer.innerHTML = "<p>Loading events...</p>";
+    let events = await getEvents();
+    let dateVal= dateValue.value
+    let kategoryVal=kategoryValue.value.toLowerCase()
+    let filtreradeEvents= events
+    if(dateVal!='yyyy-mm-dd'&& dateVal!=''){
+        filtreradeEvents=filtreradeEvents.filter(event=>
+            new Date(event.time.date).toLocaleDateString("sv-SE").includes(dateVal))
+    }
+    if(kategoryVal!='all'){
+        filtreradeEvents=filtreradeEvents.filter(event=>
+            event.title.toLowerCase().includes(kategoryVal)
+        )}
+    let toRender =filtreradeEvents.length>0?filtreradeEvents:events
+    eventsContainer.innerHTML=''
+    toRender.forEach((event) => {
+        const eventCard = createEventCard(event);
+        eventsContainer.appendChild(eventCard);
+        filterForm.classList.toggle('active');
+    })
+})
+
 
 async function loadEvents() {
     const eventsContainer = document.getElementById("events");
     eventsContainer.innerHTML = "<p>Loading events...</p>";
+    const notice = document.createElement("p");
     try {
         const events = await getEvents();
         let searchBarValue=searchBar.value.toLowerCase()
         let filtreradeEvents=events.filter(event=>
             event.title.toLowerCase().includes(searchBarValue)
         )
-        let toRender =filtreradeEvents.length>0?filtreradeEvents:events
+        let toRender = filtreradeEvents.length>0?filtreradeEvents:events
         eventsContainer.innerHTML=''
         toRender.forEach((event) => {
             const eventCard = createEventCard(event);
             eventsContainer.appendChild(eventCard);
         });
     } catch (error) {
-    console.error("Error fetching events:", error);
-    eventsContainer.innerHTML = "";
-    eventsContainer.dataset.temp = "true";
-    const notice = document.createElement("p");
-    notice.className = "temp-notice";
-    notice.textContent = "Showing demo events (backend unavailable)";
+        console.error("Error fetching events:", error);
+        eventsContainer.innerHTML = "";
+        eventsContainer.dataset.temp = "true";
+        notice.className = "temp-notice";
+        notice.textContent = "Showing demo events (backend unavailable)";
     }
 }
 
