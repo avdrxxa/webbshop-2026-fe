@@ -117,6 +117,7 @@
 
 .product-card__image {
   width: 100%;
+  position: relative;
   aspect-ratio: 1;
   object-fit: cover;
   display: block;
@@ -125,14 +126,21 @@
 }
 
 .product-card__image-placeholder {
-  width: 100%;
-  height: 300px;
-  aspect-ratio: 1;
-  background: linear-gradient(135deg, var(--color-bg-alt) 0%, #e5e0d8 100%);
+  display: none;
+}
+.active{
+  position: absolute;
+  width: 100px;
+  border-radius: 10px 0 30px 0;
+  height: 45px;
+  background: var(--color-accent);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
+  letter-spacing: 2px;
+  padding: 10px 10px;
+  align-items:flex-start;
+  justify-content: flex-start;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
   color: var(--color-border);
 }
 

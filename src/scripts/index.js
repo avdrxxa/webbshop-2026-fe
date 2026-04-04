@@ -1,8 +1,9 @@
+
 import { getEvents } from "../utils/eventsApi.js";
 
 document.addEventListener("DOMContentLoaded", loadEvents);
 let seeEvents= document.querySelector('.action-btn')
-if(!seeEvents==null||!seeEvents==0||!seeEvents==undefined){
+if(seeEvents){
   seeEvents.addEventListener("click", () => {
       window.location.href=`products.html`
   })
@@ -38,7 +39,7 @@ let imagesLista={
     'images/yoga/yoga3.webp',
   ]
 }
-let användaIndex={}
+let användaIndex=JSON.parse(localStorage.getItem('användaIndex')) ||{}
 function getEventsBilder(event){
   let titel=event.title.toLowerCase()
   let kategory='default'
@@ -58,25 +59,25 @@ function getEventsBilder(event){
     console.log('fel vid get eventsbilder func')
     return 'images/default.jpg'
   }
-  let images=imagesLista[kategory]
-  if(!användaIndex[kategory]){
-    användaIndex[kategory]=0
-    imagesLista[kategory]=images.sort(()=> Math.random()-0.5)
+  if(!användaIndex[kategory]&& användaIndex[kategory+'_shuffled']===undefined){
+    imagesLista[kategory] = [...imagesLista[kategory]].sort(() => Math.random() - 0.5)
+    användaIndex[kategory] = 0
+    användaIndex[kategory + "_shuffled"] = true
   }
-  let indexx=användaIndex[kategory]
-  let image=images[indexx]
-  användaIndex[kategory]=(indexx+1)%images.length
+  let indexx=användaIndex[kategory]||0 
+  let image=imagesLista[kategory][indexx]
+  användaIndex[kategory]=(indexx+1)%imagesLista[kategory].length
+  localStorage.setItem('användaIndex', JSON.stringify(användaIndex))
   return image
 }
 
 async function loadEvents() {
   const eventsContainer = document.getElementById("events");
   eventsContainer.innerHTML = "<p>Loading events...</p>";
-
   try {
     const events = await getEvents();
     eventsContainer.innerHTML = "";
-    const toRender = events.length > 0 ? events : console.log('error');
+    const toRender = events&&events.length > 0 ? events : console.log('error');
     if (events.length === 0) {
       eventsContainer.dataset.temp = "true";
       const notice = document.createElement("p");
@@ -84,10 +85,16 @@ async function loadEvents() {
       notice.textContent = "Showing demos events (backend unavailable)";
       eventsContainer.appendChild(notice);
     }
-    toRender.forEach((event) => {
-      const eventCard = createEventCard(event);
-      eventsContainer.appendChild(eventCard);
-    });
+      let today = new Date()
+      let sortedEvents = events
+        .filter(event => new Date(event.time.date) >= today)
+        .sort((a, b) => new Date(a.time.date) - new Date(b.time.date))
+      sortedEvents.forEach((event, index) => {
+        const card = createEventCard(event)
+        let upcoming=card.querySelector('.product-card__image-placeholder')
+        if (index < 3)upcoming.classList.add("active")
+        eventsContainer.appendChild(card)
+      })
   } catch (error) {
     console.error("Error fetching events:", error);
     eventsContainer.innerHTML = "";
@@ -95,7 +102,7 @@ async function loadEvents() {
     const notice = document.createElement("p");
     notice.className = "temp-notice";
     notice.textContent = "Showing demo events (backend unavailable)";
-
+    eventsContainer.appendChild(notice)
   }
 }
 
@@ -106,12 +113,9 @@ function createEventCard(event) {
   const date = new Date(event.time.date).toLocaleDateString("sv-SE");
   const time = event.time.startTime;
   const image = getEventsBilder(event)|| 'images/default.jpg'
-  let imageSection= image
-    ? `<img class="product-card__image" src="${image}" alt="${event.title}" loading="lazy" />`
-    : `<div class="product-card__image-placeholder">:)</div>`;
-
   element.innerHTML = `
-    ${imageSection}
+  <img class="product-card__image" src="${image}" alt="${event.title}" loading="lazy" />
+    <div class="product-card__image-placeholder">Upcoming</div>
     <div class="product-card__body">
     <div class='flex' >
       <h3>${event.title}</h3>
@@ -122,7 +126,6 @@ function createEventCard(event) {
     <button class="add-to-cart-btn">See details</button>
     </div>
   `;
-
   element.querySelector(".add-to-cart-btn").addEventListener("click", () => {
     sessionStorage.setItem('image',image)
     window.location.href=`product.html?id=${event._id}`

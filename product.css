@@ -45,6 +45,7 @@
     top: 180px;
     font-family: var(--font-heading);
     color: #f0ebe3;
+    text-shadow:2px 2px 1px var(--color-accent) ;
     h1{
         font-size: 60px;
         letter-spacing: 8px;
