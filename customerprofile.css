@@ -33,3 +33,10 @@ body {
     border-radius: 5px;
     font-weight: bold;
 }
+
+h1 {
+    color: white;
+    font-size: 44px;
+    font-weight: 400;
+    text-align: center;
+}
