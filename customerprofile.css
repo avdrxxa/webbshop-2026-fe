@@ -23,3 +23,13 @@ body {
     border-radius: 5px;
     font-weight: bold;
 }
+
+.button-logout-customer-profile {
+    background-color: #62978D;
+    color: white;
+    border: none;
+    width: 120px;
+    height: 28px;
+    border-radius: 5px;
+    font-weight: bold;
+}
