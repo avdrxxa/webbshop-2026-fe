@@ -1,7 +1,87 @@
-import { getProducts, createProduct } from "../utils/productsApi.js";
+import { getEvents, createEvent } from "../utils/eventsApi.js";
 
 const form = document.getElementById("createProductForm");
 const tbody = document.getElementById("productsTableBody");
+let deltagareLista=document.querySelector('.participants-wrap')
+
+document.addEventListener("DOMContentLoaded", loadEvents);
+
+async function loadEvents() {
+  try {
+    const events = await getEvents();
+    deltagareLista.innerHTML = "";
+    const toRender = events&&events.length > 0 ? events : console.log('error');
+      let sortedEvents = events
+      sortedEvents.forEach((event, index) => {
+        const card = createEventCard(event)
+        deltagareLista.appendChild(card)
+      })
+  } catch (error) {
+    console.error("Error fetching events:", error);
+  }
+}
+
+let imagesLista={
+  gym:[
+    'images/gym/gym1.jpg',
+    'images/gym/gym3.svg',
+    'images/gym/gym4.webp',
+  ],
+  meditation:[
+    'images/meditation/meditation1.jpg',
+    'images/meditation/meditation2.jpg',
+  ],
+  outdoor:[
+    'images/outdoor/outdoor1.jpg',
+    'images/outdoor/outdoor2.jpg',
+    'images/outdoor/outdoor3.jpg',
+  ],
+  pilates:[
+    'images/pilates/pilates1.jpg',
+    'images/pilates/pilates2.webp',
+  ],
+  spa:[
+    'images/spa/spa1.webp',
+    'images/spa/spa2.jpeg',
+    'images/spa/spa4.jpg',
+  ],
+  yoga:[
+    'images/yoga/yoga1.webp',
+    'images/yoga/yoga2.jpg',
+    'images/yoga/yoga3.webp',
+  ]
+}
+let användaIndex=JSON.parse(localStorage.getItem('användaIndex')) ||{}
+function getEventsBilder(event){
+  let titel=event.title.toLowerCase()
+  let kategory='default'
+  if(titel.includes('gym')||titel.includes('training')||titel.includes('power')){
+    kategory='gym'
+  }else if(titel.includes('meditation')){
+    kategory='meditation'
+  }else if(titel.includes('outdoor')){
+    kategory='outdoor'
+  }else if(titel.includes('pilates')){
+    kategory='pilates'
+  }else if(titel.includes('spa')){
+    kategory='spa'
+  }else if(titel.includes('yoga')){
+    kategory='yoga'
+  }else{
+    console.log('fel vid get eventsbilder func')
+    return 'images/default.jpg'
+  }
+  if(!användaIndex[kategory]&& användaIndex[kategory+'_shuffled']===undefined){
+    imagesLista[kategory] = [...imagesLista[kategory]].sort(() => Math.random() - 0.5)
+    användaIndex[kategory] = 0
+    användaIndex[kategory + "_shuffled"] = true
+  }
+  let indexx=användaIndex[kategory]||0 
+  let image=imagesLista[kategory][indexx]
+  användaIndex[kategory]=(indexx+1)%imagesLista[kategory].length
+  localStorage.setItem('användaIndex', JSON.stringify(användaIndex))
+  return image
+}
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -12,31 +92,31 @@ form.addEventListener("submit", async (e) => {
   const slug = document.getElementById("slug").value.trim();
 
   try {
-    await createProduct({ name, price, stock, image, slug });
+    await createEvent({ name, price, stock, image, slug });
     form.reset();
-    loadProducts();
+    loadEvents();
   } catch (err) {
     alert(err.message || "Failed to create product");
   }
 });
 
-async function loadProducts() {
-  tbody.innerHTML = "<tr><td colspan=\"4\">Loading...</td></tr>";
-  try {
-    const products = await getProducts();
-    if (products.length === 0) {
-      tbody.innerHTML = "<tr><td colspan=\"4\">No products yet.</td></tr>";
-      return;
-    }
-    tbody.innerHTML = products
-      .map(
-        (p) =>
-          `<tr><td>${p.name}</td><td>$${Number(p.price).toFixed(2)}</td><td>${p.stock}</td><td>${p.slug}</td></tr>`
-      )
-      .join("");
-  } catch {
-    tbody.innerHTML = "<tr><td colspan=\"4\">Failed to load products.</td></tr>";
-  }
+
+function createEventCard(event) {
+  const element = document.createElement("div");
+  element.className = "elementList";
+  const image = getEventsBilder(event)|| 'images/default.jpg'
+  element.innerHTML = `
+  <button class='seeEventInfo-Btn'>${event.title}</button>
+  <div class="flex-row p-btn">
+  <p>Booked seats: ${event.participants} av ${event.maxseats}</p>
+  <a href="participants.html?id=${event._id}" target="_blank" class='participantsBtn'>Participants</a>
+  </div>
+  `;
+  element.querySelector(".seeEventInfo-Btn").addEventListener("click", () => {
+    sessionStorage.setItem('image',image)
+    window.location.href=`product.html?id=${event._id}`
+  });
+
+  return element;
 }
 
-document.addEventListener("DOMContentLoaded", loadProducts);

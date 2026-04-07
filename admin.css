@@ -1,9 +1,29 @@
 /* Admin – simple white, tables, forms */
+
+:root {
+    --font-heading: "Bebas Neue", sans-serif;
+    --font-underRubrik: "Bricolage Grotesque", sans-serif;
+    --color-bg: #BFB6A7;
+    --color-bg-alt: #f0ebe3;
+    --color-surface: #ffffff;
+    --color-primary: #62978D;
+    --color-primary-hover: #78A89F;
+    --color-accent: #9C6B48;
+    --color-text: #646464;
+
+}
+
+body{
+  background-image: url('images/bg-admin.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 .admin-main {
   max-width: 720px;
   margin: 0 auto;
   padding: 2rem;
-  background: #fff;
 }
 
 .admin-main h1 {
@@ -48,3 +68,71 @@
   cursor: pointer;
 }
 
+.participants{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h2{
+    align-self: flex-start;
+    justify-self: flex-start;
+    font-family: var(--font-heading);
+    font-size: 30px;
+    letter-spacing: 2px;
+  }
+}
+.participants-wrap{
+  background-color: var(--color-bg);
+  width: 100%;
+  padding: 50px;
+  border-radius: 20px;
+}
+div.flex-row.p-btn{
+  display: flex;
+  justify-content: space-between;
+}
+.elementList{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  border: 1px solid var(--color-bg-alt);
+  border-radius: 10px;
+  padding: 10px;
+}
+.seeEventInfo-Btn{
+  width: 50%;
+  padding: 13px 20px;
+  border-radius: 7px;
+  border: none;
+  background-color: #62978D;
+  color: #ffffff;
+  font-family: var(--font-underRubrik);
+  font-size: 15px;
+}
+.seeEventInfo-Btn:hover{
+  background-color: #78A89F;
+}
+
+.participantsBtn{
+  background-color: #62978D;
+  color: #ffffff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 20px;
+}
+
+.participantsDiv{
+  margin: 80px 90px;
+  h1{
+    
+    font-family: var(--font-heading);
+  }
+}
+.participantsLista{
+  align-self: center;
+  justify-self: center;
+  background-color: var(--color-bg);
+  border-radius: 20px;
+  display: flex;
+}
