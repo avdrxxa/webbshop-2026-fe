@@ -20,16 +20,40 @@
   --shadow-hover: 0 8px 24px rgba(45, 90, 61, 0.12);
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  background-color: var(--color-bg);
+  padding: 2rem 0;
+}
+
+
+
 .admin-create-event {
   background-color: var(--color-border);
   color: var(--color-text);
   padding: 2rem;
   max-width: 342px;
+  min-width: 300px;
   border-radius: var(--radius-lg);
 }
 label {
   display: block;
 }
 
+.admin-form-row {
+  border-radius: var(--radius-md);
+  margin: 1rem;
+}
 
+.admin-form-row input,
+.admin-form-row textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--color-surface);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+}
 
