@@ -6,7 +6,6 @@
     <title>Admin - Hakim Livs</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="admin.css" />
-  </head>
   <body>
     <header class="site-header">
       <nav>
@@ -21,49 +20,70 @@
     </header>
 
     <main class="admin-main">
-      <h1>Admin – Create Product</h1>
+      <h1>Lägg till event</h1>
 
-      <form id="createProductForm" class="admin-form">
+      <form id="createProductForm" class="admin-create-event">
         <div class="admin-form-row">
-          <label for="name">Name</label>
-          <input type="text" id="name" required />
+          <label for="title">Titel</label>
+          <input type="text" id="title" required />
         </div>
         <div class="admin-form-row">
-          <label for="price">Price</label>
-          <input type="number" id="price" step="0.01" min="0" required />
+          <label for="datum">Datum</label>
+          <input type="date" id="datum" required />
         </div>
         <div class="admin-form-row">
-          <label for="stock">Stock</label>
-          <input type="number" id="stock" min="0" required />
+          <label for="time">Tid</label>
+          <input type="time" id="time" required />
         </div>
         <div class="admin-form-row">
-          <label for="image">Image URL</label>
+          <label for="MaxParticipant">Max antal deltagare</label>
+          <input type="number" id="MaxParticipant" min="1" required />
+        </div>
+        <div class="admin-form-row">
+          <label for="trainer">Trainer</label>
+          <input type="text" id="trainer" required />
+        </div>
+        <div class="admin-form-row">
+          <label for="image">Ladda upp bild</label>
           <input type="url" id="image" required />
         </div>
         <div class="admin-form-row">
           <label for="slug">Slug</label>
-          <input type="text" id="slug" required placeholder="e.g. organic-tomatoes" />
+          <input type="text" id="slug" required placeholder="e.g. yoga-class" />
         </div>
-        <button type="submit">Create Product</button>
+        <button type="submit">Upload</button>
       </form>
 
-      <h2>Products</h2>
+      <h2>Deltagarlista</h2>
       <div class="admin-table-wrap">
-        <table class="admin-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Slug</th>
-            </tr>
-          </thead>
-          <tbody id="productsTableBody">
-            <tr><td colspan="4">Loading...</td></tr>
-          </tbody>
-        </table>
+      </div>
+
+    <h2>Arkiv</h2>
+      <div class="admin-table-wrap">
+      </div>
+
+
+      <h2>Kundregister</h2>
+      <div class="admin-table-wrap">
       </div>
     </main>
+ <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <h2>Eventra</h2>
+        <p>&copy; 2024 Eventra. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/terms">Terms</a>
+        </div>
+        <div class="sociala">
+          <a href="https://www.instagram.com/" target="_blank"><img src="images/insta.svg" alt="instagram icon"></a>
+          <a href="https://www.facebook.com/" target="_blank"><img src="images/facebook.svg" alt="facebook icon"></a>
+          <a href="https://www.youtube.com" target="_blank" ><img src="images/youtube.svg" alt="youtube icon"></a>
+        </div>
+      </div>
+    </footer>
 
     <script type="module" src="./src/scripts/admin.js"></script>
   </body>
