@@ -27,3 +27,9 @@
   max-width: 342px;
   border-radius: var(--radius-lg);
 }
+label {
+  display: block;
+}
+
+
+
