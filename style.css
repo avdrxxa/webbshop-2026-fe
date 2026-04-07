@@ -251,7 +251,8 @@
 }
 
 .register-form button[type="submit"],
-.login-form button[type="submit"] {
+.login-form button[type="submit"] 
+.admin-create-event button[type="submit"] {
   width: 100%;
   background: var(--color-primary);
   color: white;
@@ -286,3 +287,4 @@
   top: 5px;
   width: 24px;
 }
+

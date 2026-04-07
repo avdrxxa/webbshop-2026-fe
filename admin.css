@@ -1,50 +1,29 @@
-/* Admin – simple white, tables, forms */
-.admin-main {
-  max-width: 720px;
-  margin: 0 auto;
+:root {
+  --font-heading: "Bebas Neue", sans-serif;
+  --font-underRubrik: "Bricolage Grotesque", sans-serif;
+  --font-body: "Actor", system-ui, sans-serif;
+  --color-bg: #BFB6A7;
+  --color-bg-alt: #f0ebe3;
+  --color-surface: #ffffff;
+  --color-primary: #62978D;
+  --color-primary-hover: #78A89F;
+  --color-accent: #9C6B48;
+  --color-accent-hover: #d4b03a;
+  --color-text: #646464;
+  --color-text-muted: #6b6b6b;
+  --color-border: #e5e0d8;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 31px;
+  --shadow-sm: 0 2px 8px rgba(45, 90, 61, 0.06);
+  --shadow-md: 0 4px 16px rgba(45, 90, 61, 0.08);
+  --shadow-hover: 0 8px 24px rgba(45, 90, 61, 0.12);
+}
+
+.admin-create-event {
+  background-color: var(--color-border);
+  color: var(--color-text);
   padding: 2rem;
-  background: #fff;
+  max-width: 342px;
+  border-radius: var(--radius-lg);
 }
-
-.admin-main h1 {
-  margin: 0 0 1.5rem 0;
-  font-size: 1.5rem;
-}
-
-.admin-main h2 {
-  margin: 2rem 0 1rem 0;
-  font-size: 1.25rem;
-}
-
-.admin-form {
-  padding: 1.5rem;
-  background: #fff;
-  border: 1px solid #ddd;
-  margin-bottom: 1rem;
-}
-
-.admin-form-row {
-  margin-bottom: 1rem;
-}
-
-.admin-form-row label {
-  display: block;
-  margin-bottom: 0.25rem;
-  font-weight: 500;
-}
-
-.admin-form-row input {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-}
-
-.admin-form button {
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
