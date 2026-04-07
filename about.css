@@ -1,0 +1,52 @@
+:root {
+    --font-heading: "Bebas Neue", sans-serif;
+    --font-underRubrik: "Bricolage Grotesque", sans-serif;
+    --color-bg: #BFB6A7;
+    --color-bg-alt: #f0ebe3;
+    --color-primary: #62978D;
+    --color-primary-hover: #78A89F;
+    --color-accent: #9C6B48;
+    --color-text: #646464;
+}
+
+.hero {
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    text-align: center;
+    padding: 5rem 2rem;
+    background-image:url("images/image\ 20.jpg");
+    filter: saturate(0.8);
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+main{
+    padding: 55px;
+}
+h2{
+    font-family: var(--font-heading);
+    font-size: 35px;
+    letter-spacing: 2px;
+}
+
+p{
+    font-family: var(--font-underRubrik);
+}
+
+
+@media (min-width:1100px) {
+    main{
+        padding:50px 300px;
+    }
+}
+@media (min-width:1500px) {
+    main{
+        padding:50px 500px;
+    }
+}
