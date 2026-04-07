@@ -3,70 +3,78 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin - Hakim Livs</title>
+    <title>Eventera</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="admin.css" />
-  <body>
+    <link rel="stylesheet" href='main.css'/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Actor&family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+  </head>
+<body>
+
+    <!-- HEADER -->
     <header class="site-header">
-      <nav>
-        <a href="index.html" class="logo">Hakim Livs</a>
-        <ul class="nav-links">
-          <li><a href="products.html">Products</a></li>
-          <li><a href="cart.html">Cart (0)</a></li>
-          <li><a href="register.html">Register</a></li>
-          <li><a href="admin.html">Admin</a></li>
-        </ul>
+      <nav class="admin">
+        <a href="index.html" class="logo">Eventra</a>
+          <a href="profile.html"><img src="images/log ut icon.svg" alt="profile icon" width="20px"></a>
       </nav>
     </header>
 
     <main class="admin-main">
-      <h1>Lägg till event</h1>
-
-      <form id="createProductForm" class="admin-create-event">
-        <div class="admin-form-row">
-          <label for="title">Titel</label>
-          <input type="text" id="title" required />
-        </div>
-        <div class="admin-form-row">
-          <label for="datum">Datum</label>
-          <input type="date" id="datum" required />
-        </div>
-        <div class="admin-form-row">
-          <label for="time">Tid</label>
-          <input type="time" id="time" required />
-        </div>
-        <div class="admin-form-row">
-          <label for="MaxParticipant">Max antal deltagare</label>
-          <input type="number" id="MaxParticipant" min="1" required />
-        </div>
-        <div class="admin-form-row">
-          <label for="trainer">Trainer</label>
-          <input type="text" id="trainer" required />
-        </div>
-        <div class="admin-form-row">
-          <label for="image">Ladda upp bild</label>
-          <input type="url" id="image" required />
-        </div>
-        <div class="admin-form-row">
-          <label for="slug">Slug</label>
-          <input type="text" id="slug" required placeholder="e.g. yoga-class" />
-        </div>
-        <button type="submit">Upload</button>
-      </form>
-
-      <h2>Deltagarlista</h2>
-      <div class="admin-table-wrap">
+      <div class="addEvent">
+        <h2>Lägg till event</h2>
+        <form id="createProductForm" class="admin-create-event">
+          <div class="admin-form-row">
+            <label for="title">Titel</label>
+            <input type="text" id="title" required />
+          </div>
+          <div class="admin-form-row">
+            <label for="datum">Datum</label>
+            <input type="date" id="datum" required />
+          </div>
+          <div class="admin-form-row">
+            <label for="time">Tid</label>
+            <input type="time" id="time" required />
+          </div>
+          <div class="admin-form-row">
+            <label for="MaxParticipant">Max antal deltagare</label>
+            <input type="number" id="MaxParticipant" min="1" required />
+          </div>
+          <div class="admin-form-row">
+            <label for="trainer">Trainer</label>
+            <input type="text" id="trainer" required />
+          </div>
+          <div class="admin-form-row">
+            <label for="image">Ladda upp bild</label>
+            <input type="url" id="image" required />
+          </div>
+          <div class="admin-form-row">
+            <label for="slug">Slug</label>
+            <input type="text" id="slug" required placeholder="e.g. yoga-class" />
+          </div>
+          <button type="submit">Upload</button>
+        </form>
       </div>
 
-    <h2>Arkiv</h2>
-      <div class="admin-table-wrap">
+      <div class="participants">
+        <h2>Deltagarlista</h2>
+        <div class="participants-wrap">
+        </div>
       </div>
 
-
-      <h2>Kundregister</h2>
-      <div class="admin-table-wrap">
+      <div class="archive">
+        <h2>Arkiv</h2>
+        <div class="archive-wrap">
+        </div>
       </div>
-    </main>
+ 
+      <div class="customer-registry">
+        <h2>Kundregister</h2>
+        <div class="customer-registry-wrap">
+        </div>
+      </div>
+    
+  </main>
  <!-- FOOTER -->
     <footer class="site-footer">
       <div class="footer-content">

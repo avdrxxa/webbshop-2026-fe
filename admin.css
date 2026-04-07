@@ -48,29 +48,3 @@
   cursor: pointer;
 }
 
-.admin-table-wrap {
-  border: 1px solid #ddd;
-  overflow-x: auto;
-}
-
-.admin-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
-}
-
-.admin-table th,
-.admin-table td {
-  padding: 0.5rem 1rem;
-  text-align: left;
-  border-bottom: 1px solid #eee;
-}
-
-.admin-table th {
-  background: #f9f9f9;
-  font-weight: 600;
-}
-
-.admin-table tbody tr:last-child td {
-  border-bottom: none;
-}

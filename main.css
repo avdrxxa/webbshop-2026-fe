@@ -217,3 +217,14 @@ body {
     }
     
 }
+
+nav.admin {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 50px;
+}
+
+nav.admin a img {
+    margin-top: 0.8rem;
+
+}
