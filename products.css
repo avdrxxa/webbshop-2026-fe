@@ -94,6 +94,8 @@ div.filter-form{
 }
 .main-content div.flex1 div.filter-form{
     top: 800px;
+    height: fit-content;
+    width: fit-content;
     right: 100px;
     z-index: 1;
 }
