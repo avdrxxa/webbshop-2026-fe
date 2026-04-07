@@ -52,8 +52,6 @@ main {
   flex-direction: column;
   min-height: 100vh;
   align-items: center;
-  background-color: var(--color-bg);
-  padding: 2rem 0;
 }
 
 
@@ -111,7 +109,6 @@ div.flex-row.p-btn{
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
-  border: 1px solid var(--color-bg-alt);
   border-radius: 10px;
   padding: 10px;
 }

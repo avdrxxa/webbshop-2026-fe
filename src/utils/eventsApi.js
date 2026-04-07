@@ -5,6 +5,7 @@ export async function getEvents() {
   console.log("Fetching from:", url.toString())
   try {
     const response = await fetch(url)
+    //, {METHOD: 'GET', credentials:'include'}
     console.log("Status:", response.status)
     if (!response.ok) {
       console.error("Fetch failed");
