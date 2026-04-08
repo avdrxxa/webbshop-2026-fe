@@ -50,3 +50,12 @@
     color: #646464;
     font-size: 10px;
 }
+
+.button-form {
+    background-color: #62978D;
+    border: none;
+    color: white;
+    width: 110px;
+    height: 34px;
+    border-radius: 5px;
+}
