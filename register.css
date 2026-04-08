@@ -1,7 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 125vh;
     background-image: linear-gradient(
     rgba(34, 30, 30, 0.2),
     rgba(255, 255, 255, 0.4)

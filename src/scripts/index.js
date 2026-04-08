@@ -120,11 +120,12 @@ function createEventCard(event) {
     <div class='flex' >
       <h3>${event.title}</h3>
       <p class="product-card__date">${date}</p>
-      const date = new Date(event.time.date).toLocaleDateString();
+      </div>
+      <div class='row'>
       <p class="product-card__price">${time}</p>
-    </div>
-    <button class="add-to-cart-btn">See details</button>
-    </div>
+      <button class="add-to-cart-btn">See details</button>
+      </div>
+      </div>
   `;
   element.querySelector(".add-to-cart-btn").addEventListener("click", () => {
     sessionStorage.setItem('image',image)
