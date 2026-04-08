@@ -82,3 +82,28 @@ if (loginBtn){
     console.log("Login:", { email, password });
   })
 }
+
+const toggleBtn = document.getElementById("toggleBtn");
+const nameFields = document.getElementById("nameFields");
+const formTitle = document.getElementById("formTitle");
+const submitBtn = document.getElementById("submitBtn");
+
+let isRegister = false;
+
+toggleBtn.addEventListener("click", () => {
+  isRegister = !isRegister;
+
+  if (isRegister) {
+    // Visa register
+    nameFields.classList.remove("hidden");
+    formTitle.textContent = "Register";
+    submitBtn.textContent = "Register";
+    toggleBtn.textContent = "Already have an account? Login";
+  } else {
+    // Visa login
+    nameFields.classList.add("hidden");
+    formTitle.textContent = "Login";
+    submitBtn.textContent = "Login";
+    toggleBtn.textContent = "Don't have an account? Register";
+  }
+});

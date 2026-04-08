@@ -16,17 +16,32 @@ body {
 }
 
 
-
-
-
-
-
 nav, .site-header {
     background-color: transparent;
 }
 
 main {
     flex: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.button-group {
+  margin-top: 15px;
+}
+
+#toggleBtn {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 0.9em;
 }
 
 

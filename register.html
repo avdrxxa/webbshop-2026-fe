@@ -28,20 +28,22 @@
       <h1>Register / Login</h1>
       <div id="register-container" class="register-wrapper">
         <form id="registerForm" class="register-form">
-           <!--<div class="form-group">
-            <div class="hidden">
-            <div class="icon-wrapper">
-              <img src="images/user.svg" alt="user Icon" class="form-icon"/>
-              <label for="fname">First Name</label> 
+
+          <!-- First + Last name wrapper -->
+          <div id="nameFields" class="hidden">
+            <div class="form-group">
+              <!--<div class="icon-wrapper">
+                <img src="images/user.svg" alt="user Icon" class="form-icon"/>-->
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" />
             </div> 
-            <input type="text" class="login-input" id="fname" />
+            
+            <div class="form-group">  
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" />
+            </div>
           </div>
-          <div class="form-group">  
-            <label for="lname">Last Name</label>
-            <input type="text" id="lname" />
-          </div>
-          </div>
-        -->
+        
           <div class="form-group">
             <div class="icon-wrapper">
               <img src="images/email.svg" alt="email Icon" class="form-icon"/>
@@ -57,8 +59,8 @@
             <input type="password" class="login-input" id="password"  />
           </div>
           <div class="button-group">
-            <button type="submit" id="registerBtn">Register</button>
-            <button type="submit" id="loginBtn">Login</button>
+            <button type="submit" id="registerBtn">login</button>
+            <button type="button" id="toggleBtn">Don't have an account? Register</button>
           </div>
         </form>
       </div>
