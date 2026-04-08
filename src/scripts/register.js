@@ -27,16 +27,32 @@ function handleRegister() {
       credentials: 'include',
       body: JSON.stringify({email:'admin@example.com', password:'Admin123!'})
       })
-      .then(res => res.json())
-      .then(data => {
+      .then(res => 
+      
+        {
+          const AccessToken = res.headers.get('Authorization');
+          console.log('Authorization header:', AccessToken);
+
+          localStorage.setItem('AccessToken', AccessToken);
+
+          const refreshToken = res.headers.get('X-Refresh-Token');
+          console.log('Refresh token:', refreshToken);
+
+          localStorage.setItem('RefreshToken', refreshToken);
+
+          res.json()})
+
+         
+      
+        .then(data => {
       console.log('Login response:', data);
       })
       .catch(err => {
       console.error('Error:', err);
   });
   console.log("Login:", { email, password });
-  window.location.href='admin.html'
-}
+  //window.location.href='admin.html'
+} 
 
 registerBtn.addEventListener('click',()=>{
   if (fname&&lname&&email&&password){
