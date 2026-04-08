@@ -16,12 +16,23 @@ body {
 }
 
 
+#registerForm{
+    display: flex;
+    flex-direction: column;
+}
 nav, .site-header {
     background-color: transparent;
 }
 
 main {
     flex: 1;
+}
+
+.labellname{
+    margin-left: 25px;
+}
+input#fname,input#lname,input#email,input#password  {
+    color: #fff;
 }
 
 .hidden {
@@ -39,7 +50,7 @@ main {
 #toggleBtn {
   background: none;
   border: none;
-  color: var(--color-text);
+  color: #fff;
   cursor: pointer;
   font-size: 0.9em;
 }
@@ -48,4 +59,15 @@ main {
 
 footer {
     width: 100%;
+}
+@media (min-width:1000px) {
+    #registerForm{
+        gap: 30px;
+        padding: 80px 50px;
+        width: 500px;
+        justify-self: center;
+    }
+    .labellname{
+        margin-top: 20px;
+    }
 }

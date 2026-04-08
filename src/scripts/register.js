@@ -86,7 +86,7 @@ if (loginBtn){
 const toggleBtn = document.getElementById("toggleBtn");
 const nameFields = document.getElementById("nameFields");
 const formTitle = document.getElementById("formTitle");
-const submitBtn = document.getElementById("submitBtn");
+const submitBtn = document.getElementById("registerBtn");
 
 let isRegister = false;
 
