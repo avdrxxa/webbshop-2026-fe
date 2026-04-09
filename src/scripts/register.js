@@ -6,56 +6,113 @@ function initRegister() {
   const registerForm = document.getElementById("registerForm");
 }
 let loginBtn = document.querySelector("#loginBtn");
-const fname = document.getElementById("fname");
-const lname = document.getElementById("lname");
-let email = document.getElementById("email");
-let password = document.getElementById("password");
+//let fname = document.getElementById("fname");
+//let lname = document.getElementById("lname");
+//let email = document.getElementById("email");
+//let password = document.getElementById("password");
 
-if (loginBtn) {
-  loginBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    email = email.value;
-    password = password.value;
-    if (!email && !password) {
-      return;
-    }
-    fetch("https://webbshop-2026-be-eight.vercel.app/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({ email, password }),
+function handleLogin() {
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+  if (!email && !password) {
+    return;
+  }
+  fetch("https://webbshop-2026-be-eight.vercel.app/api/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ email, password }),
+  })
+    .then((res) => {
+      console.log(res);
+      const AccessToken = res.headers.get("Authorization");
+      localStorage.setItem("AccessToken", AccessToken);
+      const refreshToken = res.headers.get("X-Refresh-Token");
+      localStorage.setItem("RefreshToken", refreshToken);
+      console.log(AccessToken);
+      return res.json();
     })
-      .then((res) => {
-        console.log(res);
-        const AccessToken = res.headers.get("Authorization");
-        localStorage.setItem("AccessToken", AccessToken);
-        const refreshToken = res.headers.get("X-Refresh-Token");
-        localStorage.setItem("RefreshToken", refreshToken);
-        console.log(AccessToken);
-        return res.json();
-      })
-      .then((data) => {
-        console.log("Login response:", data);
-        localStorage.setItem("isAdmin", data.isAdmin);
-        if (data.isAdmin) {
-          window.location.href = "admin.html";
-        } else {
-          window.location.href = "index.html";
-        }
-      })
-      .catch((err) => {
-        console.error("Error:", err);
-      });
-    console.log("Login:", { email, password });
+    .then((data) => {
+      console.log("Login response:", data);
+      localStorage.setItem("isAdmin", data.isAdmin);
+      if (data.isAdmin) {
+        //window.location.href = "admin.html";
+      } else {
+        //window.location.href = "index.html";
+      }
+    })
+    .catch((err) => {
+      console.error("Error:", err);
+    });
+  console.log("Login:", { email, password });
+}
+
+function handleRegister() {
+  let firstname = document.getElementById("fname").value;
+  let lastname = document.getElementById("lname").value;
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+  if (!email && !password && !fname && !fname) {
+    return;
+  }
+  fetch("https://webbshop-2026-be-eight.vercel.app/api/auth/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({
+      firstname,
+      lastname,
+      email,
+      password,
+    }),
+  })
+    .then((res) => {
+      console.log(res);
+      const AccessToken = res.headers.get("Authorization");
+      localStorage.setItem("AccessToken", AccessToken);
+      const refreshToken = res.headers.get("X-Refresh-Token");
+      localStorage.setItem("RefreshToken", refreshToken);
+      console.log(AccessToken);
+      return res.json();
+    })
+    .then((data) => {
+      console.log("Login response:", data);
+      localStorage.setItem("isAdmin", data.isAdmin);
+      if (data.isAdmin) {
+        //window.location.href = "admin.html";
+      } else {
+        //window.location.href = "index.html";
+      }
+    })
+    .catch((err) => {
+      console.error("Error:", err);
+    });
+  console.log("Login:", {
+    firstName: fname,
+    lastName: lname,
+    email,
+    password,
   });
 }
+
+loginBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (loginBtn.innerText == "Register") {
+    console.log("register");
+    handleRegister();
+  } else {
+    console.log("login");
+    handleLogin();
+  }
+});
 
 const toggleBtn = document.getElementById("toggleBtn");
 const nameFields = document.getElementById("nameFields");
 const formTitle = document.getElementById("formTitle");
-const submitBtn = document.getElementById("registerBtn");
 
 let isRegister = false;
 
@@ -66,13 +123,13 @@ toggleBtn.addEventListener("click", () => {
     // Visa register
     nameFields.classList.remove("hidden");
     formTitle.textContent = "Register";
-    submitBtn.textContent = "Register";
+    loginBtn.textContent = "Register";
     toggleBtn.textContent = "Already have an account? Login";
   } else {
     // Visa login
     nameFields.classList.add("hidden");
     formTitle.textContent = "Login";
-    submitBtn.textContent = "Login";
+    loginBtn.textContent = "Login";
     toggleBtn.textContent = "Don't have an account? Register";
   }
 });
