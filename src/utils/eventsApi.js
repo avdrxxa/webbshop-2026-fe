@@ -1,12 +1,19 @@
 import { getBaseUrl } from "./api.js";
 
 export async function getEvents() {
-  const url = new URL("events", getBaseUrl())
-  console.log("Fetching from:", url.toString())
+  const url = new URL("events", getBaseUrl());
+  console.log("Fetching from:", url.toString());
   try {
-    const response = await fetch(url)
-    //, {METHOD: 'GET', credentials:'include'}
-    console.log("Status:", response.status)
+    const response = await fetch(url, {
+      //ha i varenda fetch method som behöver token, verifiera vem som är inloggad typ event id bookings
+      METHOD: "GET",
+      credentials: "include",
+      headers: {
+        authorization: localStorage.getItem("AccessToken"),
+        "x-refresh-token": localStorage.getItem("RefreshToken"),
+      },
+    });
+    console.log("Status:", response.status);
     if (!response.ok) {
       console.error("Fetch failed");
       return [];
