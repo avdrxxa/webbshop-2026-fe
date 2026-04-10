@@ -1,7 +1,6 @@
 import { getEvents, createEvent } from "../utils/eventsApi.js";
 
 const form = document.getElementById("createProductForm");
-const tbody = document.getElementById("productsTableBody");
 let deltagareLista=document.querySelector('.participants-wrap')
 
 document.addEventListener("DOMContentLoaded", loadEvents);
