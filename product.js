@@ -73,4 +73,25 @@ document.addEventListener("DOMContentLoaded", async()=>{
     
 })
 
+const bookBtn = document.querySelector('.bookNow')
+const formWrapper = document.querySelector('.form-wrapper')
+const form = document.querySelector('.form-component')
 
+bookBtn.addEventListener('click', () => {
+    formWrapper.classList.remove('hidden')
+})
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    console.log("FORM SUBMITTED")
+    
+    // bokningslogik
+
+    formWrapper.classList.add('hidden')
+})
+
+formWrapper.addEventListener('click', (e) => {
+    if (e.target === formWrapper) {
+        formWrapper.classList.add('hidden')
+    }
+})
