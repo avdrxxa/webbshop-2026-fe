@@ -38,9 +38,9 @@ function handleLogin() {
       console.log("Login response:", data);
       localStorage.setItem("isAdmin", data.isAdmin);
       if (data.isAdmin) {
-        //window.location.href = "admin.html";
+        window.location.href = "admin.html";
       } else {
-        //window.location.href = "index.html";
+        window.location.href = "index.html";
       }
     })
     .catch((err) => {
@@ -82,11 +82,7 @@ function handleRegister() {
     .then((data) => {
       console.log("Login response:", data);
       localStorage.setItem("isAdmin", data.isAdmin);
-      if (data.isAdmin) {
-        //window.location.href = "admin.html";
-      } else {
-        //window.location.href = "index.html";
-      }
+      alert("Du har skapat ett konto och kan logga in nu.");
     })
     .catch((err) => {
       console.error("Error:", err);
