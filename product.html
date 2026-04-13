@@ -1,93 +1,128 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eventra | event info</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href='main.css'/>
-    <link rel="stylesheet" href="products.css">
-    <link rel="stylesheet" href="product.css">
-    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="products.css" />
+    <link rel="stylesheet" href="product.css" />
+    <link rel="stylesheet" href="form.css" />
     <script type="module" src="product.js" defer></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Actor&family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
-    </head>
-    <body>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Actor&family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <!-- HEADER -->
     <header class="site-header">
-        <nav class="desktop">
+      <nav class="desktop">
         <a href="index.html" class="logo">Eventra</a>
         <ul class="nav-links">
-            <li><a href="products.html">Events</a></li>
-            <li><a href="register.html">Login</a></li>
-            <li><a href="profile.html"><img src="images/profile.svg" alt="profile icon" width="20px"></a></li>
+          <li><a href="products.html">Events</a></li>
+          <li><a href="register.html">Login</a></li>
+          <li>
+            <a href="customerprofile.html"
+              ><img src="images/profile.svg" alt="profile icon" width="20px"
+            /></a>
+          </li>
         </ul>
-        </nav>
-        <nav class="mobil">
+      </nav>
+      <nav class="mobil">
         <a href="index.html" class="logo">Eventra</a>
-        <div class="dropdown"><img src="images/meny.svg" alt="meny icon">
-            <ul class="dropdown-list">
-                <li><a class="utgrått" href="products.html">Events</a></li>
-                <li><a href="register.html">Login</a></li>
-                <li><a class="last" href="profile.html">Profile</a></li>
-            </ul>
+        <div class="dropdown">
+          <img src="images/meny.svg" alt="meny icon" />
+          <ul class="dropdown-list">
+            <li><a class="utgrått" href="products.html">Events</a></li>
+            <li><a href="register.html">Login</a></li>
+            <li><a class="last" href="customerprofile.html">Profile</a></li>
+          </ul>
         </div>
-        </nav>
+      </nav>
     </header>
 
     <main>
-        <img class="cover">
-        <div id="event-detail"></div>
-        <div class="btnDiv">
-            <button type="submit" class="bookNow">Book now</button>
-        </div>
-        <div class="form-wrapper hidden">
-            <div class="form-container">
-                <form class="form-component">
-                    <div class="input-component">
-                        <label class="label-form" for="firstname">First Name</label>
-                        <input class="input-form" type="text" id="firstname" placeholder="Addo"> 
-                    </div>
-                    <div class="input-component">
-                        <label class="label-form" for="lastname">Last name</label>
-                        <input class="input-form" type="text" id="lastname" placeholder="Goitom">
-                    </div>
-                    <div class="input-component">
-                        <label class="label-form" for="email">Email</label>
-                        <input class="input-form" type="text" id="email" placeholder="addo@gmail.com">
-                    </div>
-                    <div class="input-component">
-                        <label class="label-form" for="textarea">Message</label>
-                        <textarea class="textarea-form" name="textarea" id="textarea" placeholder="Write a message" rows="4" cols="16"></textarea>
-                    </div>
-                    <div class="button-component">
-                        <button class="button-form">Book now</button>
-                    </div>
-                </form>
+      <img class="cover" />
+      <div id="event-detail"></div>
+      <div class="btnDiv">
+        <button type="submit" class="bookNow">Book now</button>
+      </div>
+      <div class="form-wrapper hidden">
+        <div class="form-container">
+          <form class="form-component">
+            <div class="input-component">
+              <label class="label-form" for="firstname">First Name</label>
+              <input
+                class="input-form"
+                type="text"
+                id="firstname"
+                placeholder="Addo"
+              />
             </div>
+            <div class="input-component">
+              <label class="label-form" for="lastname">Last name</label>
+              <input
+                class="input-form"
+                type="text"
+                id="lastname"
+                placeholder="Goitom"
+              />
+            </div>
+            <div class="input-component">
+              <label class="label-form" for="email">Email</label>
+              <input
+                class="input-form"
+                type="text"
+                id="email"
+                placeholder="addo@gmail.com"
+              />
+            </div>
+            <div class="input-component">
+              <label class="label-form" for="textarea">Message</label>
+              <textarea
+                class="textarea-form"
+                name="textarea"
+                id="textarea"
+                placeholder="Write a message"
+                rows="4"
+                cols="16"
+              ></textarea>
+            </div>
+            <div class="button-component">
+              <button class="button-form">Book now</button>
+            </div>
+          </form>
         </div>
+      </div>
     </main>
 
     <footer class="site-footer">
-        <div class="footer-content">
+      <div class="footer-content">
         <h2>Eventra</h2>
         <p>&copy; 2024 Eventra. All rights reserved.</p>
         <div class="footer-links">
-            <a href="about.html">About</a>
-            <a href="/contact">Contact</a>
-            <a href="/terms">Terms</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="terms.html">Terms</a>
         </div>
         <div class="sociala">
-            <a href="https://www.instagram.com/" target="_blank"><img src="images/insta.svg" alt="instagram icon"></a>
-            <a href="https://www.facebook.com/" target="_blank"><img src="images/facebook.svg" alt="facebook icon"></a>
-            <a href="https://www.youtube.com" target="_blank" ><img src="images/youtube.svg" alt="youtube icon"></a>
+          <a href="https://www.instagram.com/" target="_blank"
+            ><img src="images/insta.svg" alt="instagram icon"
+          /></a>
+          <a href="https://www.facebook.com/" target="_blank"
+            ><img src="images/facebook.svg" alt="facebook icon"
+          /></a>
+          <a href="https://www.youtube.com" target="_blank"
+            ><img src="images/youtube.svg" alt="youtube icon"
+          /></a>
         </div>
-        </div>
+      </div>
     </footer>
 
     <script type="module" src="./src/scripts/index.js"></script>
-    </body>
+  </body>
 </html>
