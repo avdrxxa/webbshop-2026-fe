@@ -95,3 +95,17 @@ formWrapper.addEventListener('click', (e) => {
         formWrapper.classList.add('hidden')
     }
 })
+
+const sendBtn = document.getElementById("sendBookingBtn");
+const confirmationBox = document.getElementById("confirmationBox");
+const closeBtn = document.getElementById("closeBtn");
+
+// Visa rutan
+sendBtn.addEventListener("click", () => {
+  confirmationBox.classList.remove("hidden");
+});
+
+// Stäng rutan
+closeBtn.addEventListener("click", () => {
+  confirmationBox.classList.add("hidden");
+});

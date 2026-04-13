@@ -1,4 +1,4 @@
-.form-container {
+.form-container{
     width: 330px;
     height: 450px;
     background-color: #E9E2D8;
@@ -59,4 +59,32 @@
     width: 110px;
     height: 34px;
     border-radius: 5px;
+}
+
+/*confirmation box */
+.confirmation-content {
+    width: 330px;
+    height: 450px;
+    background-color: #E9E2D8;
+    color: black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+
+    border: 1px solid white;
+
+    position: relative;
+}
+
+/* Kryss */
+#closeBtn {
+    position: absolute;
+    top: 5px;    
+    right: 8px;  
+    cursor: pointer;
 }
