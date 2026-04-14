@@ -85,9 +85,9 @@ form.addEventListener('submit', (e) => {
     e.preventDefault()
     console.log("FORM SUBMITTED")
 
-    // bokningslogik
+    confirmationBox.classList.remove("hidden");
 
-    formWrapper.classList.add('hidden')
+    //formWrapper.classList.add('hidden')
 })
 
 formWrapper.addEventListener('click', (e) => {
@@ -95,6 +95,20 @@ formWrapper.addEventListener('click', (e) => {
         formWrapper.classList.add('hidden')
     }
 })
+
+const sendBtn = document.getElementById("sendBookingBtn");
+const confirmationBox = document.getElementById("confirmationBox");
+const close = document.getElementById("closeBtn");
+
+// Visa rutan
+sendBtn.addEventListener("click", () => {
+  confirmationBox.classList.remove("hidden");
+});
+
+// Stäng rutan
+close.addEventListener("click", () => {
+  confirmationBox.classList.add("hidden");
+});
 
 const closeBtn = document.querySelector('.close-btn')
 
