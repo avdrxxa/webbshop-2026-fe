@@ -93,7 +93,7 @@
 /* Kryss */
 #closeBtn {
     position: absolute;
-    top: 5px;    
-    right: 8px;  
+    top: 10px;    
+    right: 20px;  
     cursor: pointer;
 }
