@@ -29,7 +29,7 @@
     <main class="admin-main">
       <div class="addEvent">
         <h2>Lägg till event</h2>
-        <form id="createProductForm" class="admin-create-event">
+        <form class="admin-create-event">
           <div class="admin-form-row">
             <label for="title">Titel</label>
             <input type="text" id="title" required />
@@ -52,7 +52,7 @@
           </div>
           <div class="admin-form-row">
             <label for="image">Ladda upp bild</label>
-            <input type="url" id="image" required />
+            <input type="file" id="image" accept="image/*" required />
           </div>
           <div class="admin-form-row">
             <label for="slug">Slug</label>
