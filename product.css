@@ -126,37 +126,49 @@
     display: none !important;
 }
 
-.hidden:not(.hidden) {
-    display: flex;
-}
-
 .form-wrapper {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background-color: rgba(0, 0, 0, 0.5); /* mörk overlay */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
 }
 
 .form-container {
+    position: relative;
     background: white;
     padding: 30px;
     border-radius: 20px;
     width: 90%;
     max-width: 400px;
-
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: popIn 0.3s ease;
 }
 
-.form-container {
-    animation: popIn 0.3s ease;
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;   
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #f0ebe3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    color: var(--color-primary);
 }
 
 @keyframes popIn {

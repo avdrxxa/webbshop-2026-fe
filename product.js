@@ -84,7 +84,7 @@ bookBtn.addEventListener('click', () => {
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     console.log("FORM SUBMITTED")
-    
+
     // bokningslogik
 
     formWrapper.classList.add('hidden')
@@ -94,4 +94,10 @@ formWrapper.addEventListener('click', (e) => {
     if (e.target === formWrapper) {
         formWrapper.classList.add('hidden')
     }
+})
+
+const closeBtn = document.querySelector('.close-btn')
+
+closeBtn.addEventListener('click', () => {
+    formWrapper.classList.add('hidden')
 })
