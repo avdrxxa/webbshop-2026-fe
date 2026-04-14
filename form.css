@@ -1,3 +1,16 @@
+:root {
+    --font-heading: "Bebas Neue", sans-serif;
+    --font-underRubrik: "Bricolage Grotesque", sans-serif;
+    --color-bg: #BFB6A7;
+    --color-bg-alt: #f0ebe3;
+    --color-surface: #ffffff;
+    --color-primary: #62978D;
+    --color-primary-hover: #78A89F;
+    --color-accent: #9C6B48;
+    --color-text: #646464;
+
+}
+
 .form-container{
     width: 330px;
     height: 450px;
@@ -63,22 +76,18 @@
 
 /*confirmation box */
 .confirmation-content {
-    width: 330px;
-    height: 450px;
+    min-height: 400px;
     background-color: #E9E2D8;
-    color: black;
-    border-radius: 10px;
-    margin-bottom: 10px;
-
+    border: 2px solid #BFB6A7;
+    color: #646464;
+    border-radius: 20px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    gap: 10px;
-
-    border: 1px solid white;
-
     position: relative;
+    font-family: var(--font-underRubrik);
 }
 
 /* Kryss */

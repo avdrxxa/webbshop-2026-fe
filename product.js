@@ -84,10 +84,10 @@ bookBtn.addEventListener('click', () => {
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     console.log("FORM SUBMITTED")
-    
-    // bokningslogik
 
-    formWrapper.classList.add('hidden')
+    confirmationBox.classList.remove("hidden");
+
+    //formWrapper.classList.add('hidden')
 })
 
 formWrapper.addEventListener('click', (e) => {
