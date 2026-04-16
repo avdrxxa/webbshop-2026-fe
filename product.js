@@ -1,4 +1,6 @@
 import { getBaseUrl } from "./src/utils/api.js"
+
+
 const params = new URLSearchParams(window.location.search)
 const id = params.get("id")
 console.log("Selected event ID:", id)
@@ -80,6 +82,7 @@ const bookBtn = document.querySelector('.bookNow')
 const formWrapper = document.querySelector('.form-wrapper')
 const form = document.querySelector('.form-component')
 const confirmationBox = document.getElementById("confirmationBox");
+const confirmationText = document.getElementById("confirmationText");
 const sendBtn = document.getElementById("sendBookingBtn");
 const closeBtns = document.querySelectorAll('.close-btn');
 
@@ -101,7 +104,17 @@ formWrapper.addEventListener('click', (e) => {
 })
 
 // Visa rutan
-sendBtn.addEventListener("click", () => {
+sendBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    
+    confirmationText.innerHTML = `
+    You have booked a place on the event:<br>
+    <strong>xx @ $ xx</strong><br><br>
+    Event ID:<br><br>
+    For more information see profile; booked events 
+    and on the email confirmation!
+  `;
+
   confirmationBox.classList.remove("hidden");
 });
 
