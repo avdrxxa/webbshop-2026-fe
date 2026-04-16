@@ -66,6 +66,53 @@ document.addEventListener("DOMContentLoaded", async()=>{
         </div>
         </div>
         `;
+
+        const availableSeats = event.seatsLeft;
+        const bookButtons = document.querySelectorAll(".add-to-cart-btn, .bookNow");
+        const bookBtn = document.querySelector('.bookNow')
+
+        if (availableSeats <= 0) {
+            bookButtons.forEach(btn => {
+                btn.disabled = true;
+                btn.textContent = "Full";
+                btn.classList.add("disabled-btn");
+            });
+        }
+
+        bookBtn.addEventListener('click', () => {
+            if (event.seatsLeft <= 0) {
+                alert("This event is full booked");
+                return;
+            }
+
+            formWrapper.classList.remove('hidden');
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (event.seatsLeft <= 0) return; // avoid dubble booking in UI
+
+            event.seatsLeft--;
+            //show how many are booked and max booked
+            document.querySelector(".platser h2").textContent = `${event.maxseats - event.seatsLeft}/${event.maxseats}`;
+
+
+            if (event.seatsLeft <= 0) {
+                bookButtons.forEach(btn => {
+                    btn.disabled = true;
+                    btn.textContent = "Full";
+                    btn.classList.add("disabled-btn");
+                });
+            }
+
+            console.log("BOOKING CONFIRMED");
+
+            confirmationBox.classList.remove("hidden");
+
+            //formWrapper.classList.add('hidden')
+        });
+        
     }catch(err){
         console.log(err)
         container.innerHTML = "<p>Failed to load event</p>"
@@ -73,28 +120,14 @@ document.addEventListener("DOMContentLoaded", async()=>{
     
 })
 
-const bookBtn = document.querySelector('.bookNow')
 const formWrapper = document.querySelector('.form-wrapper')
 const form = document.querySelector('.form-component')
-
-bookBtn.addEventListener('click', () => {
-    formWrapper.classList.remove('hidden')
-})
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault()
-    console.log("FORM SUBMITTED")
-
-    confirmationBox.classList.remove("hidden");
-
-    //formWrapper.classList.add('hidden')
-})
 
 formWrapper.addEventListener('click', (e) => {
     if (e.target === formWrapper) {
         formWrapper.classList.add('hidden')
     }
-})
+});
 
 const sendBtn = document.getElementById("sendBookingBtn");
 const confirmationBox = document.getElementById("confirmationBox");
@@ -110,8 +143,8 @@ close.addEventListener("click", () => {
   confirmationBox.classList.add("hidden");
 });
 
-const closeBtn = document.querySelector('.close-btn')
+const closeBtn = document.querySelector('.close-btn');
 
 closeBtn.addEventListener('click', () => {
     formWrapper.classList.add('hidden')
-})
+});
