@@ -66,6 +66,9 @@ document.addEventListener("DOMContentLoaded", async()=>{
         </div>
         </div>
         `;
+        container.querySelector('.add-to-cart-btn').addEventListener('click', () => {
+            formWrapper.classList.remove('hidden')
+        });
     }catch(err){
         console.log(err)
         container.innerHTML = "<p>Failed to load event</p>"
