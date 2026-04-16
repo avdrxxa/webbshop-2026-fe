@@ -79,6 +79,9 @@ document.addEventListener("DOMContentLoaded", async()=>{
 const bookBtn = document.querySelector('.bookNow')
 const formWrapper = document.querySelector('.form-wrapper')
 const form = document.querySelector('.form-component')
+const confirmationBox = document.getElementById("confirmationBox");
+const sendBtn = document.getElementById("sendBookingBtn");
+const closeBtns = document.querySelectorAll('.close-btn');
 
 bookBtn.addEventListener('click', () => {
     formWrapper.classList.remove('hidden')
@@ -89,8 +92,6 @@ form.addEventListener('submit', (e) => {
     console.log("FORM SUBMITTED")
 
     confirmationBox.classList.remove("hidden");
-
-    //formWrapper.classList.add('hidden')
 })
 
 formWrapper.addEventListener('click', (e) => {
@@ -99,22 +100,16 @@ formWrapper.addEventListener('click', (e) => {
     }
 })
 
-const sendBtn = document.getElementById("sendBookingBtn");
-const confirmationBox = document.getElementById("confirmationBox");
-const close = document.getElementById("closeBtn");
-
 // Visa rutan
 sendBtn.addEventListener("click", () => {
   confirmationBox.classList.remove("hidden");
 });
 
-// Stäng rutan
-close.addEventListener("click", () => {
-  confirmationBox.classList.add("hidden");
+// Stäng rutan med X
+
+closeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    formWrapper.classList.add('hidden');
+    confirmationBox.classList.add('hidden');
+  });
 });
-
-const closeBtn = document.querySelector('.close-btn')
-
-closeBtn.addEventListener('click', () => {
-    formWrapper.classList.add('hidden')
-})
