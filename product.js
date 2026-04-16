@@ -120,40 +120,8 @@ document.addEventListener("DOMContentLoaded", async()=>{
     
 })
 
-/* const bookBtn = document.querySelector('.bookNow') */
 const formWrapper = document.querySelector('.form-wrapper')
 const form = document.querySelector('.form-component')
-
-/* bookBtn.addEventListener('click', () => {
-    if (event.seatsLeft <= 0) {
-        alert("This event is full booked");
-        return;
-    }
-
-    formWrapper.classList.remove('hidden');
-}); */
-
-/* form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    if (event.seatsLeft <= 0) return; // undvika dubbelbokning i UI
-
-    event.seatsLeft--;
-
-    if (event.seatsLeft <= 0) {
-        bookButtons.forEach(btn => {
-            btn.disabled = true;
-            btn.textContent = "Full";
-            btn.classList.add("disabled-btn");
-        });
-    }
-
-    console.log("BOOKING CONFIRMED");
-
-    confirmationBox.classList.remove("hidden");
-
-    //formWrapper.classList.add('hidden')
-}); */
 
 formWrapper.addEventListener('click', (e) => {
     if (e.target === formWrapper) {
