@@ -51,41 +51,62 @@
       <div class="btnDiv">
         <button type="submit" class="bookNow">Book now</button>
       </div>
-      <div class="form-wrapper hidden"> 
-          <div class="form-container">
-              <button type="button" class="close-btn">×</button>
-              <form class="form-component">
-                  <div class="input-component">
-                      <label class="label-form" for="firstname">First Name</label>
-                      <input class="input-form" type="text" id="firstname" placeholder="Addo"/>
-                  </div>
-                  <div class="input-component">
-                      <label class="label-form" for="lastname">Last name</label>
-                      <input class="input-form" type="text" id="lastname" placeholder="Goitom"/>
-                  </div>
-                  <div class="input-component">
-                      <label class="label-form" for="email">Email</label>
-                      <input class="input-form" type="text" id="email" placeholder="addo@gmail.com"/>
-                  </div>
-                  <div class="input-component">
-                      <label class="label-form" for="textarea">Message</label>
-                      <textarea class="textarea-form" name="textarea" id="textarea" placeholder="Write a message" rows="4" cols="16"></textarea>
-                  </div>
-                  <div class="button-component">
-                    <button class="button-form" button id="sendBookingBtn">Book now</button>
-                  </div>
-              </form>
-          </div>
+      <div class="form-wrapper hidden">
+        <div class="form-container">
+            <button type="button" class="close-btn">×</button>
+            <form class="form-component">
+                <div class="input-component">
+                    <label class="label-form" for="firstname">First Name</label>
+                    <input
+                        class="input-form"
+                        type="text"
+                        id="firstname"
+                        placeholder="Addo"
+                    />
+                </div>
+                <div class="input-component">
+                    <label class="label-form" for="lastname">Last name</label>
+                    <input
+                        class="input-form"
+                        type="text"
+                        id="lastname"
+                        placeholder="Goitom"
+                    />
+                </div>
+                <div class="input-component">
+                    <label class="label-form" for="email">Email</label>
+                    <input
+                        class="input-form"
+                        type="text"
+                        id="email"
+                        placeholder="addo@gmail.com"
+                    />
+                </div>
+                <div class="input-component">
+                    <label class="label-form" for="textarea">Message</label>
+                    <textarea
+                        class="textarea-form"
+                        name="textarea"
+                        id="textarea"
+                        placeholder="Write a message"
+                        rows="4"
+                        cols="16"
+                    ></textarea>
+                </div>
+                <div class="button-component">
+                    <button class="button-form" id="sendBookingBtn">Book now</button>
+                </div>
+            </form>
+        </div>
         <!-- Confirmation box -->
         <div id="confirmationBox" class="hidden">
-            <div class="confirmation-content">
-                <span id="closeBtn">&times;</span>
-                <p>You have booked a place on the event: 
-                <strong>xx @ 00:00</strong>.<br><br>
-                For more information see profile; booked events 
-                and on the email confirmation!</p>       
-                </div>
-            </div>
+          <div class="confirmation-content">
+            <button type="button" class="close-btn">x</button>
+
+            <p id="confirmationText"></p>       
+          
+          </div>
+        </div>
       </div>
     </main>
 
