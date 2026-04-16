@@ -21,8 +21,10 @@ body {
 
 .admin-main {
   max-width: 720px;
-  margin: 0 auto;
+  margin: 30px auto;
   padding: 2rem;
+  gap: 50px;
+  width: fit-content;
 }
 :root {
   --font-heading: "Bebas Neue", sans-serif;
@@ -63,6 +65,7 @@ main {
 
 .addEvent h2 {
   font-family: var(--font-heading);
+  text-shadow: 1px 1px var(--color-accent);
   align-self: flex-start;
   font-size: 30px;
   letter-spacing: 2px;
@@ -95,6 +98,8 @@ label {
 }
 
 .participants {
+  min-width: 200px;
+  max-width: 650px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -105,11 +110,11 @@ label {
     font-family: var(--font-heading);
     font-size: 30px;
     letter-spacing: 2px;
+    text-shadow: 1px 1px var(--color-accent);
   }
 }
 .participants-wrap {
   background-color: var(--color-bg);
-  width: fit-content;
   padding: 50px;
   border-radius: 20px;
 }
@@ -149,7 +154,8 @@ div.flex-row.p-btn {
   text-decoration: none;
   border: none;
   border-radius: 5px;
-  padding: 10px;
+  padding: 7px 10px;
+  margin: 15px;
 }
 .participantsBtn:hover {
   background-color: #78a89f;
@@ -159,6 +165,7 @@ div.flex-row.p-btn {
   margin: 80px 90px;
   h1 {
     font-family: var(--font-heading);
+    text-shadow: 1px 1px var(--color-accent);
   }
 }
 .participantsLista {
@@ -167,4 +174,7 @@ div.flex-row.p-btn {
   background-color: var(--color-bg);
   border-radius: 20px;
   display: flex;
+}
+
+@media (min-width:1300px){
 }

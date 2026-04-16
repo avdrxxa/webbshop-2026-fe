@@ -1,8 +1,15 @@
 import { getEvents, createEvent } from "../utils/eventsApi.js";
 
 const form = document.getElementById("createProductForm");
+let loggautBtn= document.querySelector('.loggautBtn')
 const tbody = document.getElementById("productsTableBody");
 let deltagareLista = document.querySelector(".participants-wrap");
+
+loggautBtn.addEventListener('click', ()=>{
+  localStorage.clear('AccessToken')
+  localStorage.clear('RefreshToken')
+  localStorage.clear('isAdmin')
+})
 
 document.addEventListener("DOMContentLoaded", loadEvents);
 
@@ -117,6 +124,7 @@ function createEventCard(event) {
   element
     .querySelector(".participantsBtn")
     .addEventListener("click", async () => {
+      let eventId= JSON.stringify(localStorage.setItem('eventId', event._id))
       if (JSON.parse(localStorage.getItem("isAdmin"))) {
         let token = localStorage.getItem("AccessToken");
         let res = await fetch(
