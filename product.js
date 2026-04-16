@@ -33,7 +33,6 @@ function randomTränare(id){
     return trainer
 }
 
-
 let imgCover= document.querySelector('.cover')
 document.addEventListener("DOMContentLoaded", async()=>{
     const event = await getEventById(id)
@@ -93,12 +92,41 @@ document.addEventListener("DOMContentLoaded", async()=>{
 
             if (event.seatsLeft <= 0) return; // avoid dubble booking in UI
 
+            const firstName = document.querySelector("#firstname").value;
+            const lastName = document.querySelector("#lastname").value;
+            const email = document.querySelector("#email").value;
+            const message = document.querySelector("#textarea").value;
+
+            //validation
+            if (!firstName || !lastName || !email) {
+                alert("Please fill in all required fields");
+                return;
+            }
+
+            // save booking locally
+            console.log("Booking saved locally");
+
+            let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+
+            bookings.push({
+                eventId: id,
+                firstName,
+                lastName,
+                email,
+                message
+            });
+
+            localStorage.setItem("bookings", JSON.stringify(bookings));
+
             event.seatsLeft--;
+            console.log("Seats left:", event.seatsLeft); // to see when seats decreases
+
             //show how many are booked and max booked
             document.querySelector(".platser h2").textContent = `${event.maxseats - event.seatsLeft}/${event.maxseats}`;
 
-
             if (event.seatsLeft <= 0) {
+                console.log("EVENT IS NOW FULL");
+
                 bookButtons.forEach(btn => {
                     btn.disabled = true;
                     btn.textContent = "Full";
@@ -107,6 +135,8 @@ document.addEventListener("DOMContentLoaded", async()=>{
             }
 
             console.log("BOOKING CONFIRMED");
+            console.log(document.querySelector(".platser h2")) //test
+            console.log(event.maxseats, event.seatsLeft) //test
 
             confirmationBox.classList.remove("hidden");
 
