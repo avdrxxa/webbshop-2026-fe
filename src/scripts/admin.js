@@ -134,6 +134,7 @@ function createEventCard(event) {
             credentials: "include",
             headers: {
               Authorization: token,
+              
             },
           },
         );
