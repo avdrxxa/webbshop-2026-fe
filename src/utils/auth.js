@@ -11,3 +11,21 @@ export async function register( email, password) {
     });
     return response.json();
 }
+
+export async function auth() {
+    let url= new URL ('auth/me', getBaseUrl())
+    let res= await fetch(url, {
+        method:'GET',
+        credentials:'include',
+        headers: {
+            'Content-Type': 'application/json',
+            Authentification: localStorage.getItem('AccessToken'),
+            'X-Refresh-Token': localStorage.getItem('RefreshToken'),
+        }
+    })
+    let json= await res.json()
+    localStorage.setItem('loggedIn',await json.loggedIn)
+    console.log('hej')
+}
+
+document.addEventListener("DOMContentLoaded", await auth);
