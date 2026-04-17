@@ -1,6 +1,4 @@
 import { getBaseUrl } from "./src/utils/api.js"
-
-
 const params = new URLSearchParams(window.location.search)
 const id = params.get("id")
 console.log("Selected event ID:", id)
@@ -145,9 +143,6 @@ document.addEventListener("DOMContentLoaded", async()=>{
             //formWrapper.classList.add('hidden')
         });
         
-        container.querySelector('.add-to-cart-btn').addEventListener('click', () => {
-            formWrapper.classList.remove('hidden')
-        });
     }catch(err){
         console.log(err)
         container.innerHTML = "<p>Failed to load event</p>"
@@ -155,51 +150,31 @@ document.addEventListener("DOMContentLoaded", async()=>{
     
 })
 
-const bookBtn = document.querySelector('.bookNow')
 const formWrapper = document.querySelector('.form-wrapper')
 const form = document.querySelector('.form-component')
-const confirmationBox = document.getElementById("confirmationBox")
-const confirmationText = document.getElementById("confirmationText")
-const sendBtn = document.getElementById("sendBookingBtn")
-const closeBtns = document.querySelectorAll('.close-btn')
-
-bookBtn.addEventListener('click', () => {
-    formWrapper.classList.remove('hidden')
-})
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault()
-    console.log("FORM SUBMITTED")
-
-    confirmationBox.classList.remove("hidden");
-})
 
 formWrapper.addEventListener('click', (e) => {
     if (e.target === formWrapper) {
         formWrapper.classList.add('hidden')
     }
-})
+});
+
+const sendBtn = document.getElementById("sendBookingBtn");
+const confirmationBox = document.getElementById("confirmationBox");
+const close = document.getElementById("closeBtn");
 
 // Visa rutan
-sendBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    
-    confirmationText.innerHTML = `
-    You have booked a place on the event:<br>
-    <strong>xx @ $ xx</strong><br><br>
-    Event ID:<br><br>
-    For more information see profile; booked events 
-    and on the email confirmation!
-  `;
-
+sendBtn.addEventListener("click", () => {
   confirmationBox.classList.remove("hidden");
 });
 
-// Stäng rutan med X
+// Stäng rutan
+close.addEventListener("click", () => {
+  confirmationBox.classList.add("hidden");
+});
 
-closeBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    formWrapper.classList.add('hidden');
-    confirmationBox.classList.add('hidden');
-  });
+const closeBtn = document.querySelector('.close-btn');
+
+closeBtn.addEventListener('click', () => {
+    formWrapper.classList.add('hidden')
 });
