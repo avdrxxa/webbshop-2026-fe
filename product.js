@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", async()=>{
             formWrapper.classList.remove('hidden');
         });
 
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             if (event.seatsLeft <= 0) return; // avoid dubble booking in UI
@@ -103,7 +103,48 @@ document.addEventListener("DOMContentLoaded", async()=>{
                 return;
             }
 
-            // save booking locally
+            try {
+                const token = localStorage.getItem("token");
+
+                const response = await fetch(`https://webbshop-2026-be-eight.vercel.app/api/events/${event._id}/bookings`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        firstName,
+                        lastName,
+                        email,
+                        message
+                    })
+                });
+
+                if (!response.ok) throw new Error("Booking failed");
+
+                console.log("BOOKING SAVED IN DATABASE");
+            
+                // Get updated event from backend
+                const updatedEvent = await getEventById(id);
+
+                // Update UI with real data
+
+                document.querySelector(".platser h2").textContent = `${updatedEvent.maxseats - updatedEvent.seatsLeft}/${updatedEvent.maxseats}`;
+
+                if (updatedEvent.seatsLeft <= 0) {
+                    bookButtons.forEach(btn => {
+                        btn.disabled = true;
+                        btn.textContent = "Full";
+                        btn.classList.add("disabled-btn");
+                    });
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Booking failed");
+                return;
+            }
+
+            /* // save booking locally
             console.log("Booking saved locally");
 
             let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
@@ -119,7 +160,7 @@ document.addEventListener("DOMContentLoaded", async()=>{
             localStorage.setItem("bookings", JSON.stringify(bookings));
 
             event.seatsLeft--;
-            console.log("Seats left:", event.seatsLeft); // to see when seats decreases
+            console.log("Seats left:", event.seatsLeft); // to see when seats decreases */
 
             //show how many are booked and max booked
             document.querySelector(".platser h2").textContent = `${event.maxseats - event.seatsLeft}/${event.maxseats}`;
