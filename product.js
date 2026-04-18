@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", async()=>{
                 <p>${time}</p>
             </div>
             <h1>${event.title}</h1>
-            <button class="add-to-cart-btn">Book now</button>
+            <button class="add-to-cart-btn booknowBtn">Book now</button>
         </div>
         <div class='eventInfo'>
         <p>${event.description || "No description available"}</p>
@@ -65,6 +65,9 @@ document.addEventListener("DOMContentLoaded", async()=>{
         </div>
         </div>
         `;
+        container.querySelector('.booknowBtn').addEventListener('click', ()=>{
+            formWrapper.classList.remove('hidden')
+        })
 
         const availableSeats = event.seatsLeft;
         const bookButtons = document.querySelectorAll(".add-to-cart-btn, .bookNow");
