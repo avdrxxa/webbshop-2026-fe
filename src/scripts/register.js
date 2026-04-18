@@ -6,16 +6,11 @@ function initRegister() {
   const registerForm = document.getElementById("registerForm");
 }
 let isRegister = false;
-let loginBtn = document.querySelector("#loginBtn");
-//let fname = document.getElementById("fname");
-//let lname = document.getElementById("lname");
-//let email = document.getElementById("email");
-//let password = document.getElementById("password");
 
 function handleLogin() {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
-  if (!email && !password) {
+  if (!email || !password) {
     return;
   }
   fetch("https://webbshop-2026-be-eight.vercel.app/api/auth/login", {
@@ -62,7 +57,7 @@ function handleRegister() {
   let lastname = document.getElementById("lname").value;
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
-  if (!email && !password && !fname && !fname) {
+  if (!email && !password && !firstname && !lastname) {
     return;
   }
   fetch("https://webbshop-2026-be-eight.vercel.app/api/auth/register", {
