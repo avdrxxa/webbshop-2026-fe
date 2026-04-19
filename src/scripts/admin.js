@@ -1,9 +1,10 @@
 import { getEvents, createEvent } from "../utils/eventsApi.js";
 
-const form = document.getElementById("createProductForm");
+const form = document.querySelector(".admin-create-event");
 let loggautBtn= document.querySelector('.loggautBtn')
 const tbody = document.getElementById("productsTableBody");
 let deltagareLista = document.querySelector(".participants-wrap");
+const archiveWrap = document.querySelector(".archive-wrap");
 
 loggautBtn.addEventListener('click', ()=>{
   localStorage.clear('AccessToken')
@@ -11,7 +12,10 @@ loggautBtn.addEventListener('click', ()=>{
   localStorage.clear('isAdmin')
 })
 
-document.addEventListener("DOMContentLoaded", loadEvents);
+document.addEventListener("DOMContentLoaded", () => {
+  loadEvents();
+  loadArchivedEvents();
+});
 
 async function loadEvents() {
   try {
@@ -26,6 +30,74 @@ async function loadEvents() {
     });
   } catch (error) {
     console.error("Error fetching events:", error);
+  }
+}
+
+async function loadArchivedEvents() {
+  try {
+    const token = localStorage.getItem("AccessToken");
+
+    console.log("TOKEN:", token);
+
+    const res = await fetch(
+      "https://webbshop-2026-be-eight.vercel.app/api/events/archive",
+      {
+        method: "GET",
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+
+    console.log("STATUS:", res.status);
+
+    const data = await res.json();
+    console.log("ARCHIVE DATA:", data);
+    console.log("TOKEN:", token);
+
+    if (!res.ok) {
+      throw new Error(data.message || "Failed to fetch archive");
+    }
+
+    archiveWrap.innerHTML = "";
+
+    // test different format
+    let archiveList = [];
+
+    if (Array.isArray(data)) {
+      archiveList = data;
+    } else if (Array.isArray(data.events)) {
+      archiveList = data.events;
+    } else if (Array.isArray(data.data)) {
+      archiveList = data.data;
+    } else {
+      console.error("Okänt API-format:", data);
+      archiveWrap.innerHTML = "<p>Fel dataformat från server</p>";
+      return;
+    }
+
+    if (archiveList.length === 0) {
+      archiveWrap.innerHTML = "<p>No completed events</p>";
+      return;
+    }
+
+    archiveList.forEach(event => {
+      const item = document.createElement("div");
+      item.className = "elementList";
+
+      item.innerHTML = `
+        <p><strong>${event.title || "No title"}</strong></p>
+        <p>${event.time?.date ? new Date(event.time.date).toLocaleDateString("sv-SE") : "No date"} 
+        - ${event.time?.startTime || ""}</p>
+        <p>${event.participants || 0}/${event.maxseats || 0} deltagare</p>
+      `;
+
+      archiveWrap.appendChild(item);
+    });
+
+  } catch (error) {
+    console.error("Error fetching archive:", error);
+    archiveWrap.innerHTML = "<p>Could not load archive</p>";
   }
 }
 
@@ -91,7 +163,7 @@ function getEventsBilder(event) {
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const name = document.getElementById("name").value.trim();
+  const name = document.getElementById("title").value.trim();
   const price = parseFloat(document.getElementById("price").value);
   const stock = parseInt(document.getElementById("stock").value, 10);
   const image = document.getElementById("image").value.trim();
