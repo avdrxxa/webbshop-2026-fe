@@ -35,6 +35,15 @@ function randomTränare(id){
 
 let imgCover= document.querySelector('.cover')
 document.addEventListener("DOMContentLoaded", async()=>{
+    const token = localStorage.getItem("AccessToken");
+
+    if (!token) {
+        document.querySelectorAll(".add-to-cart-btn, .bookNow").forEach(btn => {
+            btn.disabled = true;
+            btn.textContent = "Login to book";
+        });
+    }
+
     const event = await getEventById(id)
     let trainer= randomTränare(id)
     const container = document.getElementById("event-detail")
@@ -81,7 +90,16 @@ document.addEventListener("DOMContentLoaded", async()=>{
             });
         }
 
+        console.log("TOKEN:", token);
+
         bookBtn.addEventListener('click', () => {
+            const token = localStorage.getItem("AccessToken");
+
+            if (!token) {
+                alert("You must be logged in to book");
+                return;
+            }
+
             if (event.seatsLeft <= 0) {
                 alert("This event is full booked");
                 return;
@@ -90,8 +108,16 @@ document.addEventListener("DOMContentLoaded", async()=>{
             formWrapper.classList.remove('hidden');
         });
 
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            const accessToken = localStorage.getItem("AccessToken");
+            const refreshToken = localStorage.getItem("RefreshToken");
+
+            if (!accessToken) {
+                alert("You must login again");
+                return;
+            }
 
             if (event.seatsLeft <= 0) return; // avoid dubble booking in UI
 
@@ -106,26 +132,54 @@ document.addEventListener("DOMContentLoaded", async()=>{
                 return;
             }
 
-            // save booking locally
-            console.log("Booking saved locally");
+            try {
+                /* const token = localStorage.getItem("Bearerqwerty1234"); */
+                const accessToken = localStorage.getItem("AccessToken");
 
-            let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+                const response = await fetch(`https://webbshop-2026-be-eight.vercel.app/api/events/${event._id}/bookings`,
+                    {
+                        method: "POST",
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`,
+                            "X-Refresh-Token": refreshToken,
+                            "Content-Type": "application/json"
+                            /* "Content-Type": "application/json", */
+                            /* Authorization: `Bearer ${token}`, */
+                        },
+                        body: JSON.stringify({
+                            firstName,
+                            lastName,
+                            email,
+                            message
+                        })
+                    }
+                );
 
-            bookings.push({
-                eventId: id,
-                firstName,
-                lastName,
-                email,
-                message
-            });
+                /* if (!response.ok) throw new Error("Booking failed"); */
 
-            localStorage.setItem("bookings", JSON.stringify(bookings));
+                console.log("BOOKING SAVED IN DATABASE");
+            
+                // Get updated event from backend
+                const updatedEvent = await getEventById(id);
 
-            event.seatsLeft--;
-            console.log("Seats left:", event.seatsLeft); // to see when seats decreases
+                // Update UI with real data
+                document.querySelector(".platser h2").textContent = `${updatedEvent.maxseats - updatedEvent.seatsLeft}/${updatedEvent.maxseats}`;
 
-            //show how many are booked and max booked
-            document.querySelector(".platser h2").textContent = `${event.maxseats - event.seatsLeft}/${event.maxseats}`;
+                if (updatedEvent.seatsLeft <= 0) {
+                    bookButtons.forEach(btn => {
+                        btn.disabled = true;
+                        btn.textContent = "Full";
+                        btn.classList.add("disabled-btn");
+                    });
+                }
+
+                await loadMyBookings();
+                
+            } catch (error) {
+                console.error(error);
+                alert("Booking failed");
+                return;
+            }
 
             if (event.seatsLeft <= 0) {
                 console.log("EVENT IS NOW FULL");
@@ -140,11 +194,21 @@ document.addEventListener("DOMContentLoaded", async()=>{
             console.log("BOOKING CONFIRMED");
             console.log(document.querySelector(".platser h2")) //test
             console.log(event.maxseats, event.seatsLeft) //test
+            console.log(event.seatsLeft)
+            /* console.log("TOKEN USED:", token); */
+
+            if (!token) {
+                alert("Session expired, please login again");
+                return;
+            }
 
             confirmationBox.classList.remove("hidden");
 
-            //formWrapper.classList.add('hidden')
+            form.reset();
+            formWrapper.classList.add('hidden')
         });
+
+        await loadMyBookings();
         
     }catch(err){
         console.log(err)
@@ -152,6 +216,48 @@ document.addEventListener("DOMContentLoaded", async()=>{
     }
     
 })
+
+async function loadMyBookings() {
+    /* const token = localStorage.getItem("Bearerqwerty1234"); */
+    const accessToken = localStorage.getItem("AccessToken");
+    const refreshToken = localStorage.getItem("RefreshToken");
+
+    console.log("AccessToken:", localStorage.getItem("AccessToken"));
+console.log("RefreshToken:", localStorage.getItem("RefreshToken"));
+
+    if (!accessToken) return;
+
+    const res = await fetch("https://webbshop-2026-be-eight.vercel.app/api/events/my/bookings",
+        {
+             headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "X-Refresh-Token": refreshToken,
+                "Content-Type": "application/json",
+                /* Authorization: `Bearer ${token}` */
+            }
+        }
+    );
+
+    if (!res.ok) return;
+
+    /* if (!res.ok) {
+        console.log("Failed to fetch bookings");
+        return;
+    } */
+
+    console.log("BOOKING SAVED IN DATABASE");
+
+    const bookings = await res.json();
+
+    console.log("MY BOOKINGS:", bookings);
+
+    const bookingCount = bookings.length;
+
+    const info = document.createElement("p");
+    info.textContent = `You have booked ${bookingCount} events`;
+
+    document.body.appendChild(info);
+};
 
 const formWrapper = document.querySelector('.form-wrapper')
 const form = document.querySelector('.form-component')
