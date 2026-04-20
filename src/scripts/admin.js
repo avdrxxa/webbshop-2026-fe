@@ -1,4 +1,5 @@
 import { getEvents, createEvent } from "../utils/eventsApi.js";
+import { auth } from "../utils/auth.js";
 
 const form = document.getElementById("createProductForm");
 let loggautBtn= document.querySelector('.loggautBtn')
@@ -162,10 +163,11 @@ async function loadKunder() {
       {
         method: "GET",
         credentials: "include",
-        'Content-Type': 'application/json',
-        Authorization: token,
-        'X-Refresh-Token': rtoken,
-      }
+        headers:{
+          'Content-Type': 'application/json',
+          Authorization: token,
+          'X-Refresh-Token': rtoken,
+        }}
     )
     console.log(response)
     if (!response.ok) {
@@ -189,13 +191,15 @@ async function loadKunder() {
 
 
 function createUserCard(user) {
-  const element = document.createElement("div")
+  let element = document.createElement("div")
   element.className = "elementUser"
   element.innerHTML = `
   <p>${user.firstname} ${user.lastname}</p>
-  <div class="flex-row">
+  <div class="flex-rowt">
   <p>${user.email}</p>
-  <p class=roleElement>${user.role}</p>
+  <select class=roleElement>
+  <option>${user.roles}</option>
+  </select>
   </div>
   `;
   return element

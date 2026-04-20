@@ -158,12 +158,31 @@ div.flex-row.p-btn {
 
 
 .customer-registry-wrap{
-  background-color: var(--color-bg-alt);
+  width: 400px;
+  background-color: var(--color-bg);
+  padding: 40px;
+  border-radius: 20px;
   .elementUser{
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    flex-direction: column;
+    gap: 0px;
   }
+}
+.flex-rowt{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+
+}
+.roleElement{
+  color: var(--color-primary);
+  padding: 5px 10px;
+  background-color: var(--color-bg);
+  border: none;
+  border-radius: 5px;
+
 }
 
 @media (min-width:1300px){
