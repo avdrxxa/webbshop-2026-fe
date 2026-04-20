@@ -26,27 +26,6 @@ body {
   gap: 50px;
   width: fit-content;
 }
-:root {
-  --font-heading: "Bebas Neue", sans-serif;
-  --font-underRubrik: "Bricolage Grotesque", sans-serif;
-  --font-body: "Actor", system-ui, sans-serif;
-  --color-bg: #bfb6a7;
-  --color-bg-alt: #f0ebe3;
-  --color-surface: #ffffff;
-  --color-primary: #62978d;
-  --color-primary-hover: #78a89f;
-  --color-accent: #9c6b48;
-  --color-accent-hover: #d4b03a;
-  --color-text: #646464;
-  --color-text-muted: #6b6b6b;
-  --color-border: #e5e0d8;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 31px;
-  --shadow-sm: 0 2px 8px rgba(45, 90, 61, 0.06);
-  --shadow-md: 0 4px 16px rgba(45, 90, 61, 0.08);
-  --shadow-hover: 0 8px 24px rgba(45, 90, 61, 0.12);
-}
 
 main {
   display: flex;
@@ -63,7 +42,7 @@ main {
   width: 100%;
 }
 
-.addEvent h2 {
+.addEvent h2, h2 {
   font-family: var(--font-heading);
   text-shadow: 1px 1px var(--color-accent);
   align-self: flex-start;
@@ -174,6 +153,17 @@ div.flex-row.p-btn {
   background-color: var(--color-bg);
   border-radius: 20px;
   display: flex;
+}
+
+
+
+.customer-registry-wrap{
+  background-color: var(--color-bg-alt);
+  .elementUser{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
 }
 
 @media (min-width:1300px){

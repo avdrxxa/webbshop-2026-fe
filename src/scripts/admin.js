@@ -4,6 +4,7 @@ const form = document.getElementById("createProductForm");
 let loggautBtn= document.querySelector('.loggautBtn')
 const tbody = document.getElementById("productsTableBody");
 let deltagareLista = document.querySelector(".participants-wrap");
+let kundregisterDiv= document.querySelector('.customer-registry-wrap')
 
 loggautBtn.addEventListener('click', ()=>{
   localStorage.clear('AccessToken')
@@ -11,7 +12,7 @@ loggautBtn.addEventListener('click', ()=>{
   localStorage.clear('isAdmin')
 })
 
-document.addEventListener("DOMContentLoaded", loadEvents);
+document.addEventListener("DOMContentLoaded", loadEvents, loadKunder);
 
 async function loadEvents() {
   try {
@@ -145,4 +146,50 @@ function createEventCard(event) {
       }
     });
   return element;
+}
+
+
+async function loadKunder() {
+  try {
+    let response = await fetch(
+      "https://webbshop-2026-be-eight.vercel.app/api/users/",
+      {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Authorization: token,
+        },
+      }
+    )
+    if (!response.ok) {
+      throw new Error('eoroor')
+    }
+    let users = await response.json()
+    kundregisterDiv.innerHTML = ""
+    if (!Array.isArray(users) || users.length === 0) {
+      kundregisterDiv.innerHTML = "No users found"
+      return
+    }
+    users.forEach((user) => {
+      let card = createUserCard(user)
+      kundregisterDiv.appendChild(card)
+    });
+    console.log(users)
+  } catch (error) {
+    console.error("Error med users:", error)
+  }
+}
+
+
+function createUserCard(user) {
+  const element = document.createElement("div")
+  element.className = "elementUser"
+  element.innerHTML = `
+  <p>${user.firstname} ${user.lastname}</p>
+  <div class="flex-row">
+  <p>${user.email}</p>
+  <p class=roleElement>${user.role}</p>
+  </div>
+  `;
+  return element
 }
