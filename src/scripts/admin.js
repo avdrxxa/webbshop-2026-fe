@@ -12,7 +12,10 @@ loggautBtn.addEventListener('click', ()=>{
   localStorage.clear('isAdmin')
 })
 
-document.addEventListener("DOMContentLoaded", loadEvents, loadKunder);
+document.addEventListener("DOMContentLoaded", () =>{
+  loadEvents()
+  loadKunder()
+});
 
 async function loadEvents() {
   try {
@@ -90,6 +93,7 @@ function getEventsBilder(event) {
   return image;
 }
 
+//kolla ifall id-et och klasserna matchar med javascripten
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const name = document.getElementById("name").value.trim();
@@ -150,17 +154,20 @@ function createEventCard(event) {
 
 
 async function loadKunder() {
-  try {
+  try{
+  let token = localStorage.getItem("AccessToken")
+    let rtoken= localStorage.getItem('RefreshToken')
     let response = await fetch(
-      "https://webbshop-2026-be-eight.vercel.app/api/users/",
+      "https://webbshop-2026-be-eight.vercel.app/api/users",
       {
         method: "GET",
         credentials: "include",
-        headers: {
-          Authorization: token,
-        },
+        'Content-Type': 'application/json',
+        Authorization: token,
+        'X-Refresh-Token': rtoken,
       }
     )
+    console.log(response)
     if (!response.ok) {
       throw new Error('eoroor')
     }
@@ -175,8 +182,8 @@ async function loadKunder() {
       kundregisterDiv.appendChild(card)
     });
     console.log(users)
-  } catch (error) {
-    console.error("Error med users:", error)
+  }catch(error){
+    console.error(error)
   }
 }
 
