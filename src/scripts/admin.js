@@ -5,6 +5,8 @@ let loggautBtn= document.querySelector('.loggautBtn')
 const tbody = document.getElementById("productsTableBody");
 let deltagareLista = document.querySelector(".participants-wrap");
 const archiveWrap = document.querySelector(".archive-wrap");
+let token= localStorage.getItem('AccessToken')
+let rtoken= localStorage.getItem('RefreshToken')
 
 loggautBtn.addEventListener('click', ()=>{
   localStorage.clear('AccessToken')
@@ -161,24 +163,71 @@ function getEventsBilder(event) {
   return image;
 }
 
+const trainerData = await fetch(
+  "https://webbshop-2026-be-eight.vercel.app/api/users/trainers",
+  {
+    headers: {
+      Authorization: token,
+      "X-Refresh-Token": rtoken
+    }
+  }
+);
+
+const data = await trainerData.json();
+console.log(data);
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const name = document.getElementById("title").value.trim();
-  const date = new Date(document.getElementById("datum").value);
-  const time = document.getElementById("time").value;
-  const maxParticipants = parseInt(document.getElementById("MaxParticipant").value, 10);
-  const trainer = document.getElementById("trainer").value.trim();
 
+  const title = document.getElementById("title").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const date = document.getElementById("date").value;
+  const starttime = document.getElementById("starttime").value;
+  const endtime = document.getElementById("endtime").value;
+  const maxseats = parseInt(document.getElementById("maxseats").value, 10);
+  const location = document.getElementById("location").value.trim();
+  const price = parseFloat(document.getElementById("price").value);
+  const trainerId = document.getElementById("trainer").value;
 
-  try {
-    await createEvent({ name, date, time, maxParticipants, trainer });
-    alert("Event skapad!");
-    form.reset();
-    loadEvents();
-  } catch (err) {
-    console.error("Error creating event:", error);
-    alert(err.message || "Failed to create event");
+try {
+  
+
+  const res = await fetch("https://webbshop-2026-be-eight.vercel.app/api/events", {
+    method: "POST",
+    headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+            "X-Refresh-Token": rtoken
+        },
+    credentials: "include",
+    body: JSON.stringify({ 
+      title,
+      description,
+      startTime: starttime,
+      endTime: endtime,
+      date,
+      maxseats,
+      location,
+      price,
+      trainerId,
+    })
+  });
+
+  console.log(token);
+  console.log(await res.json());
+
+  if (!res.ok) {
+    throw new Error("Failed to create event");
   }
+
+  alert("Event skapad!");
+  form.reset();
+  loadEvents();
+
+} catch (error) {
+  console.error("Error creating event:", error);
+  alert("Kunde inte skapa event");
+}
 });
 
 function createEventCard(event) {
