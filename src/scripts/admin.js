@@ -199,7 +199,7 @@ form.addEventListener("submit", async (e) => {
   const maxseats = parseInt(document.getElementById("maxseats").value, 10);
   const location = document.getElementById("location").value.trim();
   const price = parseFloat(document.getElementById("price").value);
-  const trainerId = document.getElementById("trainer").value;
+  const trainerid = document.getElementById("trainer").value;
 
 try {
   
