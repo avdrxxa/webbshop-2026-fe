@@ -163,6 +163,38 @@ function getEventsBilder(event) {
   return image;
 }
 
+async function loadTypes() {
+  const typeSelect = document.getElementById("type");
+  try {
+    const res = await fetch("https://webbshop-2026-be-eight.vercel.app/api/types", {
+      method: "GET",
+      headers: {
+        Authorization: token,
+        "X-Refresh-Token": rtoken
+      },
+    });
+    
+    const data = await res.json();
+    const types = data.types;
+
+    console.log("Types data:", types);
+
+    types.forEach(t => {
+      const option = document.createElement("option");
+      option.value = t._id;
+      option.textContent = t.name;
+      typeSelect.appendChild(option);
+    });
+
+  } catch (error) {
+    console.error("Fel vid hämtning av typer:", error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadTypes();
+});
+
 const trainerData = await fetch(
   "https://webbshop-2026-be-eight.vercel.app/api/users/trainers",
   {
@@ -174,36 +206,57 @@ const trainerData = await fetch(
 );
 
 const select = document.getElementById("trainer");
-const data = await trainerData.json();
-console.log(data);
+const trainers = await trainerData.json();
 
-data.forEach(trainer => {
+console.log(trainers);
+
+trainers.forEach(trainer => {
   const option = document.createElement("option");
 
   option.value = trainer._id;
   option.textContent = `${trainer.firstname} ${trainer.lastname}`;
 
   select.appendChild(option);
+
 });
 
+/*
+const typeData = await fetch(
+  "https://webbshop-2026-be-eight.vercel.app/api/types",
+  {
+    headers: {
+      Authorization: token,
+      "X-Refresh-Token": rtoken
+    }
+  }
+);
+const type = document.getElementById("type");
+const types = await typeData.json();
 
+console.log(types);
+
+types.map(type => {
+  const option = document.createElement("option");
+  option.value = type._id;   // viktigt om du ska skicka till backend
+  option.textContent = type.name;
+  select.appendChild(option);
+});*/
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const title = document.getElementById("title").value.trim();
   const description = document.getElementById("description").value.trim();
+  const type = document.getElementById("type").value;
   const date = document.getElementById("date").value;
-  const starttime = document.getElementById("starttime").value;
-  const endtime = document.getElementById("endtime").value;
+  const startTime = document.getElementById("starttime").value;
+  const endTime = document.getElementById("endtime").value;
   const maxseats = parseInt(document.getElementById("maxseats").value, 10);
   const location = document.getElementById("location").value.trim();
   const price = parseFloat(document.getElementById("price").value);
   const trainerid = document.getElementById("trainer").value;
 
 try {
-  
-
   const res = await fetch("https://webbshop-2026-be-eight.vercel.app/api/events", {
     method: "POST",
     headers: {
@@ -215,21 +268,24 @@ try {
     body: JSON.stringify({ 
       title,
       description,
-      startTime: starttime,
-      endTime: endtime,
       date,
+      startTime,
+      endTime,
       maxseats,
       location,
       price,
       trainerid,
+      type,
     })
   });
 
-  console.log(token);
-  console.log(await res.json());
+ const data = await res.json(); 
+
+ console.log("Response data:", data);
 
   if (!res.ok) {
-    throw new Error("Failed to create event");
+    console.log("Backend error:", data);
+    throw new Error(data.message || "Failed to create event");
   }
 
   alert("Event skapad!");
