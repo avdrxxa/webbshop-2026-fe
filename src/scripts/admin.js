@@ -168,8 +168,7 @@ form.addEventListener("submit", async (e) => {
   const time = document.getElementById("time").value;
   const maxParticipants = parseInt(document.getElementById("MaxParticipant").value, 10);
   const trainer = document.getElementById("trainer").value.trim();
-  /*const image = document.getElementById("image").value.trim();
-  const slug = document.getElementById("slug").value.trim();*/
+
 
   try {
     await createEvent({ name, date, time, maxParticipants, trainer });
