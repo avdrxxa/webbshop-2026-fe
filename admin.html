@@ -1,24 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eventera</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href='main.css'/>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="admin.css" />
+    <script type="module" src="./src/utils/auth.js" defer></script>
     <script type="module" src="./src/scripts/admin.js" defer></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Actor&family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Actor&family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+      rel="stylesheet"
+    />
   </head>
-<body>
-
+  <body>
     <!-- HEADER -->
     <header class="site-header">
       <nav class="admin">
         <a href="index.html" class="logo">Eventra</a>
-        <a href="profile.html"><img src="images/log ut icon.svg" alt="profile icon" width="20px"></a>
+        <a href="register.html"
+          ><img src="images/log ut icon.svg" class="loggautBtn" alt="profile icon" width="20px"
+        /></a>
       </nav>
     </header>
 
@@ -56,40 +61,41 @@
 
       <div class="participants">
         <h2>Deltagarlista</h2>
-        <div class="participants-wrap">
-        </div>
+        <div class="participants-wrap"></div>
       </div>
 
       <div class="archive">
         <h2>Arkiv</h2>
-        <div class="archive-wrap">
-        </div>
+        <div class="archive-wrap"></div>
       </div>
 
       <div class="customer-registry">
         <h2>Kundregister</h2>
-        <div class="customer-registry-wrap">
-        </div>
+        <div class="customer-registry-wrap"></div>
       </div>
-    
-  </main>
-  <!-- FOOTER -->
+    </main>
+    <!-- FOOTER -->
     <footer class="site-footer">
       <div class="footer-content">
         <h2>Eventra</h2>
         <p>&copy; 2024 Eventra. All rights reserved.</p>
         <div class="footer-links">
-          <a href="/about">About</a>
-          <a href="/contact">Contact</a>
-          <a href="/terms">Terms</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="terms.html">Terms</a>
         </div>
         <div class="sociala">
-          <a href="https://www.instagram.com/" target="_blank"><img src="images/insta.svg" alt="instagram icon"></a>
-          <a href="https://www.facebook.com/" target="_blank"><img src="images/facebook.svg" alt="facebook icon"></a>
-          <a href="https://www.youtube.com" target="_blank" ><img src="images/youtube.svg" alt="youtube icon"></a>
+          <a href="https://www.instagram.com/" target="_blank"
+            ><img src="images/insta.svg" alt="instagram icon"
+          /></a>
+          <a href="https://www.facebook.com/" target="_blank"
+            ><img src="images/facebook.svg" alt="facebook icon"
+          /></a>
+          <a href="https://www.youtube.com" target="_blank"
+            ><img src="images/youtube.svg" alt="youtube icon"
+          /></a>
         </div>
       </div>
     </footer>
-
   </body>
 </html>

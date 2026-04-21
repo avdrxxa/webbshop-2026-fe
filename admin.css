@@ -1,20 +1,19 @@
 /* Admin – simple white, tables, forms */
 
 :root {
-    --font-heading: "Bebas Neue", sans-serif;
-    --font-underRubrik: "Bricolage Grotesque", sans-serif;
-    --color-bg: #BFB6A7;
-    --color-bg-alt: #f0ebe3;
-    --color-surface: #ffffff;
-    --color-primary: #62978D;
-    --color-primary-hover: #78A89F;
-    --color-accent: #9C6B48;
-    --color-text: #646464;
-
+  --font-heading: "Bebas Neue", sans-serif;
+  --font-underRubrik: "Bricolage Grotesque", sans-serif;
+  --color-bg: #bfb6a7;
+  --color-bg-alt: #f0ebe3;
+  --color-surface: #ffffff;
+  --color-primary: #62978d;
+  --color-primary-hover: #78a89f;
+  --color-accent: #9c6b48;
+  --color-text: #646464;
 }
 
-body{
-  background-image: url('images/bg-admin.jpg');
+body {
+  background-image: url("images/bg-admin.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -22,19 +21,21 @@ body{
 
 .admin-main {
   max-width: 720px;
-  margin: 0 auto;
+  margin: 30px auto;
   padding: 2rem;
+  gap: 50px;
+  width: fit-content;
 }
 :root {
   --font-heading: "Bebas Neue", sans-serif;
   --font-underRubrik: "Bricolage Grotesque", sans-serif;
   --font-body: "Actor", system-ui, sans-serif;
-  --color-bg: #BFB6A7;
+  --color-bg: #bfb6a7;
   --color-bg-alt: #f0ebe3;
   --color-surface: #ffffff;
-  --color-primary: #62978D;
-  --color-primary-hover: #78A89F;
-  --color-accent: #9C6B48;
+  --color-primary: #62978d;
+  --color-primary-hover: #78a89f;
+  --color-accent: #9c6b48;
   --color-accent-hover: #d4b03a;
   --color-text: #646464;
   --color-text-muted: #6b6b6b;
@@ -64,6 +65,7 @@ main {
 
 .addEvent h2 {
   font-family: var(--font-heading);
+  text-shadow: 1px 1px var(--color-accent);
   align-self: flex-start;
   font-size: 30px;
   letter-spacing: 2px;
@@ -95,70 +97,84 @@ label {
   font-family: var(--font-body);
 }
 
-.participants{
+.participants {
+  min-width: 200px;
+  max-width: 650px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  h2{
+  h2 {
     align-self: flex-start;
     justify-self: flex-start;
     font-family: var(--font-heading);
     font-size: 30px;
     letter-spacing: 2px;
+    text-shadow: 1px 1px var(--color-accent);
   }
 }
-.participants-wrap{
+.participants-wrap {
   background-color: var(--color-bg);
-  width: 100%;
   padding: 50px;
   border-radius: 20px;
 }
-div.flex-row.p-btn{
+div.flex-row.p-btn {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
-.elementList{
+.elementList {
   display: flex;
+  align-items: space-between;
+  justify-content: space-between;
   flex-direction: column;
   margin-bottom: 30px;
   border-radius: 10px;
   padding: 10px;
 }
-.seeEventInfo-Btn{
-  width: 50%;
-  padding: 13px 20px;
+.seeEventInfo-Btn {
+  width: 190px;
+  cursor: pointer;
+  padding: 10px 20px;
   border-radius: 7px;
   border: none;
-  background-color: #62978D;
+  background-color: #62978d;
   color: #ffffff;
   font-family: var(--font-underRubrik);
   font-size: 15px;
 }
-.seeEventInfo-Btn:hover{
-  background-color: #78A89F;
+.seeEventInfo-Btn:hover {
+  background-color: #78a89f;
 }
 
-.participantsBtn{
-  background-color: #62978D;
+.participantsBtn {
+  background-color: #62978d;
   color: #ffffff;
+  cursor: pointer;
   text-decoration: none;
   border: none;
   border-radius: 5px;
-  padding: 15px 20px;
+  padding: 7px 10px;
+  margin: 15px;
+}
+.participantsBtn:hover {
+  background-color: #78a89f;
 }
 
-.participantsDiv{
+.participantsDiv {
   margin: 80px 90px;
-  h1{
-    
+  h1 {
     font-family: var(--font-heading);
+    text-shadow: 1px 1px var(--color-accent);
   }
 }
-.participantsLista{
+.participantsLista {
   align-self: center;
   justify-self: center;
   background-color: var(--color-bg);
   border-radius: 20px;
   display: flex;
+}
+
+@media (min-width:1300px){
 }

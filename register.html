@@ -1,18 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eventera</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href='main.css'/>
+    <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="register.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Actor&family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <script type="module" src="loggaut.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Actor&family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+      rel="stylesheet"
+    />
   </head>
-<body>
-
+  <body>
     <!-- HEADER -->
     <header class="site-header">
       <nav class="desktop">
@@ -28,39 +31,46 @@
       <h1 id="formTitle">Login</h1>
       <div id="register-container" class="register-wrapper">
         <form id="registerForm" class="register-form">
-
           <!-- First + Last name wrapper -->
           <div id="nameFields" class="hidden">
             <div class="form-group">
               <div class="icon-wrapper">
-                <img src="images/user.svg" alt="user Icon" class="form-icon"/>
+                <img src="images/user.svg" alt="user Icon" class="form-icon" />
                 <label for="fname">First Name</label>
-              </div> 
-              <input type="text" id="fname" />
-            </div> 
-            
-            <div class="form-group">  
+              </div>
+              <input type="text" id="fname" required />
+            </div>
+
+            <div class="form-group">
               <label class="labellname" for="lname">Last Name</label>
-              <input type="text" id="lname" />
+              <input type="text" id="lname" required />
             </div>
           </div>
           <div class="form-group">
             <div class="icon-wrapper">
-              <img src="images/email.svg" alt="email Icon" class="form-icon"/>
+              <img src="images/email.svg" alt="email Icon" class="form-icon" />
               <label for="email">Email</label>
             </div>
-            <input type="email" class="login-input" id="email"  />
+            <input type="email" class="login-input" id="email" required />
           </div>
           <div class="form-group">
             <div class="icon-wrapper">
-              <img src="images/lock.svg" width="20px" height="20px" alt="lock Icon" class="form-icon"/>
+              <img
+                src="images/lock.svg"
+                width="20px"
+                height="20px"
+                alt="lock Icon"
+                class="form-icon"
+              />
               <label for="password">Password</label>
             </div>
-            <input type="password" class="login-input" id="password"  />
+            <input type="password" class="login-input" id="password" required />
           </div>
           <div class="button-group">
             <button type="submit" id="loginBtn">Login</button>
-            <button type="button" id="toggleBtn">Don't have an account? Register</button>
+            <button type="button" id="toggleBtn">
+              Don't have an account? Register
+            </button>
           </div>
         </form>
       </div>
@@ -73,13 +83,19 @@
         <p>&copy; 2024 Eventra. All rights reserved.</p>
         <div class="footer-links">
           <a href="about.html">About</a>
-          <a href="/contact">Contact</a>
-          <a href="/terms">Terms</a>
+          <a href="contact.html">Contact</a>
+          <a href="terms.html">Terms</a>
         </div>
         <div class="sociala">
-          <a href="https://www.instagram.com/" target="_blank"><img src="images/insta.svg" alt="instagram icon"></a>
-          <a href="https://www.facebook.com/" target="_blank"><img src="images/facebook.svg" alt="facebook icon"></a>
-          <a href="https://www.youtube.com" target="_blank" ><img src="images/youtube.svg" alt="youtube icon"></a>
+          <a href="https://www.instagram.com/" target="_blank"
+            ><img src="images/insta.svg" alt="instagram icon"
+          /></a>
+          <a href="https://www.facebook.com/" target="_blank"
+            ><img src="images/facebook.svg" alt="facebook icon"
+          /></a>
+          <a href="https://www.youtube.com" target="_blank"
+            ><img src="images/youtube.svg" alt="youtube icon"
+          /></a>
         </div>
       </div>
     </footer>

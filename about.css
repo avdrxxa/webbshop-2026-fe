@@ -45,3 +45,61 @@ p{
     font-family: var(--font-underRubrik);
 }
 
+
+.contactForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 30px;
+    background-color: var(--color-bg-alt);
+    padding: 40px 30px;
+    min-width: 200px;
+    max-width: 500px;
+    border-radius: 20px;
+    
+}
+.labeln, .labele, .labelm{
+    color: #646464;
+    font-family: var(--font-underRubrik);
+}
+.nameContact, .emailContact, .textarea{
+    padding: 5px 5px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid var(--color-bg);
+}
+
+.submitContact{
+    padding: 10px 50px;
+    background-color: #62978D;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-family: var(--font-underRubrik);
+}
+.submitContact:hover{
+    cursor: pointer;
+    background-color: #78A89F;
+}
+
+@media (min-width:1000px){
+    .contactForm{
+        padding: 50px 40px;
+        gap: 45px;
+        width: 600px;
+        border-radius: 20px;
+    }
+    .nameContact, .emailContact, .textarea{
+        padding: 10px 5px;
+        border-radius: 5px;
+        width: 350px;
+        border: 1px solid var(--color-bg);
+    }
+    .submitContact{
+        padding: 15px 80px;
+        font-size: 15px;
+    }
+}
+
+

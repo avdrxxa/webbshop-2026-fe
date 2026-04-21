@@ -157,7 +157,7 @@ body {
         width: 30px;
     }
 }
-@media (max-width:1000px) and (min-width:10px) {
+@media (max-width:1100px) and (min-width:10px) {
     nav.mobil{
         display: flex;
         justify-content: space-between;
@@ -193,7 +193,6 @@ body {
         }
     }
     
-
     .dropdown:hover{
         .dropdown-list{
             display: flex;
@@ -217,11 +216,15 @@ body {
     }
     
 }
-
 nav.admin {
     display: flex;
     justify-content: space-between;
-    margin: 0 50px;
+    margin-right:50px;
+}
+@media (min-width:1100px){
+    nav.admin{
+        margin: 0 250px;
+    }
 }
 
 nav.admin a img {

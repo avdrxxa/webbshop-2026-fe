@@ -77,7 +77,7 @@ async function loadEvents() {
   try {
     const events = await getEvents();
     eventsContainer.innerHTML = "";
-    const toRender = events&&events.length > 0 ? events : console.log('error');
+    //const toRender = events&&events.length > 0 ? events : console.log('error');
     if (events.length === 0) {
       eventsContainer.dataset.temp = "true";
       const notice = document.createElement("p");

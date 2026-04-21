@@ -5,16 +5,12 @@ document.addEventListener("DOMContentLoaded", initRegister);
 function initRegister() {
   const registerForm = document.getElementById("registerForm");
 }
-let loginBtn = document.querySelector("#loginBtn");
-//let fname = document.getElementById("fname");
-//let lname = document.getElementById("lname");
-//let email = document.getElementById("email");
-//let password = document.getElementById("password");
+let isRegister = false;
 
 function handleLogin() {
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
-  if (!email && !password) {
+  if (!email || !password) {
     return;
   }
   fetch("https://webbshop-2026-be-eight.vercel.app/api/auth/login", {
@@ -38,13 +34,20 @@ function handleLogin() {
       console.log("Login response:", data);
       localStorage.setItem("isAdmin", data.isAdmin);
       if (data.isAdmin) {
-        //window.location.href = "admin.html";
-      } else {
-        //window.location.href = "index.html";
+        window.location.href = "admin.html";
+      } else if (data.isAdmin == false) {
+        window.location.href = "index.html";
+      } else if (data.isAdmin.status) {
+        alert(
+          "We couldn't find a user with that email or password, check your fields.",
+        );
       }
     })
     .catch((err) => {
       console.error("Error:", err);
+      alert(
+        "We couldn't find a user with that email or password, check your fields.",
+      );
     });
   console.log("Login:", { email, password });
 }
@@ -54,7 +57,7 @@ function handleRegister() {
   let lastname = document.getElementById("lname").value;
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
-  if (!email && !password && !fname && !fname) {
+  if (!email && !password && !firstname && !lastname) {
     return;
   }
   fetch("https://webbshop-2026-be-eight.vercel.app/api/auth/register", {
@@ -82,18 +85,23 @@ function handleRegister() {
     .then((data) => {
       console.log("Login response:", data);
       localStorage.setItem("isAdmin", data.isAdmin);
-      if (data.isAdmin) {
-        //window.location.href = "admin.html";
+      if (data.error) {
+        alert("Email already registered!");
+        return;
       } else {
-        //window.location.href = "index.html";
+        alert("Du har skapat ett konto och kan logga in nu.");
+        nameFields.classList.add("hidden");
+        formTitle.textContent = "Login";
+        loginBtn.textContent = "Login";
+        toggleBtn.textContent = "Don't have an account? Register";
       }
     })
     .catch((err) => {
       console.error("Error:", err);
     });
   console.log("Login:", {
-    firstName: fname,
-    lastName: lname,
+    firstName: firstname,
+    lastName: lastname,
     email,
     password,
   });
@@ -113,8 +121,6 @@ loginBtn.addEventListener("click", (e) => {
 const toggleBtn = document.getElementById("toggleBtn");
 const nameFields = document.getElementById("nameFields");
 const formTitle = document.getElementById("formTitle");
-
-let isRegister = false;
 
 toggleBtn.addEventListener("click", () => {
   isRegister = !isRegister;

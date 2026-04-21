@@ -9,15 +9,18 @@ export async function getEvents() {
       METHOD: "GET",
       credentials: "include",
       headers: {
-        authorization: localStorage.getItem("AccessToken"),
-        "x-refresh-token": localStorage.getItem("RefreshToken"),
+        //'authorization': localStorage.getItem("AccessToken"),
+        //"x-refresh-token": localStorage.getItem("RefreshToken"),
+        'Content-Type': 'application/json'
       },
     });
     console.log("Status:", response.status);
     if (!response.ok) {
       console.error("Fetch failed");
+      console.log(response)
       return [];
     }
+    console.log(response)
     const data = await response.json();
     console.log("Received data:", data.events);
     return data.events;
