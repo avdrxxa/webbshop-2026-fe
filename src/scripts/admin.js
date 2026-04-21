@@ -164,17 +164,21 @@ function getEventsBilder(event) {
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const name = document.getElementById("title").value.trim();
-  const price = parseFloat(document.getElementById("price").value);
-  const stock = parseInt(document.getElementById("stock").value, 10);
-  const image = document.getElementById("image").value.trim();
-  const slug = document.getElementById("slug").value.trim();
+  const date = new Date(document.getElementById("datum").value);
+  const time = document.getElementById("time").value;
+  const maxParticipants = parseInt(document.getElementById("MaxParticipant").value, 10);
+  const trainer = document.getElementById("trainer").value.trim();
+  /*const image = document.getElementById("image").value.trim();
+  const slug = document.getElementById("slug").value.trim();*/
 
   try {
-    await createEvent({ name, price, stock, image, slug });
+    await createEvent({ name, date, time, maxParticipants, trainer });
+    alert("Event skapad!");
     form.reset();
     loadEvents();
   } catch (err) {
-    alert(err.message || "Failed to create product");
+    console.error("Error creating event:", error);
+    alert(err.message || "Failed to create event");
   }
 });
 
