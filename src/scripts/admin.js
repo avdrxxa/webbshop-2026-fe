@@ -173,8 +173,20 @@ const trainerData = await fetch(
   }
 );
 
+const select = document.getElementById("trainer");
 const data = await trainerData.json();
 console.log(data);
+
+data.forEach(trainer => {
+  const option = document.createElement("option");
+
+  option.value = trainer._id;
+  option.textContent = `${trainer.firstname} ${trainer.lastname}`;
+
+  select.appendChild(option);
+});
+
+
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
