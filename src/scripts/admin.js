@@ -181,7 +181,7 @@ async function loadTypes() {
 
     types.forEach(t => {
       const option = document.createElement("option");
-      option.value = t._id;
+      option.value = t.slug; //backend behöver slug för att identifiera typen;
       option.textContent = t.name;
       typeSelect.appendChild(option);
     });
@@ -245,16 +245,17 @@ types.map(type => {
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const title = document.getElementById("title").value.trim();
-  const description = document.getElementById("description").value.trim();
-  const type = document.getElementById("type").value;
-  const date = document.getElementById("date").value;
-  const startTime = document.getElementById("starttime").value;
+  const title = document.getElementById("title").value;
+  const description = document.getElementById("description").value;
+  const type = [document.getElementById("type").value]; // backend behöver en array av typer
   const endTime = document.getElementById("endtime").value;
-  const maxseats = parseInt(document.getElementById("maxseats").value, 10);
-  const location = document.getElementById("location").value.trim();
+  const startTime = document.getElementById("starttime").value;
+  const date = document.getElementById("date").value;
+  const maxseats = parseInt(document.getElementById("maxseats").value);
+  const location = document.getElementById("location").value;
   const price = parseFloat(document.getElementById("price").value);
   const trainerid = document.getElementById("trainer").value;
+
 
 try {
   const res = await fetch("https://webbshop-2026-be-eight.vercel.app/api/events", {
@@ -275,13 +276,13 @@ try {
       location,
       price,
       trainerid,
-      type,
+      type
     })
   });
 
- const data = await res.json(); 
+ const data = await res.json();
+ console.log(data); 
 
- console.log("Response data:", data);
 
   if (!res.ok) {
     console.log("Backend error:", data);
