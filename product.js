@@ -163,6 +163,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Get updated event from backend
         const updatedEvent = await getEventById(id);
 
+        // Show confirmation with real data
+        showConfirmation(updatedEvent);
+
         // Update UI with real data
         document.querySelector(".platser h2").textContent =
           `${updatedEvent.maxseats - updatedEvent.seatsLeft}/${updatedEvent.maxseats}`;
@@ -203,7 +206,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
       }
 
-      confirmationBox.classList.remove("hidden");
+      //confirmationBox.classList.remove("hidden");
 
       form.reset();
       formWrapper.classList.add("hidden");
@@ -268,22 +271,6 @@ formWrapper.addEventListener("click", (e) => {
   }
 });
 
-/*
-const sendBtn = document.getElementById("sendBookingBtn");
-const confirmationBox = document.getElementById("confirmationBox");
-const close = document.getElementById("closeBtn");
-
-// Visa rutan
-sendBtn.addEventListener("click", () => {
-  confirmationBox.classList.remove("hidden");
-});
-
-// Stäng rutan
-close.addEventListener("click", () => {
-  confirmationBox.classList.add("hidden");
-});
-*/
-
 const closeBtn = document.querySelector(".close-btn");
 
 closeBtn.addEventListener("click", () => {
@@ -302,3 +289,14 @@ function showConfirmation(eventData) {
 
   confirmationBox.classList.remove("hidden");
 }
+
+sendBtn.disabled = true;
+sendBtn.textContent = "Booking...";
+
+// Stäng bekräftelserutan
+const confirmationBox = document.getElementById("confirmationBox");
+const closeBtn = document.getElementById("closeBtn");
+
+closeBtn.addEventListener("click", () => {
+  confirmationBox.classList.add("hidden");
+});
