@@ -282,9 +282,10 @@ sendBtn.addEventListener("click", () => {
 close.addEventListener("click", () => {
   confirmationBox.classList.add("hidden");
 });
+*/
 
-const closeBtn = document.querySelector('.close-btn');
+const closeBtn = document.querySelector(".close-btn");
 
-closeBtn.addEventListener('click', () => {
-    formWrapper.classList.add('hidden')
-});*/
+closeBtn.addEventListener("click", () => {
+  formWrapper.classList.add("hidden");
+});
