@@ -289,3 +289,16 @@ const closeBtn = document.querySelector(".close-btn");
 closeBtn.addEventListener("click", () => {
   formWrapper.classList.add("hidden");
 });
+
+// Funktion för att visa bekräftelserutan med eventdata
+function showConfirmation(eventData) {
+  const confirmationBox = document.getElementById("confirmationBox");
+
+  const date = new Date(eventData.time.date).toLocaleDateString("sv-SE");
+  const time = eventData.time.startTime;
+
+  confirmationBox.querySelector("strong").textContent =
+    `${eventData.title} on ${date} at ${time}`;
+
+  confirmationBox.classList.remove("hidden");
+}
