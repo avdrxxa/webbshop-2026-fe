@@ -221,7 +221,7 @@ try {
       maxseats,
       location,
       price,
-      trainerId,
+      trainerid,
     })
   });
 
