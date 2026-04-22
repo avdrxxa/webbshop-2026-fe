@@ -215,37 +215,14 @@ formWrapper.addEventListener('click', (e) => {
     }
 });
 
-const sendBtn = document.getElementById("sendBookingBtn");
-const confirmationBox = document.getElementById("confirmationBox");
-const close = document.getElementById("closeBtn");
-
-// Visa rutan
-sendBtn.addEventListener("click", () => {
-  confirmationBox.classList.remove("hidden");
-});
-
-
-
-// Funktion för att visa bekräftelserutan med eventdata
-function showConfirmation(eventData) {
-  const confirmationBox = document.getElementById("confirmationBox");
-
-  const date = new Date(eventData.time.date).toLocaleDateString("sv-SE");
-  const time = eventData.time.startTime;
-
-  confirmationBox.querySelector("strong").textContent =
-    `${eventData.title} on ${date} at ${time}`;
-
-  confirmationBox.classList.remove("hidden");
-}
-
-// Stäng rutan
-close.addEventListener("click", () => {
-  confirmationBox.classList.add("hidden");
-});
-
 const closeBtn = document.querySelector('.close-btn');
 
 closeBtn.addEventListener('click', () => {
     formWrapper.classList.add('hidden')
 });
+
+
+const confirmationBox = document.getElementById("confirmationBox");
+const close = document.getElementById("closeConfirm");
+const confirmationText = document.getElementById("confirmationText");
+
