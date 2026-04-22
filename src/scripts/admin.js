@@ -8,9 +8,9 @@ let deltagareLista = document.querySelector(".participants-wrap");
 let kundregisterDiv= document.querySelector('.customer-registry-wrap')
 
 loggautBtn.addEventListener('click', ()=>{
-  localStorage.clear('AccessToken')
-  localStorage.clear('RefreshToken')
-  localStorage.clear('isAdmin')
+  localStorage.removeItem('AccessToken')
+  localStorage.removeItem('RefreshToken')
+  localStorage.removeItem('isAdmin')
 })
 
 document.addEventListener("DOMContentLoaded", () =>{
@@ -22,7 +22,6 @@ async function loadEvents() {
   try {
     const events = await getEvents();
     deltagareLista.innerHTML = "";
-    const toRender =
       events && events.length > 0 ? events : console.log("error");
     let sortedEvents = events;
     sortedEvents.forEach((event, index) => {
@@ -130,7 +129,7 @@ function createEventCard(event) {
   element
     .querySelector(".participantsBtn")
     .addEventListener("click", async () => {
-      let eventId= JSON.stringify(localStorage.setItem('eventId', event._id))
+      localStorage.setItem('eventId', event._id)
       if (JSON.parse(localStorage.getItem("isAdmin"))) {
         let token = localStorage.getItem("AccessToken");
         let res = await fetch(
@@ -159,7 +158,7 @@ async function loadKunder() {
   let token = localStorage.getItem("AccessToken")
     let rtoken= localStorage.getItem('RefreshToken')
     let response = await fetch(
-      "https://webbshop-2026-be-eight.vercel.app/api/users",
+      "https://webbshop-2026-be-eight.vercel.app/api/users/all",
       {
         method: "GET",
         credentials: "include",
@@ -171,8 +170,9 @@ async function loadKunder() {
     )
     console.log(response)
     if (!response.ok) {
-      throw new Error('eoroor')
-    }
+      const text = await response.text();
+      throw new Error(`Error ${response.status}: ${text}`)
+      }
     let users = await response.json()
     kundregisterDiv.innerHTML = ""
     if (!Array.isArray(users) || users.length === 0) {
@@ -181,7 +181,7 @@ async function loadKunder() {
     }
     users.forEach((user) => {
       let card = createUserCard(user)
-      kundregisterDiv.appendChild(card)
+      kundregisterDiv.append(card)
     });
     console.log(users)
   }catch(error){
@@ -191,15 +191,15 @@ async function loadKunder() {
 
 
 function createUserCard(user) {
+  let token = localStorage.getItem("AccessToken")
+  let rtoken= localStorage.getItem('RefreshToken')
   let element = document.createElement("div")
   element.className = "elementUser"
   element.innerHTML = `
   <p>${user.firstname} ${user.lastname}</p>
   <div class="flex-rowt">
   <p>${user.email}</p>
-  <select class=roleElement>
-  <option>${user.roles}</option>
-  </select>
+  <p class=roleElement>${user.roles}</p>
   </div>
   `;
   return element
