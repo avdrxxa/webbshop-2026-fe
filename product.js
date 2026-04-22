@@ -237,3 +237,14 @@ const closeBtn = document.querySelector('.close-btn');
 closeBtn.addEventListener('click', () => {
     formWrapper.classList.add('hidden')
 });
+
+// Lägg till redigera-knapp om admin
+if (JSON.parse(localStorage.getItem("isAdmin"))) {
+  const editBtn = document.createElement("button");
+  editBtn.textContent = "Redigera event";
+  editBtn.className = "edit-btn";
+  editBtn.addEventListener("click", () => {
+    window.location.href = `admin.html?edit=${event._id}`;
+  });
+  document.querySelector(".btnDiv").appendChild(editBtn);
+}
