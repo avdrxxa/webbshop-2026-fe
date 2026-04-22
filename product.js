@@ -195,9 +195,6 @@ document.addEventListener("DOMContentLoaded", async()=>{
                 alert("Session expired, please login again");
                 return;
             }
-
-            confirmationBox.classList.remove("hidden");
-
             form.reset();
             formWrapper.classList.add('hidden')
         });
@@ -226,6 +223,21 @@ const close = document.getElementById("closeBtn");
 sendBtn.addEventListener("click", () => {
   confirmationBox.classList.remove("hidden");
 });
+
+
+
+// Funktion för att visa bekräftelserutan med eventdata
+function showConfirmation(eventData) {
+  const confirmationBox = document.getElementById("confirmationBox");
+
+  const date = new Date(eventData.time.date).toLocaleDateString("sv-SE");
+  const time = eventData.time.startTime;
+
+  confirmationBox.querySelector("strong").textContent =
+    `${eventData.title} on ${date} at ${time}`;
+
+  confirmationBox.classList.remove("hidden");
+}
 
 // Stäng rutan
 close.addEventListener("click", () => {
