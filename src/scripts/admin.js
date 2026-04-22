@@ -1,18 +1,18 @@
 import { getEvents, createEvent } from "../utils/eventsApi.js";
 
 const form = document.querySelector(".admin-create-event");
-let loggautBtn= document.querySelector('.loggautBtn')
+let loggautBtn = document.querySelector(".loggautBtn");
 const tbody = document.getElementById("productsTableBody");
 let deltagareLista = document.querySelector(".participants-wrap");
 const archiveWrap = document.querySelector(".archive-wrap");
-let token= localStorage.getItem('AccessToken')
-let rtoken= localStorage.getItem('RefreshToken')
+let token = localStorage.getItem("AccessToken");
+let rtoken = localStorage.getItem("RefreshToken");
 
-loggautBtn.addEventListener('click', ()=>{
-  localStorage.clear('AccessToken')
-  localStorage.clear('RefreshToken')
-  localStorage.clear('isAdmin')
-})
+loggautBtn.addEventListener("click", () => {
+  localStorage.clear("AccessToken");
+  localStorage.clear("RefreshToken");
+  localStorage.clear("isAdmin");
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   loadEvents();
@@ -48,7 +48,7 @@ async function loadArchivedEvents() {
         headers: {
           Authorization: token,
         },
-      }
+      },
     );
 
     console.log("STATUS:", res.status);
@@ -83,7 +83,7 @@ async function loadArchivedEvents() {
       return;
     }
 
-    archiveList.forEach(event => {
+    archiveList.forEach((event) => {
       const item = document.createElement("div");
       item.className = "elementList";
 
@@ -96,7 +96,6 @@ async function loadArchivedEvents() {
 
       archiveWrap.appendChild(item);
     });
-
   } catch (error) {
     console.error("Error fetching archive:", error);
     archiveWrap.innerHTML = "<p>Could not load archive</p>";
@@ -166,26 +165,28 @@ function getEventsBilder(event) {
 async function loadTypes() {
   const typeSelect = document.getElementById("type");
   try {
-    const res = await fetch("https://webbshop-2026-be-eight.vercel.app/api/types", {
-      method: "GET",
-      headers: {
-        Authorization: token,
-        "X-Refresh-Token": rtoken
+    const res = await fetch(
+      "https://webbshop-2026-be-eight.vercel.app/api/types",
+      {
+        method: "GET",
+        headers: {
+          Authorization: token,
+          "X-Refresh-Token": rtoken,
+        },
       },
-    });
-    
+    );
+
     const data = await res.json();
     const types = data.types;
 
     console.log("Types data:", types);
 
-    types.forEach(t => {
+    types.forEach((t) => {
       const option = document.createElement("option");
       option.value = t.slug; //backend behöver slug för att identifiera typen;
       option.textContent = t.name;
       typeSelect.appendChild(option);
     });
-
   } catch (error) {
     console.error("Fel vid hämtning av typer:", error);
   }
@@ -200,9 +201,9 @@ const trainerData = await fetch(
   {
     headers: {
       Authorization: token,
-      "X-Refresh-Token": rtoken
-    }
-  }
+      "X-Refresh-Token": rtoken,
+    },
+  },
 );
 
 const select = document.getElementById("trainer");
@@ -210,14 +211,13 @@ const trainers = await trainerData.json();
 
 console.log(trainers);
 
-trainers.forEach(trainer => {
+trainers.forEach((trainer) => {
   const option = document.createElement("option");
 
   option.value = trainer._id;
   option.textContent = `${trainer.firstname} ${trainer.lastname}`;
 
   select.appendChild(option);
-
 });
 
 /*
@@ -254,49 +254,49 @@ form.addEventListener("submit", async (e) => {
   const maxseats = parseInt(document.getElementById("maxseats").value);
   const location = document.getElementById("location").value;
   const price = parseFloat(document.getElementById("price").value);
-  const trainerid = document.getElementById("trainer").value;
+  const trainerId = document.getElementById("trainer").value;
 
-
-try {
-  const res = await fetch("https://webbshop-2026-be-eight.vercel.app/api/events", {
-    method: "POST",
-    headers: {
-            "Content-Type": "application/json",
-            Authorization: token,
-            "X-Refresh-Token": rtoken
+  try {
+    const res = await fetch(
+      "https://webbshop-2026-be-eight.vercel.app/api/events",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+          "X-Refresh-Token": rtoken,
         },
-    credentials: "include",
-    body: JSON.stringify({ 
-      title,
-      description,
-      date,
-      startTime,
-      endTime,
-      maxseats,
-      location,
-      price,
-      trainerid,
-      type
-    })
-  });
+        credentials: "include",
+        body: JSON.stringify({
+          title,
+          description,
+          date,
+          startTime,
+          endTime,
+          maxseats,
+          location,
+          price,
+          trainerId,
+          type,
+        }),
+      },
+    );
 
- const data = await res.json();
- console.log(data); 
+    const data = await res.json();
+    console.log(data);
 
+    if (!res.ok) {
+      console.log("Backend error:", data);
+      throw new Error(data.message || "Failed to create event");
+    }
 
-  if (!res.ok) {
-    console.log("Backend error:", data);
-    throw new Error(data.message || "Failed to create event");
+    alert("Event skapad!");
+    form.reset();
+    loadEvents();
+  } catch (error) {
+    console.error("Error creating event:", error);
+    alert("Kunde inte skapa event");
   }
-
-  alert("Event skapad!");
-  form.reset();
-  loadEvents();
-
-} catch (error) {
-  console.error("Error creating event:", error);
-  alert("Kunde inte skapa event");
-}
 });
 
 function createEventCard(event) {
@@ -317,7 +317,7 @@ function createEventCard(event) {
   element
     .querySelector(".participantsBtn")
     .addEventListener("click", async () => {
-      let eventId= JSON.stringify(localStorage.setItem('eventId', event._id))
+      let eventId = JSON.stringify(localStorage.setItem("eventId", event._id));
       if (JSON.parse(localStorage.getItem("isAdmin"))) {
         let token = localStorage.getItem("AccessToken");
         let res = await fetch(
@@ -327,7 +327,6 @@ function createEventCard(event) {
             credentials: "include",
             headers: {
               Authorization: token,
-              
             },
           },
         );
