@@ -151,10 +151,32 @@ document.addEventListener("DOMContentLoaded", async()=>{
                             email,
                             message
                         })
-                    }
-                );
+                    });
 
-                console.log("BOOKING SAVED IN DATABASE");
+                if (response.ok) {
+                    console.log("Booking successful");
+                    let confirmationBox = document.getElementById('confirmationBox');
+                    let confirmationText = document.getElementById('confirmationText');
+                    let closeConfirmationBtn = document.getElementById('closeConfirm');
+                    confirmationText.innerHTML = `
+                    You have booked a place on the event:<br>
+                    <strong>${event.title}</strong><br><br>
+                    For more information see profile; booked events 
+                    and on the email confirmation!
+                `;
+                    confirmationBox.classList.remove("hidden");
+                    closeConfirmationBtn.addEventListener('click', () => {
+                        confirmationBox.classList.add("hidden");
+                        formWrapper.classList.add('hidden');
+                    });
+
+                         } else {
+                        console.error("Booking failed");
+                        alert("Bokningen misslyckades");
+                        return;
+                        }
+
+                //console.log("BOOKING SAVED IN DATABASE");
             
                 // Get updated event from backend
                 const updatedEvent = await getEventById(id);
@@ -209,11 +231,12 @@ document.addEventListener("DOMContentLoaded", async()=>{
 const formWrapper = document.querySelector('.form-wrapper')
 const form = document.querySelector('.form-component')
 
+/*
 formWrapper.addEventListener('click', (e) => {
     if (e.target === formWrapper) {
         formWrapper.classList.add('hidden')
     }
-});
+});*/
 
 const closeBtn = document.querySelector('.close-btn');
 
@@ -222,7 +245,13 @@ closeBtn.addEventListener('click', () => {
 });
 
 
-const confirmationBox = document.getElementById("confirmationBox");
-const close = document.getElementById("closeConfirm");
-const confirmationText = document.getElementById("confirmationText");
 
+// Stäng rutan med X
+
+/*
+closeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    formWrapper.classList.add('hidden');
+    confirmationBox.classList.add('hidden');
+  });
+});*/

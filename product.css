@@ -173,19 +173,50 @@
 
 /*confirmation box */
 #confirmationBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     min-width: 300px;
+    max-width: 500px;
     min-height: 400px;
     background-color: #E9E2D8;
     border: 2px solid #BFB6A7;
     color: #646464;
     border-radius: 20px;
-    padding: 20px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     font-family: var(--font-underRubrik);
+    z-index: 1001;
+
 }
+
+.confirmation-content {
+    justify-self: center;
+    align-self: center;
+}
+
+
+#closeConfirm {
+    position: absolute;
+    top: 10px;
+    right: 15px;   
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #f0ebe3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 
 .disabled-btn {
