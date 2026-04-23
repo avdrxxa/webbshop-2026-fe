@@ -171,6 +171,7 @@ div.flex-row.p-btn {
   padding: 40px;
   border-radius: 20px;
   .elementUser{
+    font-size: 13px;
     display: flex;
     flex-direction: column;
     gap: 0px;
@@ -220,6 +221,16 @@ div.flex-row.p-btn {
     background-color: rgb(85, 48, 48);
     color: white;
 }
+.archive-wrap{
+  background-color: var(--color-bg-alt);
+  color: var(--color-text);
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+}
+.customer-registry-wrap .elementUser{
+    font-size: 20px;
+  }
 
 
 
@@ -235,5 +246,8 @@ div.flex-row.p-btn {
   }
   .addEvent, .participants, .customer-registry, .archive{
     width: 30%;
+  }
+  .customer-registry-wrap .elementUser{
+    font-size: 20px;
   }
 }
