@@ -248,13 +248,107 @@ closeBtn.addEventListener('click', () => {
 });
 
 
+// Edit-modal — visas bara för admin
+const isAdmin = JSON.parse(localStorage.getItem("isAdmin"));
+const editMode = sessionStorage.getItem("editMode");
 
-// Stäng rutan med X
+if (isAdmin && editMode === "true") {
+  // Skapa modal-HTML och lägg till i body
+  const editModal = document.createElement("div");
+  editModal.className = "form-wrapper";
+  editModal.id = "editModal";
+  editModal.innerHTML = `
+    <div class="edit-form-container">
+      <h2>Edit Event</h2>
+      <form class="admin-create-event">
+      <button id="closeEditModal">✕</button>
+          <div class="admin-form-row">
+            <label for="starttime">Starttid</label>
+            <input type="time" id="starttime" required />
+          </div>
+          <div class="admin-form-row">
+            <label for="endtime">Endtime</label>
+            <input type="time" id="endtime" required />
+          </div>
+          <div class="admin-form-row">
+            <label for="price">Price</label>
+            <input type="number" id="price" min="0" step="0.01" required />
+          </div>
+          <button type="submit">Save Changes</button>
+        </form>
+    </div>
+  `;
+  document.body.appendChild(editModal);
 
-/*
-closeBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    formWrapper.classList.add('hidden');
-    confirmationBox.classList.add('hidden');
+ 
+  document.getElementById("closeEditModal").addEventListener("click", () => {
+    editModal.classList.add("hidden");
+    sessionStorage.removeItem("editMode");
   });
-});*/
+
+
+
+async function updateEditform() {
+    let event = await getEventById(id);
+    document.getElementById("starttime").value = event.time?.startTime || "";
+    document.getElementById("endtime").value = event.time?.endTime || "";
+    document.getElementById("price").value = event.price;
+
+}
+
+updateEditform();
+
+    const updatedData = {
+      startTime: document.getElementById("starttime").value,
+      endTime: document.getElementById("endtime").value,
+      price: parseFloat(document.getElementById("price").value),
+    };
+
+ document.getElementById("editModal").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("AccessToken");
+    const rtoken = localStorage.getItem("RefreshToken");
+
+    let startTime = document.getElementById("starttime").value;
+    let endTime = document.getElementById("endtime").value;
+    let price = parseFloat(document.getElementById("price").value);
+
+
+    const updatedData = {
+      startTime,
+      endTime,
+      price,
+    };
+
+    try {
+      const res = await fetch(
+        `https://webbshop-2026-be-eight.vercel.app/api/events/${id}`,
+        {
+          method: "PUT",
+          credentials: "include",
+
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+            "X-Refresh-Token": rtoken,
+          },
+          body: JSON.stringify(updatedData),
+        }
+      );
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.message || "Uppdatering misslyckades");
+      }
+
+      alert("Event uppdaterat!");
+      editModal.classList.add("hidden");
+      sessionStorage.removeItem("editMode");
+      window.location.reload();
+
+ } catch (error) {
+      console.error("Edit error:", error);
+      alert("Kunde inte uppdatera event");
+    }
+  });
+}

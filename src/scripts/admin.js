@@ -317,12 +317,51 @@ function createEventCard(event) {
   element.className = "elementList";
   const image = getEventsBilder(event) || "images/default.jpg";
   element.innerHTML = `
+  <div class="flex-row">
+
   <button class='seeEventInfo-Btn'>${event.title}</button>
+  <button class='deleteEventBtn'>Delete event</button>
+  </div>
   <div class="flex-row p-btn">
   <p>Booked seats: ${event.participants} av ${event.maxseats}</p>
   <a target="_blank" class='participantsBtn'>Participants</a>
+  <button class='editEventBtn'>Edit event</button>
+
   </div>
   `;
+  element.querySelector(".deleteEventBtn").addEventListener("click", async () => {
+  
+  let token = localStorage.getItem('AccessToken')
+  console.log(token)
+  let rtoken= localStorage.getItem('RefreshToken')
+  try {
+  console.log("TOKEN:", token);
+  let response= await fetch(`https://webbshop-2026-be-eight.vercel.app/api/events/${event._id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+      'X-Refresh-Token': rtoken
+    },
+    credentials: "include",
+  })
+  //let data = await response.json()
+  if (response.ok) {
+    alert('You deleted the event')
+    element.remove();
+  }
+  else {
+    alert('Could not delete event') 
+  }
+  } catch (error) {
+    console.error("Error deleting event:", error);
+    alert("Could not delete event");
+}
+  }
+);
+
+
+
   element.querySelector(".seeEventInfo-Btn").addEventListener("click", () => {
     sessionStorage.setItem("image", image);
     window.location.href = `product.html?id=${event._id}`;
@@ -350,8 +389,17 @@ function createEventCard(event) {
         window.location.href = `participants.html?id=${event._id}`;
       }
     });
+
+  element.querySelector(".editEventBtn").addEventListener("click", () => {
+    sessionStorage.setItem("editMode", "true");
+    window.location.href = `product.html?id=${event._id}`;
+    
+  });
+    
   return element;
 }
+
+
 
 
 async function loadKunder() {
