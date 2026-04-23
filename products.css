@@ -34,13 +34,20 @@ div.filtrera{
         color: #646464;
         border-radius: 10px;
         border: 0px;
+        opacity: 0.8;
         outline: 1px solid var(--color-primary);
         height: 40px;
+    }
+    .search-bar:hover{
+        opacity: 0.9;
     }
     img.absolute{
         position: absolute;
         right: 20px;
         top: 12px;
+    }
+    img.absolute:hover{
+        filter: brightness(1.4);
     }
 }
 
