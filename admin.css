@@ -20,50 +20,26 @@ body {
 }
 
 .admin-main {
-  max-width: 720px;
-  margin: 30px auto;
-  padding: 2rem;
-  gap: 50px;
-  width: fit-content;
-}
-:root {
-  --font-heading: "Bebas Neue", sans-serif;
-  --font-underRubrik: "Bricolage Grotesque", sans-serif;
-  --font-body: "Actor", system-ui, sans-serif;
-  --color-bg: #bfb6a7;
-  --color-bg-alt: #f0ebe3;
-  --color-surface: #ffffff;
-  --color-primary: #62978d;
-  --color-primary-hover: #78a89f;
-  --color-accent: #9c6b48;
-  --color-accent-hover: #d4b03a;
-  --color-text: #646464;
-  --color-text-muted: #6b6b6b;
-  --color-border: #e5e0d8;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 31px;
-  --shadow-sm: 0 2px 8px rgba(45, 90, 61, 0.06);
-  --shadow-md: 0 4px 16px rgba(45, 90, 61, 0.08);
-  --shadow-hover: 0 8px 24px rgba(45, 90, 61, 0.12);
-}
-
-main {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   align-items: center;
+  justify-self: center;
+  max-width: 720px;
+  padding: 2rem;
+  gap: 50px;
+  width: fit-content;
 }
 
-
-.addEvent {
+.addEvent, .archive {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 90%;
+
 }
 
-.addEvent h2 {
+.addEvent h2, h2 {
   font-family: var(--font-heading);
   text-shadow: 1px 1px var(--color-accent);
   align-self: flex-start;
@@ -74,7 +50,7 @@ main {
 .admin-create-event {
   background-color: var(--color-border);
   color: var(--color-text);
-  padding: 3.1rem;
+  padding: 2.1rem;
   width: 100%;
   min-width: 300px;
   border-radius: var(--radius-lg);
@@ -98,9 +74,8 @@ label {
 }
 
 .participants {
-  min-width: 200px;
+  width: 90%;
   max-width: 650px;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -165,6 +140,7 @@ div.flex-row.p-btn {
   margin: 80px 90px;
   h1 {
     font-family: var(--font-heading);
+    justify-self: center;
     text-shadow: 1px 1px var(--color-accent);
   }
 }
@@ -175,6 +151,59 @@ div.flex-row.p-btn {
   border-radius: 20px;
   display: flex;
 }
+#type, #trainer{
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  color: #646464;
+}
+#date{
+  color: #646464;
+}
 
-@media (min-width:1300px){
+.customer-registry{
+  width: 90%;
+}
+
+.customer-registry-wrap{
+  background-color: var(--color-bg);
+  padding: 40px;
+  border-radius: 20px;
+  .elementUser{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
+}
+.flex-rowt{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+
+}
+.roleElement{
+  color: var(--color-primary);
+  padding: 5px 10px;
+  background-color: var(--color-bg);
+  border: none;
+  border-radius: 5px;
+
+}
+
+@media (min-width:1200px){
+  main.admin-main{
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0;
+    gap: 140px;
+    max-width: none;
+  }
+  .addEvent, .participants, .customer-registry, .archive{
+    width: 30%;
+  }
 }

@@ -44,6 +44,12 @@ let imagesLista={
         'images/yoga/yoga3.webp',
     ]
 }
+function getUpcoming(events) {
+    const now = new Date();
+    return events.filter(event =>
+        new Date(event.time.date) >= now
+    );
+}
 function getEventsBilder(event){
     let sparadeKey=`event-image-${event._id}`
     let sparadeImage=localStorage.getItem(sparadeKey)
@@ -77,10 +83,11 @@ function getEventsBilder(event){
 submitForm.addEventListener('click',async()=>{
     const eventsContainer = document.getElementById("events");
     eventsContainer.innerHTML = "<p>Loading events...</p>";
-    let events = await getEvents();
+    let events = await getEvents()
+    
     let dateVal= dateValue.value
     let kategoryVal=kategoryValue.value.toLowerCase()
-    let filtreradeEvents= events
+    let filtreradeEvents= getUpcoming(events)
     if(dateVal!='yyyy-mm-dd'&& dateVal!=''){
         filtreradeEvents=filtreradeEvents.filter(event=>
             new Date(event.time.date).toLocaleDateString("sv-SE").includes(dateVal))
@@ -106,7 +113,7 @@ async function loadEvents() {
     try {
         const events = await getEvents();
         let searchBarValue=searchBar.value.toLowerCase()
-        let filtreradeEvents=events.filter(event=>
+        let filtreradeEvents=getEvents(events).filter(event=>
             event.title.toLowerCase().includes(searchBarValue)
         )
         let toRender = filtreradeEvents.length>0?filtreradeEvents:events

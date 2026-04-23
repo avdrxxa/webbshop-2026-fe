@@ -1,4 +1,5 @@
 import { getEvents, createEvent } from "../utils/eventsApi.js";
+import { auth } from "../utils/auth.js";
 
 const form = document.querySelector(".admin-create-event");
 let loggautBtn = document.querySelector(".loggautBtn");
@@ -8,22 +9,33 @@ const archiveWrap = document.querySelector(".archive-wrap");
 let token = localStorage.getItem("AccessToken");
 let rtoken = localStorage.getItem("RefreshToken");
 
-loggautBtn.addEventListener("click", () => {
+/*loggautBtn.addEventListener("click", () => {
   localStorage.clear("AccessToken");
   localStorage.clear("RefreshToken");
   localStorage.clear("isAdmin");
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadEvents();
-  loadArchivedEvents();
+  loadEvents();*/
+
+  let kundregisterDiv= document.querySelector('.customer-registry-wrap')
+  
+  loggautBtn.addEventListener('click', ()=>{
+    localStorage.removeItem('AccessToken')
+    localStorage.removeItem('RefreshToken')
+    localStorage.removeItem('isAdmin')
+  })
+  
+  document.addEventListener("DOMContentLoaded", () =>{
+    loadEvents()
+    loadArchivedEvents();
+    loadKunder()
 });
 
 async function loadEvents() {
   try {
     const events = await getEvents();
     deltagareLista.innerHTML = "";
-    const toRender =
       events && events.length > 0 ? events : console.log("error");
     let sortedEvents = events;
     sortedEvents.forEach((event, index) => {
@@ -242,6 +254,7 @@ types.map(type => {
   select.appendChild(option);
 });*/
 
+//kolla ifall id-et och klasserna matchar med javascripten
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -318,6 +331,7 @@ function createEventCard(event) {
     .querySelector(".participantsBtn")
     .addEventListener("click", async () => {
       let eventId = JSON.stringify(localStorage.setItem("eventId", event._id));
+      //localStorage.setItem('eventId', event._id)
       if (JSON.parse(localStorage.getItem("isAdmin"))) {
         let token = localStorage.getItem("AccessToken");
         let res = await fetch(
@@ -337,4 +351,57 @@ function createEventCard(event) {
       }
     });
   return element;
+}
+
+
+async function loadKunder() {
+  try{
+  let token = localStorage.getItem("AccessToken")
+    let rtoken= localStorage.getItem('RefreshToken')
+    let response = await fetch(
+      "https://webbshop-2026-be-eight.vercel.app/api/users/all",
+      {
+        method: "GET",
+        credentials: "include",
+        headers:{
+          'Content-Type': 'application/json',
+          Authorization: token,
+          'X-Refresh-Token': rtoken,
+        }}
+    )
+    console.log(response)
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(`Error ${response.status}: ${text}`)
+      }
+    let users = await response.json()
+    kundregisterDiv.innerHTML = ""
+    if (!Array.isArray(users) || users.length === 0) {
+      kundregisterDiv.innerHTML = "No users found"
+      return
+    }
+    users.forEach((user) => {
+      let card = createUserCard(user)
+      kundregisterDiv.append(card)
+    });
+    console.log(users)
+  }catch(error){
+    console.error(error)
+  }
+}
+
+
+function createUserCard(user) {
+  let token = localStorage.getItem("AccessToken")
+  let rtoken= localStorage.getItem('RefreshToken')
+  let element = document.createElement("div")
+  element.className = "elementUser"
+  element.innerHTML = `
+  <p>${user.firstname} ${user.lastname}</p>
+  <div class="flex-rowt">
+  <p>${user.email}</p>
+  <p class=roleElement>${user.roles}</p>
+  </div>
+  `;
+  return element
 }

@@ -10,15 +10,15 @@ async function getEventById(id){
 }
 let trainers=[
     {
-        name:'Michaela Mahal',
+        name:'Erik Johansson',
         image:'images/trainers/trainer1.jpg'
     },
     {
-        name:'Elisa Kim',
+        name:'Lars Petersson',
         image:'images/trainers/trainer2.jpg'
     },
     {
-        name:'Kimberly Andersson',
+        name:'Johan Bergström',
         image:'images/trainers/trainer3.jpg'
     }
 ]
@@ -37,13 +37,7 @@ let imgCover= document.querySelector('.cover')
 document.addEventListener("DOMContentLoaded", async()=>{
     const token = localStorage.getItem("AccessToken");
 
-    if (!token) {
-        document.querySelectorAll(".add-to-cart-btn, .bookNow").forEach(btn => {
-            btn.disabled = true;
-            btn.textContent = "Login to book";
-        });
-    }
-
+    
     const event = await getEventById(id)
     let trainer= randomTränare(id)
     const container = document.getElementById("event-detail")
@@ -54,35 +48,44 @@ document.addEventListener("DOMContentLoaded", async()=>{
         const time= event.time.startTime
         container.innerHTML = `
         <div class='heroInfo'>
-            <div class='rowInfo'>
-                <p>${date}</p>
-                <p>${time}</p>
-            </div>
-            <h1>${event.title}</h1>
-            <button class="add-to-cart-btn booknowBtn">Book now</button>
+        <div class='rowInfo'>
+        <p>${date}</p>
+        <p>${time}</p>
+        </div>
+        <h1>${event.title}</h1>
+        <button class="add-to-cart-btn booknowBtn forEach">Book now</button>
         </div>
         <div class='eventInfo'>
         <p>${event.description || "No description available"}</p>
         <div class='trainer'>
-            <h2>TRAINER: ${trainer.name}</h2>
-            <img class='trainerImg' src='${trainer.image}'>
+        <h2>TRAINER: ${trainer.name}</h2>
+        <img class='trainerImg' src='${trainer.image}'>
         </div>
         <div class='sistaRad'>
-            <div class='platser'>
-                <img src='images/person icon.svg'> <h2>${(event.participants)}/${event.maxseats}</h2>
-            </div>
-            <h2>$${event.price}</h2>
+        <div class='platser'>
+        <img src='images/person icon.svg'> <h2>${(event.participants)}/${event.maxseats}</h2>
+        </div>
+        <h2>$${event.price}</h2>
         </div>
         </div>
         `;
         container.querySelector('.booknowBtn').addEventListener('click', ()=>{
             formWrapper.classList.remove('hidden')
         })
-
+        
         const availableSeats = event.seatsLeft;
         const bookButtons = document.querySelectorAll(".add-to-cart-btn, .bookNow");
         const bookBtn = document.querySelector('.bookNow')
-
+        
+        if (!token) {
+            document.querySelectorAll(".forEach").forEach(btn => {
+                btn.disabled = true;
+                btn.textContent = "Login to book";
+            });
+            /*let firstBtn= document.querySelector('button.add-to-cart-btn.booknowBtn')
+            firstBtn.disabled=true
+            firstBtn.textContent="Login to book"*/
+        }
         if (availableSeats <= 0) {
             bookButtons.forEach(btn => {
                 btn.disabled = true;
@@ -90,7 +93,7 @@ document.addEventListener("DOMContentLoaded", async()=>{
                 btn.classList.add("disabled-btn");
             });
         }
-
+        
         console.log("TOKEN:", token);
 
         bookBtn.addEventListener('click', () => {
@@ -151,10 +154,32 @@ document.addEventListener("DOMContentLoaded", async()=>{
                             email,
                             message
                         })
-                    }
-                );
+                    });
 
-                console.log("BOOKING SAVED IN DATABASE");
+                if (response.ok) {
+                    console.log("Booking successful");
+                    let confirmationBox = document.getElementById('confirmationBox');
+                    let confirmationText = document.getElementById('confirmationText');
+                    let closeConfirmationBtn = document.getElementById('closeConfirm');
+                    confirmationText.innerHTML = `
+                    You have booked a place on the event:<br>
+                    <strong>${event.title}</strong><br><br>
+                    For more information see profile; booked events 
+                    and on the email confirmation!
+                `;
+                    confirmationBox.classList.remove("hidden");
+                    closeConfirmationBtn.addEventListener('click', () => {
+                        confirmationBox.classList.add("hidden");
+                        formWrapper.classList.add('hidden');
+                    });
+
+                         } else {
+                        console.error("Booking failed");
+                        alert("Bokningen misslyckades");
+                        return;
+                        }
+
+                //console.log("BOOKING SAVED IN DATABASE");
             
                 // Get updated event from backend
                 const updatedEvent = await getEventById(id);
@@ -195,9 +220,6 @@ document.addEventListener("DOMContentLoaded", async()=>{
                 alert("Session expired, please login again");
                 return;
             }
-
-            confirmationBox.classList.remove("hidden");
-
             form.reset();
             formWrapper.classList.add('hidden')
         });
@@ -212,25 +234,12 @@ document.addEventListener("DOMContentLoaded", async()=>{
 const formWrapper = document.querySelector('.form-wrapper')
 const form = document.querySelector('.form-component')
 
+/*
 formWrapper.addEventListener('click', (e) => {
     if (e.target === formWrapper) {
         formWrapper.classList.add('hidden')
     }
-});
-
-const sendBtn = document.getElementById("sendBookingBtn");
-const confirmationBox = document.getElementById("confirmationBox");
-const close = document.getElementById("closeBtn");
-
-// Visa rutan
-sendBtn.addEventListener("click", () => {
-  confirmationBox.classList.remove("hidden");
-});
-
-// Stäng rutan
-close.addEventListener("click", () => {
-  confirmationBox.classList.add("hidden");
-});
+});*/
 
 const closeBtn = document.querySelector('.close-btn');
 
@@ -238,13 +247,14 @@ closeBtn.addEventListener('click', () => {
     formWrapper.classList.add('hidden')
 });
 
-// Lägg till redigera-knapp om admin
-if (JSON.parse(localStorage.getItem("isAdmin"))) {
-  const editBtn = document.createElement("button");
-  editBtn.textContent = "Redigera event";
-  editBtn.className = "edit-btn";
-  editBtn.addEventListener("click", () => {
-    window.location.href = `admin.html?edit=${event._id}`;
+
+
+// Stäng rutan med X
+
+/*
+closeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    formWrapper.classList.add('hidden');
+    confirmationBox.classList.add('hidden');
   });
-  document.querySelector(".btnDiv").appendChild(editBtn);
-}
+});*/

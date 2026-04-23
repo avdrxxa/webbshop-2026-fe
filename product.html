@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="product.css" />
     <link rel="stylesheet" href="form.css" />
     <script type="module" src="product.js" defer></script>
+    <script src="./src/scripts/index.js" defer></script>
     <script type="module" src="./src/utils/auth.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,7 +28,7 @@
           <li><a href="products.html">Events</a></li>
           <li><a href="register.html">Login</a></li>
           <li>
-            <a href="customerprofile.html"
+            <a href=""
               ><img src="images/profile.svg" alt="profile icon" width="20px"
             /></a>
           </li>
@@ -50,7 +51,7 @@
       <img class="cover" />
       <div id="event-detail"></div>
       <div class="btnDiv">
-        <button type="submit" class="bookNow">Book now</button>
+        <button type="submit" class="bookNow forEach">Book now</button>
       </div>
       <div class="form-wrapper hidden"> 
           <div class="form-container">
@@ -77,17 +78,14 @@
                   </div>
               </form>
           </div>
-        <!-- Confirmation box -->
-        <div id="confirmationBox" class="hidden">
-            <div class="confirmation-content">
-                <span id="closeBtn">&times;</span>
-                <p>You have booked a place on the event: 
-                <strong>xx @ 00:00</strong>.<br><br>
-                For more information see profile; booked events 
-                and on the email confirmation!</p>       
-                </div>
-            </div>
       </div>
+      <!-- Confirmation box -->
+        <div id="confirmationBox" class="hidden">
+          <div class="confirmation-content">
+            <button type="button" id="closeConfirm" class="confirmationCloseBtn">x</button>
+            <p id="confirmationText"></p>          
+          </div>
+        </div>
     </main>
 
     <footer class="site-footer">
