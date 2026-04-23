@@ -29,8 +29,8 @@ export async function auth() {
     })
     let json= await res.json()
     console.log(json)
+    localStorage.setItem('userId', json._id)
     localStorage.setItem('loggedIn',await json.roles)
-    localStorage.setItem("loggedInInfo",await json)
     console.log('hej')
 }
 

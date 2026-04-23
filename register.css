@@ -1,7 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
-    height: 125vh;
+    height: 130vh;
     background-image: linear-gradient(
     rgba(34, 30, 30, 0.2),
     rgba(255, 255, 255, 0.4)
@@ -63,7 +63,7 @@ footer {
 @media (min-width:1000px) {
     #registerForm{
         gap: 30px;
-        padding: 80px 50px;
+        padding: 50px 50px;
         width: 500px;
         justify-self: center;
     }

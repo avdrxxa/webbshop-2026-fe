@@ -135,16 +135,6 @@ function createEventCard(event) {
   return element;
 }
 
-async function profile(){
-  let user= localStorage.getItem("loggedInInfo")
-  console.log(user)
-  let userId= user._id
-  console.log(userId)
-  window.location.href=`customerprofile.html?id=${userId}`
-}
-
-let profileknapp= document.querySelector(".last")
-profileknapp.addEventListener("click", (e) => {
-  e.preventDefault(); // stoppar default <a>-beteende
-  profile();
-})
+//jag har skapat funktionalitet som funkar för varje sida när 
+// man trcyker på profile om man är inloggad
+// den ligger i loggaut.js

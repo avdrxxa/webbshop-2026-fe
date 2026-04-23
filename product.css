@@ -78,6 +78,7 @@
 }
 .trainer{
     display: flex;
+    align-items: center;
     font-family: var(--font-heading);
     gap: 20px;
     letter-spacing: 2px;

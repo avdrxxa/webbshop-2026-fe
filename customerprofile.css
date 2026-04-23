@@ -1,3 +1,17 @@
+:root {
+    --font-heading: "Bebas Neue", sans-serif;
+    --font-underRubrik: "Bricolage Grotesque", sans-serif;
+    --font-body: "Actor", system-ui, sans-serif;
+    --color-bg: #BFB6A7;
+    --color-bg-alt: #f0ebe3;
+    --color-surface: #ffffff;
+    --color-primary: #62978D;
+    --color-primary-hover: #78A89F;
+    --color-accent: #9C6B48;
+    --color-accent-hover: #d4b03a;
+    --color-text: #646464;
+}
+
 body {
     background-color: #BFB6A7;
     font-family: 'Bebas Neue';
@@ -140,4 +154,14 @@ body {
     font-size: 14px;
     font-family: 'Bebas Neue';
     letter-spacing: 7%;
+}
+
+ul.nav-links, ul.dropdown-list{
+    font-family:var(--font-body) ;
+}
+ul.dropdown-list{
+    font-family: var(--font-body);
+}
+.footer-content p, .footer-links{
+    font-family: var(--font-body);
 }
