@@ -351,8 +351,16 @@ function createEventCard(event) {
         window.location.href = `participants.html?id=${event._id}`;
       }
     });
+
+  element.querySelector(".editEventBtn").addEventListener("click", () => {
+    sessionStorage.setItem("editMode", "true");
+    window.location.href = `product.html?id=${event._id}`;
+  });
+    
   return element;
 }
+
+
 
 
 async function loadKunder() {

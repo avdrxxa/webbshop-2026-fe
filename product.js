@@ -247,3 +247,98 @@ closeBtn.addEventListener('click', () => {
     formWrapper.classList.add('hidden')
 });
 
+
+// Edit-modal — visas bara för admin
+const isAdmin = JSON.parse(localStorage.getItem("isAdmin"));
+const editMode = sessionStorage.getItem("editMode");
+
+if (isAdmin && editMode === "true") {
+  // Skapa modal-HTML och lägg till i body
+  const editModal = document.createElement("div");
+  editModal.className = "form-wrapper";
+  editModal.id = "editModal";
+  editModal.innerHTML = `
+    <div class="edit-form-container">
+      <h2>Edit Event</h2>
+      <form class="admin-create-event">
+      <button id="closeEditModal">✕</button>
+          <div class="admin-form-row">
+            <label for="starttime">Starttid</label>
+            <input type="time" id="starttime" required />
+          </div>
+          <div class="admin-form-row">
+            <label for="endtime">Endtime</label>
+            <input type="time" id="endtime" required />
+          </div>
+          <div class="admin-form-row">
+            <label for="date">Date</label>
+            <input type="date" id="date" required />
+          </div>
+          <div class="admin-form-row">
+            <label for="price">Price</label>
+            <input type="number" id="price" min="0" step="0.01" required />
+          </div>
+          <div class="admin-form-row">
+            <label for="trainer">Trainer</label>
+            <select id="trainer" required>
+          <option value="">Select trainer</option>
+          </select>
+          </div>
+          <button type="submit">Save Changes</button>
+        </form>
+    </div>
+  `;
+  document.body.appendChild(editModal);
+
+  // Fyll i befintliga värden när eventet laddats
+  // (körs inuti DOMContentLoaded → getEventById redan klart, men vi behöver event-objektet)
+  // Lägg detta anrop INUTI din befintliga DOMContentLoaded, efter att event är hämtat:
+  //   populateEditForm(event);  ← se steg 3 nedan
+
+  document.getElementById("closeEditModal").addEventListener("click", () => {
+    editModal.classList.add("hidden");
+    sessionStorage.removeItem("editMode");
+  });
+
+  document.getElementById("editEventForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const accessToken = localStorage.getItem("AccessToken");
+    const refreshToken = localStorage.getItem("RefreshToken");
+
+    const updatedData = {
+      title: document.getElementById("editTitle").value,
+      description: document.getElementById("editDescription").value,
+      date: document.getElementById("editDate").value,
+      location: document.getElementById("editLocation").value,
+      maxseats: parseInt(document.getElementById("editMaxseats").value),
+    };
+
+    try {
+      const res = await fetch(
+        `https://webbshop-2026-be-eight.vercel.app/api/events/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: accessToken,
+            "X-Refresh-Token": refreshToken,
+          },
+          body: JSON.stringify(updatedData),
+        }
+      );
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.message || "Uppdatering misslyckades");
+      }
+
+      alert("Event uppdaterat!");
+      editModal.classList.add("hidden");
+      sessionStorage.removeItem("editMode");
+      window.location.reload();
+    } catch (error) {
+      console.error("Edit error:", error);
+      alert("Kunde inte uppdatera event");
+    }
+  });
+}
