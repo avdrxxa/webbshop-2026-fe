@@ -247,14 +247,3 @@ closeBtn.addEventListener('click', () => {
     formWrapper.classList.add('hidden')
 });
 
-
-
-// Stäng rutan med X
-
-/*
-closeBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    formWrapper.classList.add('hidden');
-    confirmationBox.classList.add('hidden');
-  });
-});*/

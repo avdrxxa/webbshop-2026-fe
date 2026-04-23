@@ -193,6 +193,25 @@ div.flex-row.p-btn {
 
 }
 
+.editEventBtn {
+  background-color: #9c6b48;
+  color: #ffffff;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  padding: 12px;
+  margin: 18px;
+}
+
+.editEventBtn:hover {
+  background-color: #b07a5c;
+}
+
+
+
+
+
 @media (min-width:1200px){
   main.admin-main{
     flex-direction: row;

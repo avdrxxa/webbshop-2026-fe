@@ -321,6 +321,7 @@ function createEventCard(event) {
   <div class="flex-row p-btn">
   <p>Booked seats: ${event.participants} av ${event.maxseats}</p>
   <a target="_blank" class='participantsBtn'>Participants</a>
+  <button class='editEventBtn'>Redigera</button>
   </div>
   `;
   element.querySelector(".seeEventInfo-Btn").addEventListener("click", () => {
