@@ -32,6 +32,7 @@ export async function auth() {
     localStorage.setItem('userId', json._id)
     localStorage.setItem('loggedIn',await json.roles)
     console.log('hej')
+    return json
 }
 
 document.addEventListener("DOMContentLoaded", await auth);

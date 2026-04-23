@@ -27,13 +27,6 @@ body {
     color: black;
 }
 
-.button-customer-profile {
-    display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    margin: 20px;
-}
-
 .button-edit-customer-profile {
     background-color: #62978D;
     color: white;
