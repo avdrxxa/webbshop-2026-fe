@@ -16,11 +16,15 @@ document.addEventListener("DOMContentLoaded", loadParticipants);
 let avbokaDeltagare= async (booking) =>{
   let eventId= localStorage.getItem('eventId')
   let token = localStorage.getItem('AccessToken')
+  console.log(token)
+  let rtoken= localStorage.getItem('RefreshToken')
+  console.log("TOKEN:", token);
   let response= await fetch(`https://webbshop-2026-be-eight.vercel.app/api/events/${eventId}/bookings`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
+      'X-Refresh-Token': rtoken // behövs den?
     },
     credentials: "include",
     body: JSON.stringify({
@@ -28,6 +32,8 @@ let avbokaDeltagare= async (booking) =>{
       }),
   })
   let data = await response.json()
+  console.log(booking.email)
+  console.log(booking._id)
   console.log(data)
   if (response.ok) {
     let bookings = JSON.parse(localStorage.getItem("bookings")) || {users:[]}

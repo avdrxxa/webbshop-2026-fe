@@ -10,15 +10,15 @@ async function getEventById(id){
 }
 let trainers=[
     {
-        name:'Michaela Mahal',
+        name:'Erik Johansson',
         image:'images/trainers/trainer1.jpg'
     },
     {
-        name:'Elisa Kim',
+        name:'Lars Petersson',
         image:'images/trainers/trainer2.jpg'
     },
     {
-        name:'Kimberly Andersson',
+        name:'Johan Bergström',
         image:'images/trainers/trainer3.jpg'
     }
 ]
@@ -37,13 +37,7 @@ let imgCover= document.querySelector('.cover')
 document.addEventListener("DOMContentLoaded", async()=>{
     const token = localStorage.getItem("AccessToken");
 
-    if (!token) {
-        document.querySelectorAll(".add-to-cart-btn, .bookNow").forEach(btn => {
-            btn.disabled = true;
-            btn.textContent = "Login to book";
-        });
-    }
-
+    
     const event = await getEventById(id)
     let trainer= randomTränare(id)
     const container = document.getElementById("event-detail")
@@ -54,35 +48,44 @@ document.addEventListener("DOMContentLoaded", async()=>{
         const time= event.time.startTime
         container.innerHTML = `
         <div class='heroInfo'>
-            <div class='rowInfo'>
-                <p>${date}</p>
-                <p>${time}</p>
-            </div>
-            <h1>${event.title}</h1>
-            <button class="add-to-cart-btn booknowBtn">Book now</button>
+        <div class='rowInfo'>
+        <p>${date}</p>
+        <p>${time}</p>
+        </div>
+        <h1>${event.title}</h1>
+        <button class="add-to-cart-btn booknowBtn forEach">Book now</button>
         </div>
         <div class='eventInfo'>
         <p>${event.description || "No description available"}</p>
         <div class='trainer'>
-            <h2>TRAINER: ${trainer.name}</h2>
-            <img class='trainerImg' src='${trainer.image}'>
+        <h2>TRAINER: ${trainer.name}</h2>
+        <img class='trainerImg' src='${trainer.image}'>
         </div>
         <div class='sistaRad'>
-            <div class='platser'>
-                <img src='images/person icon.svg'> <h2>${(event.participants)}/${event.maxseats}</h2>
-            </div>
-            <h2>$${event.price}</h2>
+        <div class='platser'>
+        <img src='images/person icon.svg'> <h2>${(event.participants)}/${event.maxseats}</h2>
+        </div>
+        <h2>$${event.price}</h2>
         </div>
         </div>
         `;
         container.querySelector('.booknowBtn').addEventListener('click', ()=>{
             formWrapper.classList.remove('hidden')
         })
-
+        
         const availableSeats = event.seatsLeft;
         const bookButtons = document.querySelectorAll(".add-to-cart-btn, .bookNow");
         const bookBtn = document.querySelector('.bookNow')
-
+        
+        if (!token) {
+            document.querySelectorAll(".forEach").forEach(btn => {
+                btn.disabled = true;
+                btn.textContent = "Login to book";
+            });
+            /*let firstBtn= document.querySelector('button.add-to-cart-btn.booknowBtn')
+            firstBtn.disabled=true
+            firstBtn.textContent="Login to book"*/
+        }
         if (availableSeats <= 0) {
             bookButtons.forEach(btn => {
                 btn.disabled = true;
@@ -90,7 +93,7 @@ document.addEventListener("DOMContentLoaded", async()=>{
                 btn.classList.add("disabled-btn");
             });
         }
-
+        
         console.log("TOKEN:", token);
 
         bookBtn.addEventListener('click', () => {
