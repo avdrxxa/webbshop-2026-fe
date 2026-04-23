@@ -35,7 +35,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
+  width: 85%;
 
 }
 
@@ -51,7 +51,7 @@ body {
   background-color: var(--color-border);
   color: var(--color-text);
   padding: 2.1rem;
-  width: 100%;
+  width: 90%;
   min-width: 300px;
   border-radius: var(--radius-lg);
 }
@@ -74,7 +74,7 @@ label {
 }
 
 .participants {
-  width: 90%;
+  width: 80%;
   max-width: 650px;
   flex-direction: column;
   justify-content: center;
@@ -90,12 +90,12 @@ label {
 }
 .participants-wrap {
   background-color: var(--color-bg);
-  padding: 50px;
+  padding: 30px;
   border-radius: 20px;
 }
 div.flex-row.p-btn {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 .elementList {
@@ -163,7 +163,7 @@ div.flex-row.p-btn {
 }
 
 .customer-registry{
-  width: 90%;
+  width: 80%;
 }
 
 .customer-registry-wrap{
@@ -207,8 +207,19 @@ div.flex-row.p-btn {
 .editEventBtn:hover {
   background-color: #b07a5c;
 }
-
-
+.flex-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.deleteEventBtn{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(85, 48, 48);
+    color: white;
+}
 
 
 

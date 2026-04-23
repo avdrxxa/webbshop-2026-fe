@@ -24,7 +24,7 @@ body {
 .container-customer-profile {
     display: flex;
     flex-direction: column;
-    color: black;
+    color: var(--color-text);
 }
 
 .button-edit-customer-profile {
@@ -63,6 +63,12 @@ body {
     font-size: 44px;
     font-weight: 400;
 }
+div.profile-info{
+    background-color: var(--color-bg-alt);
+    padding: 30px;
+    border-radius: 10px;
+    font-family: var(--font-body);
+}
 
 .img-customer-profile {
     width: 100px;
@@ -100,18 +106,21 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 70px;
 }
 
 .booked-events-list {
     display: flex;
     flex-direction: column;
-    gap: 12px
+    gap: 18px
 }
 
 .booked-events-items {
     width: 350px;
     height: 45px;
     background-color: #E9E2D8;
+    padding: 10px;
+    border-radius: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -120,7 +129,7 @@ body {
 .h6-costumer-profile {
     display: flex;
     align-self: center;
-    color: black;
+    color: var(--color-text);
     font-family: 'Bebas Neue';
     font-size: 14px;
     letter-spacing: 5%;
@@ -157,4 +166,8 @@ ul.dropdown-list{
 }
 .footer-content p, .footer-links{
     font-family: var(--font-body);
+}
+h2.h2-customer-profile{
+    color: #ffffff;
+    letter-spacing: 2px;
 }

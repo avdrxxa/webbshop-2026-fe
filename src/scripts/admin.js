@@ -323,11 +323,10 @@ function createEventCard(event) {
   <button class='deleteEventBtn'>Delete event</button>
   </div>
   <div class="flex-row p-btn">
-  <p>Booked seats: ${event.participants} av ${event.maxseats}</p>
   <a target="_blank" class='participantsBtn'>Participants</a>
   <button class='editEventBtn'>Edit event</button>
-
   </div>
+  <p>Booked seats: ${event.participants} av ${event.maxseats}</p>
   `;
   element.querySelector(".deleteEventBtn").addEventListener("click", async () => {
   
