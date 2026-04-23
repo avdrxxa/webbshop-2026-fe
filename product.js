@@ -271,18 +271,8 @@ if (isAdmin && editMode === "true") {
             <input type="time" id="endtime" required />
           </div>
           <div class="admin-form-row">
-            <label for="date">Date</label>
-            <input type="date" id="date" required />
-          </div>
-          <div class="admin-form-row">
             <label for="price">Price</label>
             <input type="number" id="price" min="0" step="0.01" required />
-          </div>
-          <div class="admin-form-row">
-            <label for="trainer">Trainer</label>
-            <select id="trainer" required>
-          <option value="">Select trainer</option>
-          </select>
           </div>
           <button type="submit">Save Changes</button>
         </form>
@@ -290,27 +280,44 @@ if (isAdmin && editMode === "true") {
   `;
   document.body.appendChild(editModal);
 
-  // Fyll i befintliga värden när eventet laddats
-  // (körs inuti DOMContentLoaded → getEventById redan klart, men vi behöver event-objektet)
-  // Lägg detta anrop INUTI din befintliga DOMContentLoaded, efter att event är hämtat:
-  //   populateEditForm(event);  ← se steg 3 nedan
-
+ 
   document.getElementById("closeEditModal").addEventListener("click", () => {
     editModal.classList.add("hidden");
     sessionStorage.removeItem("editMode");
   });
 
-  document.getElementById("editEventForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const accessToken = localStorage.getItem("AccessToken");
-    const refreshToken = localStorage.getItem("RefreshToken");
+
+
+async function updateEditform() {
+    let event = await getEventById(id);
+    document.getElementById("starttime").value = event.time?.startTime || "";
+    document.getElementById("endtime").value = event.time?.endTime || "";
+    document.getElementById("price").value = event.price;
+
+}
+
+updateEditform();
 
     const updatedData = {
-      title: document.getElementById("editTitle").value,
-      description: document.getElementById("editDescription").value,
-      date: document.getElementById("editDate").value,
-      location: document.getElementById("editLocation").value,
-      maxseats: parseInt(document.getElementById("editMaxseats").value),
+      startTime: document.getElementById("starttime").value,
+      endTime: document.getElementById("endtime").value,
+      price: parseFloat(document.getElementById("price").value),
+    };
+
+ document.getElementById("editModal").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("AccessToken");
+    const rtoken = localStorage.getItem("RefreshToken");
+
+    let startTime = document.getElementById("starttime").value;
+    let endTime = document.getElementById("endtime").value;
+    let price = parseFloat(document.getElementById("price").value);
+
+
+    const updatedData = {
+      startTime,
+      endTime,
+      price,
     };
 
     try {
@@ -318,10 +325,12 @@ if (isAdmin && editMode === "true") {
         `https://webbshop-2026-be-eight.vercel.app/api/events/${id}`,
         {
           method: "PUT",
+          credentials: "include",
+
           headers: {
             "Content-Type": "application/json",
-            Authorization: accessToken,
-            "X-Refresh-Token": refreshToken,
+            Authorization: token,
+            "X-Refresh-Token": rtoken,
           },
           body: JSON.stringify(updatedData),
         }
@@ -336,7 +345,8 @@ if (isAdmin && editMode === "true") {
       editModal.classList.add("hidden");
       sessionStorage.removeItem("editMode");
       window.location.reload();
-    } catch (error) {
+
+ } catch (error) {
       console.error("Edit error:", error);
       alert("Kunde inte uppdatera event");
     }

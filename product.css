@@ -250,7 +250,7 @@
 }
 
 .admin-create-event {
-    background-color:#646464;
+    background-color: var(--color-bg);
     padding: 30px;
     border-radius: 20px;
     width: 90%;
