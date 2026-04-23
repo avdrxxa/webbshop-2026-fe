@@ -68,6 +68,9 @@ div.filtrera{
     cursor: pointer;
     position: relative;
 }
+.main-content div div img.iconFilter:hover{
+    filter: brightness(1.1);
+}
 div.filter-form{
     position: absolute;
     width: 50%;
