@@ -166,3 +166,4 @@ function createEventCard(event) {
 searchBar.addEventListener('input', ()=>{
     loadEvents()
 })
+
