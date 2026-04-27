@@ -57,8 +57,8 @@ clone https://github.com/avdrxxa/webbshop-2026-fe.git
 <img width="1219" height="1013" alt="Image" src="https://github.com/user-attachments/assets/8d4a0d30-81dd-4c68-8b80-9592f07d36b6" />
 <img width="1219" height="1013" alt="Image" src="https://github.com/user-attachments/assets/31daaeb3-0979-4d95-8316-8b5afdb9671d" />
 <p align="center">
-  <img width="497" height="1037" alt="Image" src="https://github.com/user-attachments/assets/8c656e97-61a3-4d79-9f60-9c2681caaad5" width="49%" />
-  <img width="497" height="1037" alt="Image" src="https://github.com/user-attachments/assets/6cdc7033-75a5-4c46-adfa-3e81bbbe966f" width="49%" />
+  <img width="497" alt="Image" src="https://github.com/user-attachments/assets/8c656e97-61a3-4d79-9f60-9c2681caaad5" width="49%" />
+  <img width="497" alt="Image" src="https://github.com/user-attachments/assets/6cdc7033-75a5-4c46-adfa-3e81bbbe966f" width="49%" />
 </p>
 
 ## 📄 Licens
